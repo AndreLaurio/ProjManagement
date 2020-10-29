@@ -1,11 +1,12 @@
 <template>
-    <div>
+    <v-app>
         <div>
             <input type="text" v-model="login_data.email">
             <input type="text" v-model="login_data.password">
             <button v-on:click="login">Login</button>
+            <v-btn class="primary">test</v-btn>
         </div>
-    </div>
+    </v-app>
 </template>
 
 <script>
