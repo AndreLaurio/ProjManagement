@@ -27,6 +27,8 @@ export default {
                     email: this.login_data.email,
                     password: this.login_data.password
                 }).then(response => {
+                    var token = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                    localStorage.setItem('isLoggedIn',token)
                     this.$router.push({name:'ExampleComponent'})
                 }).catch(error => {
                     console.log(error.response.data)
