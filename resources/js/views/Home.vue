@@ -5,6 +5,7 @@
             <input type="text" v-model="login_data.password">
             <button v-on:click="login">Login</button>
             <v-btn class="primary">test</v-btn>
+            <h1>{{erroralert}}</h1>
         </div>
     </v-app>
 </template>
@@ -16,7 +17,8 @@ export default {
             login_data:{
                 email:'',
                 password:''
-            }
+            },
+            erroralert:'',
         }
     },
 
@@ -28,10 +30,11 @@ export default {
                     password: this.login_data.password
                 }).then(response => {
                     var token = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-                    localStorage.setItem('isLoggedIn',token)
+                    localStorage.setItem('token',token)
                     this.$router.push({name:'ExampleComponent'})
-                }).catch(error => {
-                    console.log(error.response.data)
+                }).catch(error => { 
+                    this.erroralert = error.response.data
+                    console.clear()
                 })        
             }).catch(error =>{
                 console.log('sanctum error')
