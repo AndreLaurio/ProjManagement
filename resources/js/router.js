@@ -5,15 +5,15 @@ Vue.use(VueRouter);
 
 const routes = [
     {
+        path:'/',
+        name:'Index',
+        component: () => import('./views/Index')
+    },
+    {
         path: '/home',
         name:'ExampleComponent',
         component: () => import('./components/ExampleComponent'),
         meta:{requiresAuth:true}
-    },
-    {
-        path:'/',
-        name:'Home',
-        component: () => import('./views/Home')
     }
 ]
 
