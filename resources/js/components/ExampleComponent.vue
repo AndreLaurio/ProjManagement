@@ -36,7 +36,7 @@
                     this.userID = response.data.id
                     console.log(response.data)
                 }).catch(error => {
-                    
+                    console.clear()
                 })
             }
         }
