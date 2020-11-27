@@ -1,0 +1,15 @@
+// How to migrate db with the core seeds in first time
+// core seeds - table data that are needed and can be initialized after migration
+//            - such as user_types, question_types, etc...
+php artisan migrate:fresh
+php artisan db:seed
+
+
+// Loading Test Data (for testing and development only)
+php artisan db:seed --class=TestDatabaseSeeder
+
+
+
+//Class 'Database\Seeders\Faker\Factory' not found
+composer require fzaninotto/faker --dev
+

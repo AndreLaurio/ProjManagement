@@ -1,0 +1,38 @@
+/** Collation to use in MySQL DB **/
+    // A collation is a set of rules that defines how to compare and sort character strings
+    // utf8 can only store 3 byte characters, utf8mb4 can store 4 byte character
+    // utf8 can only store characters in Basic Multiingual Plane, while
+    // utf8mb4 can store any Unicode character
+    // general:faster; unicode:more accurate
+    utf8mb4_unicode_ci
+
+
+/** What RDBMS are we using? **/
+    // A software system used to maintain relational databases
+    // It is not MYSQL, it is MariaDB
+    // MariaDB is fork of MySQL
+    // There's no problem in compatibility
+    // MySQL connectors will work in MariaDB
+    // The same query syntax
+    // MariaDB Logo:Seal; Mysql:Dolphine hehe
+    MariaDB
+
+
+/** 4 types of caches to clear **/
+
+    // To clear the application cache.
+    // Clears all caches inside storage\framework\cache.
+    php artisan cache:clear
+
+
+    // This will clear the route cache.
+    // For new added/changed route
+    php artisan route:clear
+
+
+    // This will clear the caching of the env file and reload it
+    php artisan config:cache 
+
+
+    // This will clear the compiled view files of your application.
+    php artisan view:cache
