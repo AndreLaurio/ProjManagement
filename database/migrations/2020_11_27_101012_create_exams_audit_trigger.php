@@ -29,7 +29,7 @@ class CreateExamsAuditTrigger extends Migration
                         exam_desc,
                         total_points,
                         passing_percentage,
-                        is_student_review_enabled,
+                        is_examinee_review_enabled,
                         is_monitoring_switching_tab_enabled
                     ) 
                     VALUES (
@@ -43,7 +43,7 @@ class CreateExamsAuditTrigger extends Migration
                         NEW.exam_desc,
                         NEW.total_points,
                         NEW.passing_percentage,
-                        NEW.is_student_review_enabled,
+                        NEW.is_examinee_review_enabled,
                         NEW.is_monitoring_switching_tab_enabled
                     );
                 END
@@ -65,7 +65,7 @@ class CreateExamsAuditTrigger extends Migration
                         exam_desc,
                         total_points,
                         passing_percentage,
-                        is_student_review_enabled,
+                        is_examinee_review_enabled,
                         is_monitoring_switching_tab_enabled
                     ) 
                     VALUES (
@@ -79,7 +79,7 @@ class CreateExamsAuditTrigger extends Migration
                         OLD.exam_desc,
                         OLD.total_points,
                         OLD.passing_percentage,
-                        OLD.is_student_review_enabled,
+                        OLD.is_examinee_review_enabled,
                         OLD.is_monitoring_switching_tab_enabled
                     );
                 END
@@ -101,7 +101,7 @@ class CreateExamsAuditTrigger extends Migration
                         exam_desc,
                         total_points,
                         passing_percentage,
-                        is_student_review_enabled,
+                        is_examinee_review_enabled,
                         is_monitoring_switching_tab_enabled
                     ) 
                     VALUES (
@@ -115,7 +115,7 @@ class CreateExamsAuditTrigger extends Migration
                         NEW.exam_desc,
                         NEW.total_points,
                         NEW.passing_percentage,
-                        NEW.is_student_review_enabled,
+                        NEW.is_examinee_review_enabled,
                         NEW.is_monitoring_switching_tab_enabled
                     );
                 END

@@ -24,6 +24,9 @@ class CreateExamineeExamsTable extends Migration
             $table->boolean('total_percentage', 5, 2)->default(0.00);
             $table->integer('switching_tab_count')->default(0);
             
+            $table->timestamp('started_at')->useCurrent();
+            $table->timestamp('finished_at')->useCurrent();
+            
             $table->bigInteger('created_by')->default(0);
             $table->timestamp('created_at')->useCurrent();
             $table->bigInteger('updated_by')->default(0);

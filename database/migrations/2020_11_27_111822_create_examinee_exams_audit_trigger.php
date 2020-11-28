@@ -29,7 +29,9 @@ class CreateExamineeExamsAuditTrigger extends Migration
                         no_of_attempts,
                         total_score,
                         total_percentage,
-                        switching_tab_count
+                        switching_tab_count,
+                        started_at,
+                        finished_at
                     ) 
                     VALUES (
                         NEW.created_by,
@@ -42,7 +44,9 @@ class CreateExamineeExamsAuditTrigger extends Migration
                         NEW.no_of_attempts,
                         NEW.total_score,
                         NEW.total_percentage,
-                        NEW.switching_tab_count
+                        NEW.switching_tab_count,
+                        NEW.started_at,
+                        NEW.finished_at
                     );
                 END
         ");
@@ -63,7 +67,9 @@ class CreateExamineeExamsAuditTrigger extends Migration
                         no_of_attempts,
                         total_score,
                         total_percentage,
-                        switching_tab_count
+                        switching_tab_count,
+                        started_at,
+                        finished_at
                     ) 
                     VALUES (
                         OLD.updated_by,
@@ -76,7 +82,9 @@ class CreateExamineeExamsAuditTrigger extends Migration
                         OLD.no_of_attempts,
                         OLD.total_score,
                         OLD.total_percentage,
-                        OLD.switching_tab_count
+                        OLD.switching_tab_count,
+                        OLD.started_at,
+                        OLD.finished_at
                     );
                 END
         ");
@@ -97,7 +105,9 @@ class CreateExamineeExamsAuditTrigger extends Migration
                         no_of_attempts,
                         total_score,
                         total_percentage,
-                        switching_tab_count
+                        switching_tab_count,
+                        started_at,
+                        finished_at
                     ) 
                     VALUES (
                         NEW.updated_by,
@@ -110,7 +120,9 @@ class CreateExamineeExamsAuditTrigger extends Migration
                         NEW.no_of_attempts,
                         NEW.total_score,
                         NEW.total_percentage,
-                        NEW.switching_tab_count
+                        NEW.switching_tab_count,
+                        NEW.started_at,
+                        NEW.finished_at
                     );
                 END
         ");

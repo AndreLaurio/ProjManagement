@@ -18,6 +18,8 @@ class CreateExamineeExamMonitoringTable extends Migration
             $table->bigInteger('examinee_id')->unsigned();
             $table->bigInteger('exam_id')->unsigned();
             $table->timestamp('switched_at')->useCurrent();
+
+            $table->string('switched_at_item_nos')->default('0');
             
             $table->bigInteger('created_by')->default(0);
             $table->timestamp('created_at')->useCurrent();

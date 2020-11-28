@@ -25,7 +25,8 @@ class CreateExamineeExamMonitoringAuditTrigger extends Migration
                         room_id,
                         examinee_id,
                         exam_id,
-                        switched_at
+                        switched_at,
+                        switched_at_item_nos
                     ) 
                     VALUES (
                         NEW.created_by,
@@ -34,7 +35,8 @@ class CreateExamineeExamMonitoringAuditTrigger extends Migration
                         NEW.room_id,
                         NEW.examinee_id,
                         NEW.exam_id,
-                        NEW.switched_at
+                        NEW.switched_at,
+                        NEW.switched_at_item_nos
                     );
                 END
         ");
@@ -51,7 +53,8 @@ class CreateExamineeExamMonitoringAuditTrigger extends Migration
                         room_id,
                         examinee_id,
                         exam_id,
-                        switched_at
+                        switched_at,
+                        switched_at_item_nos
                     ) 
                     VALUES (
                         OLD.updated_by,
@@ -60,7 +63,8 @@ class CreateExamineeExamMonitoringAuditTrigger extends Migration
                         OLD.room_id,
                         OLD.examinee_id,
                         OLD.exam_id,
-                        OLD.switched_at
+                        OLD.switched_at,
+                        OLD.switched_at_item_nos
                     );
                 END
         ");
@@ -77,7 +81,8 @@ class CreateExamineeExamMonitoringAuditTrigger extends Migration
                         room_id,
                         examinee_id,
                         exam_id,
-                        switched_at
+                        switched_at,
+                        switched_at_item_nos
                     ) 
                     VALUES (
                         NEW.updated_by,
@@ -86,7 +91,8 @@ class CreateExamineeExamMonitoringAuditTrigger extends Migration
                         NEW.room_id,
                         NEW.examinee_id,
                         NEW.exam_id,
-                        NEW.switched_at
+                        NEW.switched_at,
+                        NEW.switched_at_item_nos
                     );
                 END
         ");

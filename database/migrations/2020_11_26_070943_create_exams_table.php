@@ -22,7 +22,7 @@ class CreateExamsTable extends Migration
             $table->longText('exam_desc')->nullable();
             $table->double('total_points', 10, 2)->default(0.00);
             $table->double('passing_percentage', 5, 2)->default(0.00);
-            $table->boolean('is_student_review_enabled')->default(true);
+            $table->boolean('is_examinee_review_enabled')->default(true);
             $table->boolean('is_monitoring_switching_tab_enabled')->default(false);
             
             $table->bigInteger('created_by')->default(0);
