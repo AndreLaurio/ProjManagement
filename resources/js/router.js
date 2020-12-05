@@ -14,6 +14,11 @@ const routes = [
         name:'ExampleComponent',
         component: () => import('./components/ExampleComponent'),
         meta:{requiresAuth:true}
+    },
+    {
+        path:'*',
+        name:'404',
+        component: () => import('./views/404')
     }
 ]
 
