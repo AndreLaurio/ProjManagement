@@ -361,14 +361,14 @@ export default {
                                 name: "ExaminationRoom"
                             });
 
-                            // axios.get("api/user").then(response => {
-                            //     var userType = response.data.user_type_id;
-                            //     if (userType == 1) {
-                            //         this.$router.push({
-                            //             name: "ExaminationRoom"
-                            //         });
-                            //     }
-                            // });
+                            axios.get("api/user").then(response => {
+                                var userType = response.data.user_type_id;
+                                if (userType == 1) {
+                                    this.$router.push({
+                                        name: "ExaminationRoom"
+                                    });
+                                }
+                            });
                         })
                         .catch(error => {
                             let validationErrors = Object.values(

@@ -67,6 +67,7 @@ export default {
                 .post("/logout")
                 .then(response => {
                     this.$router.push({ name: "Index" });
+                    localStorage.clear();
                 })
                 .catch(err => {
                     console.log("please call an administrator");
