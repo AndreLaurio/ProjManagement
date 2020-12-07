@@ -1,6 +1,6 @@
 <template>
     <v-app class="main-page">
-        <ExamineeNavbar/>
+        <!-- <ExamineeNavbar v-if="this.$route.name === 'ExaminationRoom'" /> -->
         <v-main>
             <router-view></router-view>
         </v-main>
@@ -8,17 +8,16 @@
 </template>
 
 <style scoped>
-.main-page{
+.main-page {
     background-color: #f5f5f5;
 }
-
 </style>
 
 <script>
-import ExamineeNavbar from './components/ExamineeNavbar'
+import ExamineeNavbar from "./components/ExamineeNavbar";
 export default {
-    components:{
+    components: {
         ExamineeNavbar
     }
-}
+};
 </script>

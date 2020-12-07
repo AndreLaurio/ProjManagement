@@ -1,5 +1,5 @@
 <template>
-    <nav v-if="this.$route.name === 'ExaminationRoom'">
+    <nav>
         <v-navigation-drawer v-model="drawer" app color="grey lighten-5">
             <v-list dense>
                 <v-list-item-group
@@ -67,7 +67,6 @@ export default {
                 .post("/logout")
                 .then(response => {
                     this.$router.push({ name: "Index" });
-                    localStorage.clear();
                 })
                 .catch(err => {
                     console.log("please call an administrator");

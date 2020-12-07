@@ -368,15 +368,18 @@ __webpack_require__.r(__webpack_exports__);
         }).then(function (response) {
           var token = document.querySelector('meta[name="csrf-token"]').getAttribute("content");
           localStorage.setItem("token", token);
-          axios.get("api/user").then(function (response) {
-            var userType = response.data.user_type_id;
 
-            if (userType == 1) {
-              _this.$router.push({
-                name: "ExaminationRoom"
-              });
-            }
-          });
+          _this.$router.push({
+            name: "ExaminationRoom"
+          }); // axios.get("api/user").then(response => {
+          //     var userType = response.data.user_type_id;
+          //     if (userType == 1) {
+          //         this.$router.push({
+          //             name: "ExaminationRoom"
+          //         });
+          //     }
+          // });
+
         })["catch"](function (error) {
           var validationErrors = Object.values(error.response.data.errors);
           validationErrors = validationErrors.flat();
