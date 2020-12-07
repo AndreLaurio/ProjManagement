@@ -380,6 +380,10 @@ __webpack_require__.r(__webpack_exports__);
               _this.$router.push({
                 name: "ExaminationRoom"
               });
+            } else if (userType == 2) {
+              _this.$router.push({
+                name: "ManageRoom"
+              });
             }
           });
         })["catch"](function (error) {

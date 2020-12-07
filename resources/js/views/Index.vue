@@ -367,6 +367,10 @@ export default {
                                     this.$router.push({
                                         name: "ExaminationRoom"
                                     });
+                                } else if (userType == 2) {
+                                    this.$router.push({
+                                        name: "ManageRoom"
+                                    });
                                 }
                             });
                         })

@@ -1,6 +1,7 @@
 <template>
     <v-app class="main-page">
         <ExamineeNavbar v-if="this.$route.name === 'ExaminationRoom'" />
+        <ExaminerNavbar v-if="this.$route.name === 'ManageRoom'" />
         <v-main>
             <router-view></router-view>
         </v-main>
@@ -15,9 +16,11 @@
 
 <script>
 import ExamineeNavbar from "./components/ExamineeNavbar";
+import ExaminerNavbar from "./components/ExaminerNavbar";
 export default {
     components: {
-        ExamineeNavbar
+        ExamineeNavbar,
+        ExaminerNavbar
     }
 };
 </script>
