@@ -1,5 +1,24 @@
 <template>
-    <v-app>
-        <router-view></router-view>
+    <v-app class="main-page">
+        <ExamineeNavbar/>
+        <v-main>
+            <router-view></router-view>
+        </v-main>
     </v-app>
 </template>
+
+<style scoped>
+.main-page{
+    background-color: #f5f5f5;
+}
+
+</style>
+
+<script>
+import ExamineeNavbar from './components/ExamineeNavbar'
+export default {
+    components:{
+        ExamineeNavbar
+    }
+}
+</script>

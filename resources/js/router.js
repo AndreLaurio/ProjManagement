@@ -10,10 +10,9 @@ const routes = [
         component: () => import('./views/Index')
     },
     {
-        path: '/home',
-        name:'ExampleComponent',
-        component: () => import('./components/ExampleComponent'),
-        meta:{requiresAuth:true}
+        path:'/examination-room',
+        name:'ExaminationRoom',
+        component: () => import('./views/Examinee/ExaminationRoom')
     },
     {
         path:'*',

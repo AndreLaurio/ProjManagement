@@ -208,33 +208,148 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       login_data: {
-        email: '',
-        password: ''
+        email: "",
+        password: ""
       },
       register_data: {
-        first_name: '',
-        last_name: '',
-        email: '',
-        password: '',
-        confirm_password: ''
+        first_name: "",
+        last_name: "",
+        email: "",
+        password: "",
+        confirm_password: ""
       },
       forgotPw_data: {
-        email: ''
+        email: ""
       },
       showPassword: false,
       registerDialog: false,
       forgotPwDialog: false,
-      erroralert: '',
+      validationError: [],
       rules: {
         required: function required(value) {
-          return !!value || 'Required.';
+          return !!value || "Required.";
         },
         min: function min(v) {
-          return v.length >= 8 || 'Min 8 characters';
+          return v.length >= 8 || "Min 8 characters";
         },
         emailMatch: function emailMatch() {
           return "The email and password you entered don't match";
@@ -246,27 +361,33 @@ __webpack_require__.r(__webpack_exports__);
     login: function login() {
       var _this = this;
 
-      axios.get('/sanctum/csrf-cookie').then(function (response) {
-        axios.post('/login', {
+      axios.get("/sanctum/csrf-cookie").then(function (response) {
+        axios.post("/login", {
           email: _this.login_data.email,
           password: _this.login_data.password
         }).then(function (response) {
-          var token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-          localStorage.setItem('token', token);
+          var token = document.querySelector('meta[name="csrf-token"]').getAttribute("content");
+          localStorage.setItem("token", token);
+          axios.get("api/user").then(function (response) {
+            var userType = response.data.user_type_id;
 
-          _this.$router.push({
-            name: 'ExampleComponent'
+            if (userType == 1) {
+              _this.$router.push({
+                name: "ExaminationRoom"
+              });
+            }
           });
         })["catch"](function (error) {
-          _this.erroralert = error.response.data;
-          console.clear();
+          var validationErrors = Object.values(error.response.data.errors);
+          validationErrors = validationErrors.flat();
+          _this.validationError = validationErrors;
         });
       })["catch"](function (error) {
-        console.log('sanctum error');
+        console.log("sanctum error");
       });
     },
     register: function register() {
-      axios.post('/register', {
+      axios.post("/register", {
         first_name: this.register_data.first_name,
         last_name: this.register_data.last_name,
         email: this.register_data.email,
@@ -274,18 +395,18 @@ __webpack_require__.r(__webpack_exports__);
         password_confirmation: this.register_data.confirm_password,
         user_type_id: 1
       }).then(function (response) {
-        console.log('registered successfully');
+        console.log("registered successfully");
       })["catch"](function (error) {
-        console.log('registered failed');
+        console.log("registered failed");
       });
     },
     forgotPassword: function forgotPassword() {
-      axios.post('/password/email', {
+      axios.post("/password/email", {
         email: this.forgotPw_data.email
       }).then(function (response) {
-        console.log('sent successfully');
+        console.log("sent successfully");
       })["catch"](function (error) {
-        console.log('sending failed');
+        console.log("sending failed");
       });
     }
   }
@@ -307,7 +428,7 @@ exports.push([module.i, "@import url(https://fonts.googleapis.com/css2?family=Op
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css2?family=Open+Sans:wght@600;800&display=swap);", ""]);
 
 // module
-exports.push([module.i, "\n.font-body[data-v-494d9643]{\r\n    font-family: 'Poppins', sans-serif;\n}\n.font-title[data-v-494d9643]{\r\n    font-family: 'Padauk', sans-serif;\n}\na[data-v-494d9643]{\r\n    text-decoration: none;\n}\n.input-login[data-v-494d9643]{\r\n    width: 400px;\n}\n.input-register[data-v-494d9643]{\r\n    width: 350px;\n}\n.signin[data-v-494d9643]{\r\n    width: 300px;\n}\n.template[data-v-494d9643]{\r\n    background-color: #F5F5F5;\n}\n.register-title[data-v-494d9643]{\r\n     font-family: 'Open Sans', sans-serif;\r\n     font-size: 2rem;\r\n     font-weight: 800;\r\n     color: #4F46E5;\n}\r\n\r\n\r\n", ""]);
+exports.push([module.i, "\n.font-body[data-v-494d9643] {\r\n    font-family: \"Poppins\", sans-serif;\n}\n.font-title[data-v-494d9643] {\r\n    font-family: \"Padauk\", sans-serif;\n}\na[data-v-494d9643] {\r\n    text-decoration: none;\n}\n.input-login[data-v-494d9643] {\r\n    width: 400px;\n}\n.input-register[data-v-494d9643] {\r\n    width: 350px;\n}\n.signin[data-v-494d9643] {\r\n    width: 300px;\n}\n.template[data-v-494d9643] {\r\n    background-color: #f5f5f5;\n}\n.register-title[data-v-494d9643] {\r\n    font-family: \"Open Sans\", sans-serif;\r\n    font-size: 2rem;\r\n    font-weight: 800;\r\n    color: #4f46e5;\n}\r\n", ""]);
 
 // exports
 
@@ -458,7 +579,11 @@ var render = function() {
                                           "text-md-body-1 register-input",
                                         attrs: { for: "first-name" }
                                       },
-                                      [_vm._v(" First Name")]
+                                      [
+                                        _vm._v(
+                                          "\n                                        First Name"
+                                        )
+                                      ]
                                     ),
                                     _vm._v(" "),
                                     _c("v-text-field", {
@@ -493,7 +618,11 @@ var render = function() {
                                           "text-md-body-1 register-input",
                                         attrs: { for: "last-name" }
                                       },
-                                      [_vm._v(" Last Name")]
+                                      [
+                                        _vm._v(
+                                          "\n                                        Last Name"
+                                        )
+                                      ]
                                     ),
                                     _vm._v(" "),
                                     _c("v-text-field", {
@@ -534,7 +663,11 @@ var render = function() {
                                 staticClass: "text-md-body-1",
                                 attrs: { for: "register-email" }
                               },
-                              [_vm._v(" Email Address")]
+                              [
+                                _vm._v(
+                                  "\n                                Email Address"
+                                )
+                              ]
                             ),
                             _vm._v(" "),
                             _c("v-text-field", {
@@ -573,7 +706,11 @@ var render = function() {
                                           "text-md-body-1 register-input",
                                         attrs: { for: "register-password" }
                                       },
-                                      [_vm._v(" Password")]
+                                      [
+                                        _vm._v(
+                                          "\n                                        Password"
+                                        )
+                                      ]
                                     ),
                                     _vm._v(" "),
                                     _c("v-text-field", {
@@ -611,7 +748,11 @@ var render = function() {
                                           for: "register-confirm-password"
                                         }
                                       },
-                                      [_vm._v(" Confirm Password")]
+                                      [
+                                        _vm._v(
+                                          "\n                                        Confirm Password"
+                                        )
+                                      ]
                                     ),
                                     _vm._v(" "),
                                     _c("v-text-field", {
@@ -632,7 +773,7 @@ var render = function() {
                                           )
                                         },
                                         expression:
-                                          "register_data.confirm_password"
+                                          "\n                                            register_data.confirm_password\n                                        "
                                       }
                                     })
                                   ],
@@ -660,7 +801,7 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "\n                        Register\n                    "
+                                "\n                            Register\n                        "
                               )
                             ]
                           ),
@@ -678,7 +819,7 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "\n                        Close\n                    "
+                                "\n                            Close\n                        "
                               )
                             ]
                           )
@@ -712,7 +853,7 @@ var render = function() {
                           staticClass: "text-md-body-1",
                           attrs: { for: "email" }
                         },
-                        [_vm._v(" Email Address")]
+                        [_vm._v("\n                        Email Address")]
                       ),
                       _vm._v(" "),
                       _c("v-text-field", {
@@ -722,6 +863,13 @@ var render = function() {
                           "prepend-inner-icon": "mdi-email-outline",
                           clearable: "",
                           id: "email"
+                        },
+                        model: {
+                          value: _vm.login_data.email,
+                          callback: function($$v) {
+                            _vm.$set(_vm.login_data, "email", $$v)
+                          },
+                          expression: "login_data.email"
                         }
                       }),
                       _vm._v(" "),
@@ -731,7 +879,7 @@ var render = function() {
                           staticClass: "text-md-body-1",
                           attrs: { for: "password" }
                         },
-                        [_vm._v(" Password")]
+                        [_vm._v("\n                        Password")]
                       ),
                       _vm._v(" "),
                       _c("v-text-field", {
@@ -752,6 +900,13 @@ var render = function() {
                           "click:append": function($event) {
                             _vm.showPassword = !_vm.showPassword
                           }
+                        },
+                        model: {
+                          value: _vm.login_data.password,
+                          callback: function($$v) {
+                            _vm.$set(_vm.login_data, "password", $$v)
+                          },
+                          expression: "login_data.password"
                         }
                       }),
                       _vm._v(" "),
@@ -830,7 +985,11 @@ var render = function() {
                                             staticClass: "text-md-body-1",
                                             attrs: { for: "register-email" }
                                           },
-                                          [_vm._v(" Email Address")]
+                                          [
+                                            _vm._v(
+                                              "\n                                            Email Address"
+                                            )
+                                          ]
                                         ),
                                         _vm._v(" "),
                                         _c("v-text-field", {
@@ -875,7 +1034,7 @@ var render = function() {
                                         },
                                         [
                                           _vm._v(
-                                            "\n                        Send Reset PW\n                    "
+                                            "\n                                        Send Reset PW\n                                    "
                                           )
                                         ]
                                       ),
@@ -896,7 +1055,7 @@ var render = function() {
                                         },
                                         [
                                           _vm._v(
-                                            "\n                        Close\n                    "
+                                            "\n                                        Close\n                                    "
                                           )
                                         ]
                                       )
@@ -920,6 +1079,22 @@ var render = function() {
                     "div",
                     { staticClass: "text-center mt-5" },
                     [
+                      _c("div", [
+                        _c(
+                          "ul",
+                          _vm._l(_vm.validationError, function(valErr) {
+                            return _c("li", { key: valErr.id }, [
+                              _vm._v(
+                                "\n                                " +
+                                  _vm._s(valErr) +
+                                  "\n                            "
+                              )
+                            ])
+                          }),
+                          0
+                        )
+                      ]),
+                      _vm._v(" "),
                       _c(
                         "v-btn",
                         {
