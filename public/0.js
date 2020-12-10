@@ -323,6 +323,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//vanila js
+//start of vue
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -340,6 +348,7 @@ __webpack_require__.r(__webpack_exports__);
       forgotPw_data: {
         email: ""
       },
+      loginLoading: false,
       showPassword: false,
       registerDialog: false,
       forgotPwDialog: false,
@@ -357,10 +366,14 @@ __webpack_require__.r(__webpack_exports__);
       }
     };
   },
+  mounted: function mounted() {
+    this.changetab();
+  },
   methods: {
     login: function login() {
       var _this = this;
 
+      this.loginLoading = true;
       axios.get("/sanctum/csrf-cookie").then(function (response) {
         axios.post("/login", {
           email: _this.login_data.email,
@@ -390,9 +403,11 @@ __webpack_require__.r(__webpack_exports__);
           var validationErrors = Object.values(error.response.data.errors);
           validationErrors = validationErrors.flat();
           _this.validationError = validationErrors;
+          _this.loginLoading = false;
         });
       })["catch"](function (error) {
         console.log("sanctum error");
+        _this.loginLoading = false;
       });
     },
     register: function register() {
@@ -417,6 +432,13 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (error) {
         console.log("sending failed");
       });
+    },
+    changetab: function changetab() {
+      document.addEventListener("visibilitychange", function () {
+        if (document.hidden) {
+          console.log("nagpalitngtab");
+        }
+      });
     }
   }
 });
@@ -437,7 +459,7 @@ exports.push([module.i, "@import url(https://fonts.googleapis.com/css2?family=Op
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css2?family=Open+Sans:wght@600;800&display=swap);", ""]);
 
 // module
-exports.push([module.i, "\n.font-body[data-v-494d9643] {\r\n    font-family: \"Poppins\", sans-serif;\n}\n.font-title[data-v-494d9643] {\r\n    font-family: \"Padauk\", sans-serif;\n}\na[data-v-494d9643] {\r\n    text-decoration: none;\n}\n.input-login[data-v-494d9643] {\r\n    width: 400px;\n}\n.input-register[data-v-494d9643] {\r\n    width: 350px;\n}\n.signin[data-v-494d9643] {\r\n    width: 300px;\n}\n.template[data-v-494d9643] {\r\n    background-color: #f5f5f5;\n}\n.register-title[data-v-494d9643] {\r\n    font-family: \"Open Sans\", sans-serif;\r\n    font-size: 2rem;\r\n    font-weight: 800;\r\n    color: #4f46e5;\n}\r\n", ""]);
+exports.push([module.i, "\n.font-body[data-v-494d9643] {\r\n    font-family: \"Poppins\", sans-serif;\n}\n.font-title[data-v-494d9643] {\r\n    font-family: \"Padauk\", sans-serif;\n}\na[data-v-494d9643] {\r\n    text-decoration: none;\n}\n.input-login[data-v-494d9643] {\r\n    width: 400px;\n}\n.input-register[data-v-494d9643] {\r\n    width: 350px;\n}\n.signin[data-v-494d9643] {\r\n    width: 300px;\n}\n.template[data-v-494d9643] {\r\n    background-color: #f5f5f5;\n}\n.register-title[data-v-494d9643] {\r\n    font-family: \"Open Sans\", sans-serif;\r\n    font-size: 2rem;\r\n    font-weight: 800;\r\n    color: #4f46e5;\n}\nul[data-v-494d9643] {\r\n    list-style-type: none;\n}\r\n", ""]);
 
 // exports
 
@@ -1086,19 +1108,23 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "div",
-                    { staticClass: "text-center mt-5" },
+                    { staticClass: "text-center mt-2" },
                     [
                       _c("div", [
                         _c(
                           "ul",
                           _vm._l(_vm.validationError, function(valErr) {
-                            return _c("li", { key: valErr.id }, [
-                              _vm._v(
-                                "\n                                " +
-                                  _vm._s(valErr) +
-                                  "\n                            "
-                              )
-                            ])
+                            return _c(
+                              "li",
+                              { key: valErr.id, staticClass: "red--text" },
+                              [
+                                _vm._v(
+                                  "\n                                " +
+                                    _vm._s(valErr) +
+                                    "\n                            "
+                                )
+                              ]
+                            )
                           }),
                           0
                         )
@@ -1108,7 +1134,11 @@ var render = function() {
                         "v-btn",
                         {
                           staticClass: "signin pr-12 pl-12",
-                          attrs: { depressed: "", color: "primary" },
+                          attrs: {
+                            depressed: "",
+                            color: "primary",
+                            loading: _vm.loginLoading
+                          },
                           on: { click: _vm.login }
                         },
                         [_vm._v("Sign in")]
@@ -1179,17 +1209,6 @@ var staticRenderFns = []
 render._withStripped = true
 
 
-
-/***/ }),
-
-/***/ "./resources/assets/img/vixam_logo.png":
-/*!*********************************************!*\
-  !*** ./resources/assets/img/vixam_logo.png ***!
-  \*********************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "/images/vixam_logo.png?04f87065b1ca730a204245c09873bb29";
 
 /***/ }),
 

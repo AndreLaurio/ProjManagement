@@ -1,59 +1,92 @@
 <template>
-    <nav>
-        <v-navigation-drawer v-model="drawer" app color="grey lighten-5">
+    <nav class="font-body">
+        <v-navigation-drawer v-model="drawer" app color="#292935">
             <v-list dense>
-                <v-list-item-group
-                    v-model="group"
-                    active-class="deep-purple--text text--accent-4"
-                >
+                <v-list class="mb-5">
+                    <v-row>
+                        <v-col class="ml-8">
+                            <v-avatar color="#760D11" size="70">
+                                <span class="white--text headline">A</span>
+                            </v-avatar>
+                        </v-col>
+                        <v-col class="mr-12">
+                            <span class="grey--text text--ligthen-1"
+                                ><v-icon color="green" size="15" class="mr-2"
+                                    >mdi-checkbox-blank-circle</v-icon
+                                >Online</span
+                            >
+                            <span class="white--text">Andre L.</span>
+                            <span class="indigo--text">Student</span>
+                        </v-col>
+                    </v-row>
+                </v-list>
+                <v-divider class="mr-12 ml-12 mb-8 divider"></v-divider>
+                <v-list-item-group v-model="group" active-class="white--text">
                     <v-list-item link>
-                        <v-list-item-action>
-                            <v-icon color="#760D11">mdi-face</v-icon>
+                        <v-list-item-action class="pl-5">
+                            <v-icon color="#FFFFFF"
+                                >mdi-laptop-chromebook</v-icon
+                            >
                         </v-list-item-action>
-                        <v-list-item-content>
-                            Profile
+                        <v-list-item-content class="white--text">
+                            <b>Manage Rooms</b>
                         </v-list-item-content>
                     </v-list-item>
                     <v-list-item link>
-                        <v-list-item-action>
-                            <v-icon color="#760D11"
-                                >mdi-clipboard-text-multiple</v-icon
+                        <v-list-item-action class="pl-5">
+                            <v-icon color="#FFFFFF"
+                                >mdi-newspaper-variant-outline</v-icon
                             >
                         </v-list-item-action>
-                        <v-list-item-content>
-                            Manage Rooms
+                        <v-list-item-content class="white--text">
+                            <b>Manage Exams</b>
                         </v-list-item-content>
                     </v-list-item>
                     <v-list-item link>
-                        <v-list-item-action>
-                            <v-icon color="#760D11"
-                                >mdi-clipboard-text-multiple</v-icon
+                        <v-list-item-action class="pl-5">
+                            <v-icon color="#FFFFFF"
+                                >mdi-account-reactivate</v-icon
                             >
                         </v-list-item-action>
-                        <v-list-item-content>
-                            Manage Exam
+                        <v-list-item-content class="white--text">
+                            <b>Account</b>
                         </v-list-item-content>
                     </v-list-item>
                     <v-list-item link v-on:click="logout">
-                        <v-list-item-action>
-                            <v-icon color="#760D11">mdi-logout</v-icon>
+                        <v-list-item-action class="pl-5">
+                            <v-icon color="#FFFFFF">mdi-logout</v-icon>
                         </v-list-item-action>
-                        <v-list-item-content>
-                            Logout
+                        <v-list-item-content class="white--text">
+                            <b>Logout</b>
                         </v-list-item-content>
                     </v-list-item>
                 </v-list-item-group>
             </v-list>
+            <template v-slot:append>
+                <div class="pa-2 text-center mb-5">
+                    <img src="../../assets/img/vixam_logo.png" />
+                </div>
+            </template>
         </v-navigation-drawer>
 
-        <v-app-bar app color="#760D11" dark>
+        <v-app-bar app color="#5f57e7" dark>
             <v-app-bar-nav-icon
                 @click.stop="drawer = !drawer"
             ></v-app-bar-nav-icon>
-            <v-toolbar-title>Vixam</v-toolbar-title>
+            <!-- <v-toolbar-title>Vixam</v-toolbar-title> -->
         </v-app-bar>
     </nav>
 </template>
+
+<style scoped>
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+.font-body {
+    font-family: "Poppins", sans-serif;
+}
+.divider {
+    border: 1px solid grey !important;
+}
+</style>
 
 <script>
 export default {

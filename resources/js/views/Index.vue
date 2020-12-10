@@ -228,12 +228,13 @@
                             </v-dialog>
                         </div>
                     </div>
-                    <div class="text-center mt-5">
+                    <div class="text-center mt-2">
                         <div>
                             <ul>
                                 <li
                                     v-for="valErr in validationError"
                                     :key="valErr.id"
+                                    class="red--text"
                                 >
                                     {{ valErr }}
                                 </li>
@@ -244,6 +245,7 @@
                             color="primary"
                             class="signin pr-12 pl-12"
                             v-on:click="login"
+                            :loading="loginLoading"
                             >Sign in</v-btn
                         >
                     </div>
@@ -310,9 +312,16 @@ a {
     font-weight: 800;
     color: #4f46e5;
 }
+
+ul {
+    list-style-type: none;
+}
 </style>
 
 <script>
+//vanila js
+
+//start of vue
 export default {
     data() {
         return {
@@ -330,6 +339,7 @@ export default {
             forgotPw_data: {
                 email: ""
             },
+            loginLoading: false,
             showPassword: false,
             registerDialog: false,
             forgotPwDialog: false,
@@ -342,8 +352,12 @@ export default {
             }
         };
     },
+    mounted() {
+        this.changetab();
+    },
     methods: {
         login() {
+            this.loginLoading = true;
             axios
                 .get("/sanctum/csrf-cookie")
                 .then(response => {
@@ -380,10 +394,12 @@ export default {
                             );
                             validationErrors = validationErrors.flat();
                             this.validationError = validationErrors;
+                            this.loginLoading = false;
                         });
                 })
                 .catch(error => {
                     console.log("sanctum error");
+                    this.loginLoading = false;
                 });
         },
         register() {
@@ -414,6 +430,13 @@ export default {
                 .catch(error => {
                     console.log("sending failed");
                 });
+        },
+        changetab() {
+            document.addEventListener("visibilitychange", function() {
+                if (document.hidden) {
+                    console.log("nagpalitngtab");
+                }
+            });
         }
     }
 };
