@@ -87,13 +87,32 @@
                                 <div class="text-right pr-10">
                                     <span>Total of 10 Examinees</span> <br />
                                     <span>Total of 10 Exams</span> <br />
-                                    <v-icon
-                                        color="black"
-                                        size="30"
-                                        class="mr-2"
-                                    >
-                                        mdi-settings-helper
-                                    </v-icon>
+                                    <v-menu offset-y>
+                                        <template
+                                            v-slot:activator="{ on, attrs }"
+                                        >
+                                            <v-icon
+                                                color="black"
+                                                size="30"
+                                                class="mr-2"
+                                                v-on="on"
+                                                v-bind="attrs"
+                                            >
+                                                mdi-settings-helper
+                                            </v-icon>
+                                        </template>
+                                        <v-list>
+                                            <v-list-item
+                                                v-for="(item, index) in items"
+                                                :key="index"
+                                                @click="selectSection(item)"
+                                            >
+                                                <v-list-item-title>{{
+                                                    item.title
+                                                }}</v-list-item-title>
+                                            </v-list-item>
+                                        </v-list>
+                                    </v-menu>
                                 </div>
                             </v-flex>
                         </v-layout>
@@ -122,6 +141,11 @@ export default {
             userData: {
                 id: ""
             },
+            items: [
+                { title: "abcd.xyz@example.com" },
+                { title: "Profile" },
+                { title: "Logout" }
+            ],
             create_room: {
                 room_title: "",
                 room_description: ""
@@ -168,6 +192,19 @@ export default {
                 .catch(error => {
                     console.log("room creation failed");
                 });
+        },
+        selectSection(item) {
+            switch (item.title) {
+                case "abcd.xyz@example.com":
+                    console.log("hello");
+                    break;
+                case "Profile":
+                    console.log("Profile");
+                    break;
+                case "Logout":
+                    console.log("Logout");
+                    break;
+            }
         }
     }
 };
