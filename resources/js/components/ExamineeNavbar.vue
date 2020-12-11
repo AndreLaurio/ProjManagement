@@ -21,7 +21,10 @@
                     </v-row>
                 </v-list>
                 <v-divider class="mr-12 ml-12 mb-8 divider"></v-divider>
-                <v-list-item-group v-model="group" active-class="white--text">
+                <v-list-item-group
+                    v-model="group"
+                    active-class="white--text font-weight-bold"
+                >
                     <v-list-item link>
                         <v-list-item-action class="pl-5">
                             <v-icon color="#FFFFFF"
@@ -29,7 +32,7 @@
                             >
                         </v-list-item-action>
                         <v-list-item-content class="white--text">
-                            <b>Rooms</b>
+                            Rooms
                         </v-list-item-content>
                     </v-list-item>
                     <v-list-item link>
@@ -39,7 +42,7 @@
                             >
                         </v-list-item-action>
                         <v-list-item-content class="white--text">
-                            <b>Account</b>
+                            Account
                         </v-list-item-content>
                     </v-list-item>
                     <v-list-item link v-on:click="logout">
@@ -47,7 +50,7 @@
                             <v-icon color="#FFFFFF">mdi-logout</v-icon>
                         </v-list-item-action>
                         <v-list-item-content class="white--text">
-                            <b>Logout</b>
+                            Logout
                         </v-list-item-content>
                     </v-list-item>
                 </v-list-item-group>
@@ -59,7 +62,7 @@
             </template>
         </v-navigation-drawer>
 
-        <v-app-bar app color="#5f57e7" dark>
+        <v-app-bar app color="#221C92" dark>
             <v-app-bar-nav-icon
                 @click.stop="drawer = !drawer"
             ></v-app-bar-nav-icon>
@@ -92,7 +95,7 @@ export default {
     methods: {
         userDetails() {
             axios.get("api/user").then(response => {
-                console.log(response.data);
+                // console.log(response.data);
             });
         },
         logout() {

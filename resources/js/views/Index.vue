@@ -371,9 +371,6 @@ export default {
                                 .querySelector('meta[name="csrf-token"]')
                                 .getAttribute("content");
                             localStorage.setItem("token", token);
-                            this.$router.push({
-                                name: "ExaminationRoom"
-                            });
 
                             axios.get("api/user").then(response => {
                                 var userType = response.data.user_type_id;

@@ -12,12 +12,14 @@ const routes = [
     {
         path: "/examination-room",
         name: "ExaminationRoom",
-        component: () => import("./views/Examinee/ExaminationRoom")
+        component: () => import("./views/Examinee/ExaminationRoom"),
+        meta: { requiresAuth: true }
     },
     {
         path: "/manage-room",
         name: "ManageRoom",
-        component: () => import("./views/Examiner/ManageRoom")
+        component: () => import("./views/Examiner/ManageRoom"),
+        meta: { requiresAuth: true }
     },
     {
         path: "*",

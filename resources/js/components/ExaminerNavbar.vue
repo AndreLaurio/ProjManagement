@@ -15,13 +15,20 @@
                                     >mdi-checkbox-blank-circle</v-icon
                                 >Online</span
                             >
-                            <span class="white--text">Andre L.</span>
-                            <span class="indigo--text">Student</span>
+                            <span class="white--text">{{
+                                user_data.first_name
+                            }}</span>
+                            <span class="indigo--text">{{
+                                user_data.user_type
+                            }}</span>
                         </v-col>
                     </v-row>
                 </v-list>
                 <v-divider class="mr-12 ml-12 mb-8 divider"></v-divider>
-                <v-list-item-group v-model="group" active-class="white--text">
+                <v-list-item-group
+                    v-model="group"
+                    active-class="white--text font-weight-bold"
+                >
                     <v-list-item link>
                         <v-list-item-action class="pl-5">
                             <v-icon color="#FFFFFF"
@@ -29,7 +36,7 @@
                             >
                         </v-list-item-action>
                         <v-list-item-content class="white--text">
-                            <b>Manage Rooms</b>
+                            Manage Rooms
                         </v-list-item-content>
                     </v-list-item>
                     <v-list-item link>
@@ -39,7 +46,7 @@
                             >
                         </v-list-item-action>
                         <v-list-item-content class="white--text">
-                            <b>Manage Exams</b>
+                            Manage Exams
                         </v-list-item-content>
                     </v-list-item>
                     <v-list-item link>
@@ -49,7 +56,7 @@
                             >
                         </v-list-item-action>
                         <v-list-item-content class="white--text">
-                            <b>Account</b>
+                            Account
                         </v-list-item-content>
                     </v-list-item>
                     <v-list-item link v-on:click="logout">
@@ -57,7 +64,7 @@
                             <v-icon color="#FFFFFF">mdi-logout</v-icon>
                         </v-list-item-action>
                         <v-list-item-content class="white--text">
-                            <b>Logout</b>
+                            Logout
                         </v-list-item-content>
                     </v-list-item>
                 </v-list-item-group>
@@ -69,7 +76,7 @@
             </template>
         </v-navigation-drawer>
 
-        <v-app-bar app color="#5f57e7" dark>
+        <v-app-bar app color="primary" dark>
             <v-app-bar-nav-icon
                 @click.stop="drawer = !drawer"
             ></v-app-bar-nav-icon>
@@ -92,6 +99,10 @@
 export default {
     data() {
         return {
+            user_data: {
+                first_name: "",
+                user_type: ""
+            },
             drawer: true,
             group: null
         };
@@ -102,7 +113,15 @@ export default {
     methods: {
         userDetails() {
             axios.get("api/user").then(response => {
-                console.log(response.data);
+                this.user_data.first_name = response.data.first_name;
+                var userType = response.data.user_type_id;
+                if (userType == 1) {
+                    this.user_data.user_type = "Student";
+                } else if (userType == 2) {
+                    this.user_data.user_type = "Instructor";
+                } else {
+                    this.user_data.user_type = "ERROR";
+                }
             });
         },
         logout() {
