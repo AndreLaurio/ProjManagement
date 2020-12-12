@@ -152,8 +152,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -250,7 +248,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css2?family=Poppins&display=swap);", ""]);
 
 // module
-exports.push([module.i, "\n.font-body[data-v-9efae162] {\r\n    font-family: \"Poppins\", sans-serif;\n}\n.v-divider[data-v-9efae162] {\r\n    border: 1px solid black !important;\n}\n.project-border[data-v-9efae162] {\r\n    border-left: 8px solid #221c92;\n}\r\n", ""]);
+exports.push([module.i, "\n.font-body[data-v-9efae162] {\r\n    font-family: \"Poppins\", sans-serif;\n}\n.project-border[data-v-9efae162] {\r\n    border-left: 8px solid #221c92;\n}\r\n", ""]);
 
 // exports
 

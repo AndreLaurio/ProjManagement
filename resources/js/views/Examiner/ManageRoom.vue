@@ -136,9 +136,7 @@
 .font-body {
     font-family: "Poppins", sans-serif;
 }
-.v-divider {
-    border: 1px solid black !important;
-}
+
 .project-border {
     border-left: 8px solid #221c92;
 }
