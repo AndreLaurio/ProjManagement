@@ -145,54 +145,64 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      userData: {
-        id: ""
-      },
+      user_id: "",
       items: [{
-        title: "abcd.xyz@example.com"
+        title: "Manage Room Details"
       }, {
-        title: "Profile"
+        title: "Manage Room Exams"
       }, {
-        title: "Logout"
+        title: "Manage Examinees"
+      }, {
+        title: "Delete Room"
       }],
       create_room: {
         room_title: "",
         room_description: ""
       },
-      rooms: [{
-        room_title: "English: Purposive Communication",
-        room_description: "Lorem ipsum dolor sit amet, adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-      }, {
-        room_title: "Mathematics in the Modern World",
-        room_description: "Lorem ipsum dolor sit amet, adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-      }, {
-        room_title: "Software Engineering",
-        room_description: "Lorem ipsum dolor sit amet, adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-      }],
+      rooms: [],
       createRoomDialog: false
     };
   },
   mounted: function mounted() {
-    this.getUserData();
+    this.getRooms();
   },
   methods: {
-    getUserData: function getUserData() {
+    createRoom: function createRoom() {
       var _this = this;
 
-      axios.get("api/user").then(function (response) {
-        _this.userData.id = response.data.user_id;
-      });
-    },
-    createRoom: function createRoom() {
-      axios.post("/create-room", {
-        examiner_id: this.userData.id,
+      //random code generator
+      var result = "";
+      var length = 6;
+      var characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+      var charactersLength = characters.length;
+
+      for (var i = 0; i < length; i++) {
+        result += characters.charAt(Math.floor(Math.random() * charactersLength));
+      }
+
+      axios.post("api/create-room", {
+        examiner_id: this.user_id,
+        room_code: result,
         room_title: this.create_room.room_title,
         room_description: this.create_room.room_description
       }).then(function (response) {
-        console.log("room created");
+        _this.rooms.push({
+          room_title: _this.create_room.room_title,
+          room_desc: _this.create_room.room_description,
+          room_code: result
+        });
       })["catch"](function (error) {
         console.log("room creation failed");
       });
@@ -211,6 +221,17 @@ __webpack_require__.r(__webpack_exports__);
           console.log("Logout");
           break;
       }
+    },
+    getRooms: function getRooms() {
+      var _this2 = this;
+
+      axios.get("api/user").then(function (response) {
+        _this2.user_id = response.data.user_id;
+        var instructor_id = _this2.user_id;
+        axios.get("api/rooms/".concat(instructor_id)).then(function (response) {
+          _this2.rooms = response.data;
+        });
+      });
     }
   }
 });
@@ -464,14 +485,10 @@ var render = function() {
               "v-card",
               {
                 key: room.id,
-                staticClass: "project-border mt-3",
+                staticClass: "project-border mt-3 font-body",
                 attrs: { flat: "" }
               },
               [
-                _c("v-card-title", { staticClass: "headline" }, [
-                  _c("h3", [_vm._v(_vm._s(room.room_title))])
-                ]),
-                _vm._v(" "),
                 _c("v-card-text", [
                   _c(
                     "div",
@@ -481,14 +498,36 @@ var render = function() {
                         "v-layout",
                         [
                           _c("v-flex", { attrs: { md8: "" } }, [
-                            _c("span", [_vm._v(_vm._s(room.room_description))])
+                            _c("h2", { staticClass: "black--text" }, [
+                              _vm._v(
+                                "\n                                " +
+                                  _vm._s(room.room_title) +
+                                  "\n                            "
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("br"),
+                            _vm._v(" "),
+                            _c("span", [_vm._v(_vm._s(room.room_desc))])
                           ]),
                           _vm._v(" "),
                           _c("v-flex", { attrs: { md4: "" } }, [
                             _c(
                               "div",
-                              { staticClass: "text-right pr-10" },
+                              { staticClass: "text-right pr-10 black--text" },
                               [
+                                _c(
+                                  "span",
+                                  {
+                                    staticClass: "black--text font-weight-bold"
+                                  },
+                                  [_vm._v("Room Code :")]
+                                ),
+                                _vm._v(" "),
+                                _c("span", [_vm._v(_vm._s(room.room_code))]),
+                                _vm._v(" "),
+                                _c("br"),
+                                _vm._v(" "),
                                 _c("span", [_vm._v("Total of 10 Examinees")]),
                                 _vm._v(" "),
                                 _c("br"),
@@ -556,9 +595,11 @@ var render = function() {
                                             }
                                           },
                                           [
-                                            _c("v-list-item-title", [
-                                              _vm._v(_vm._s(item.title))
-                                            ])
+                                            _c(
+                                              "v-list-item-title",
+                                              { staticClass: "font-body" },
+                                              [_vm._v(_vm._s(item.title))]
+                                            )
                                           ],
                                           1
                                         )

@@ -70,21 +70,27 @@
             </v-dialog>
             <v-card
                 flat
-                class="project-border mt-3"
+                class="project-border mt-3 font-body"
                 v-for="room in rooms"
                 :key="room.id"
             >
-                <v-card-title class="headline">
-                    <h3>{{ room.room_title }}</h3>
-                </v-card-title>
                 <v-card-text>
                     <div class="pl-5 pb-5">
                         <v-layout>
                             <v-flex md8>
-                                <span>{{ room.room_description }}</span>
+                                <h2 class="black--text">
+                                    {{ room.room_title }}
+                                </h2>
+                                <br />
+                                <span>{{ room.room_desc }}</span>
                             </v-flex>
                             <v-flex md4>
-                                <div class="text-right pr-10">
+                                <div class="text-right pr-10 black--text">
+                                    <span class="black--text font-weight-bold"
+                                        >Room Code :</span
+                                    >
+                                    <span>{{ room.room_code }}</span>
+                                    <br />
                                     <span>Total of 10 Examinees</span> <br />
                                     <span>Total of 10 Exams</span> <br />
                                     <v-menu offset-y>
@@ -107,9 +113,12 @@
                                                 :key="index"
                                                 @click="selectSection(item)"
                                             >
-                                                <v-list-item-title>{{
-                                                    item.title
-                                                }}</v-list-item-title>
+                                                <v-list-item-title
+                                                    class="font-body"
+                                                    >{{
+                                                        item.title
+                                                    }}</v-list-item-title
+                                                >
                                             </v-list-item>
                                         </v-list>
                                     </v-menu>
@@ -138,56 +147,50 @@
 export default {
     data() {
         return {
-            userData: {
-                id: ""
-            },
+            user_id: "",
             items: [
-                { title: "abcd.xyz@example.com" },
-                { title: "Profile" },
-                { title: "Logout" }
+                { title: "Manage Room Details" },
+                { title: "Manage Room Exams" },
+                { title: "Manage Examinees" },
+                { title: "Delete Room" }
             ],
             create_room: {
                 room_title: "",
                 room_description: ""
             },
-            rooms: [
-                {
-                    room_title: "English: Purposive Communication",
-                    room_description:
-                        "Lorem ipsum dolor sit amet, adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-                },
-                {
-                    room_title: "Mathematics in the Modern World",
-                    room_description:
-                        "Lorem ipsum dolor sit amet, adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-                },
-                {
-                    room_title: "Software Engineering",
-                    room_description:
-                        "Lorem ipsum dolor sit amet, adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-                }
-            ],
+            rooms: [],
             createRoomDialog: false
         };
     },
     mounted() {
-        this.getUserData();
+        this.getRooms();
     },
     methods: {
-        getUserData() {
-            axios.get("api/user").then(response => {
-                this.userData.id = response.data.user_id;
-            });
-        },
         createRoom() {
+            //random code generator
+            var result = "";
+            var length = 6;
+            var characters =
+                "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            var charactersLength = characters.length;
+            for (var i = 0; i < length; i++) {
+                result += characters.charAt(
+                    Math.floor(Math.random() * charactersLength)
+                );
+            }
             axios
-                .post("/create-room", {
-                    examiner_id: this.userData.id,
+                .post("api/create-room", {
+                    examiner_id: this.user_id,
+                    room_code: result,
                     room_title: this.create_room.room_title,
                     room_description: this.create_room.room_description
                 })
                 .then(response => {
-                    console.log("room created");
+                    this.rooms.push({
+                        room_title: this.create_room.room_title,
+                        room_desc: this.create_room.room_description,
+                        room_code: result
+                    });
                 })
                 .catch(error => {
                     console.log("room creation failed");
@@ -205,6 +208,16 @@ export default {
                     console.log("Logout");
                     break;
             }
+        },
+        getRooms() {
+            axios.get("api/user").then(response => {
+                this.user_id = response.data.user_id;
+
+                let instructor_id = this.user_id;
+                axios.get(`api/rooms/${instructor_id}`).then(response => {
+                    this.rooms = response.data;
+                });
+            });
         }
     }
 };

@@ -15,8 +15,10 @@
                                     >mdi-checkbox-blank-circle</v-icon
                                 >Online</span
                             >
-                            <span class="white--text">Andre L.</span>
-                            <span class="indigo--text">Student</span>
+                            <span class="white--text">{{
+                                user_details.first_name
+                            }}</span>
+                            <span class="indigo--text">Examinee</span>
                         </v-col>
                     </v-row>
                 </v-list>
@@ -85,6 +87,9 @@
 export default {
     data() {
         return {
+            user_details: {
+                first_name: ""
+            },
             drawer: true,
             group: null
         };
@@ -95,7 +100,7 @@ export default {
     methods: {
         userDetails() {
             axios.get("api/user").then(response => {
-                // console.log(response.data);
+                this.user_details.first_name = response.data.first_name;
             });
         },
         logout() {
