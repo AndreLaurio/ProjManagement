@@ -147,7 +147,7 @@ export default {
                     examinee_id: this.user_id
                 })
                 .then(response => {
-                    location.reload();
+                    window.location.reload();
                 })
                 .catch(error => {
                     console.log("errror");

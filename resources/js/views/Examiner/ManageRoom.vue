@@ -111,7 +111,12 @@
                                             <v-list-item
                                                 v-for="(item, index) in items"
                                                 :key="index"
-                                                @click="selectSection(item)"
+                                                @click="
+                                                    selectSection(
+                                                        item,
+                                                        room.room_id
+                                                    )
+                                                "
                                             >
                                                 <v-list-item-title
                                                     class="font-body"
@@ -128,6 +133,61 @@
                     </div>
                 </v-card-text>
             </v-card>
+            <v-dialog v-model="manageRoomDetails" persistent max-width="550">
+                <v-card class="font-body">
+                    <v-card-title class="pl-8 pr-8 pt-8 justify-center">
+                        <span class="text-center text-uppercase register-title"
+                            >Create Room</span
+                        >
+                    </v-card-title>
+                    <v-card-text>
+                        <div class="ml-8 mr-8">
+                            <label
+                                for="create-room-title"
+                                class="text-md-body-1"
+                            >
+                                Room Title</label
+                            >
+                            <v-text-field
+                                outlined
+                                clearable
+                                id="create-room-title"
+                                v-model="create_room.room_title"
+                            ></v-text-field>
+                            <label
+                                for="create-room-description"
+                                class="text-md-body-1"
+                            >
+                                Room Description</label
+                            >
+                            <v-textarea
+                                outlined
+                                id="create-room-description"
+                                v-model="create_room.room_description"
+                            ></v-textarea>
+                        </div>
+                    </v-card-text>
+                    <v-card-actions>
+                        <v-spacer></v-spacer>
+                        <v-btn
+                            color="green darken-1"
+                            text
+                            class="text-uppercase"
+                            @click="createRoom"
+                        >
+                            Create Room
+                        </v-btn>
+                        <v-btn
+                            color="red darken-1"
+                            text
+                            @click="createRoomDialog = false"
+                            class="text-uppercase"
+                        >
+                            Close
+                        </v-btn>
+                    </v-card-actions>
+                </v-card>
+            </v-dialog>
         </div>
     </div>
 </template>
@@ -157,7 +217,8 @@ export default {
                 room_description: ""
             },
             rooms: [],
-            createRoomDialog: false
+            createRoomDialog: false,
+            manageRoomDetails: false
         };
     },
     mounted() {
@@ -194,16 +255,23 @@ export default {
                     console.log("room creation failed");
                 });
         },
-        selectSection(item) {
+        selectSection(item, room_id) {
             switch (item.title) {
-                case "abcd.xyz@example.com":
-                    console.log("hello");
+                case "Manage Room Details":
+                    console.log("Manage Room Details");
+                    this.manageRoomDetails = true;
                     break;
-                case "Profile":
-                    console.log("Profile");
+                case "Manage Room Exams":
+                    console.log("Manage Room Exams");
+                    console.log(room_id);
                     break;
-                case "Logout":
-                    console.log("Logout");
+                case "Manage Examinees":
+                    console.log("Manage Examinees");
+                    console.log(room_id);
+                    break;
+                case "Delete Room":
+                    console.log("Delete Room");
+                    console.log(room_id);
                     break;
             }
         },

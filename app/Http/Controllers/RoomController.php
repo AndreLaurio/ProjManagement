@@ -43,9 +43,11 @@ class RoomController extends Controller
         $rooms = DB::table('room_examinees AS re')
                 ->join('rooms as r', 're.room_id','r.room_id')
                 ->where('re.examinee_id',$examinee_id)
+                ->select('r.room_id','r.room_code','r.room_title','r.room_desc','r.total_examinees','r.total_exams')
                 ->get();
 
         return $rooms;
+        // marka ng katangahan ni andre hindi nag join nag loop hahaha
         // $examinee_rooms = RoomExaminee::where('examinee_id', $examinee_id)->get('room_id');
         
         // $rooms = []; // dito natin lalagay mga info
