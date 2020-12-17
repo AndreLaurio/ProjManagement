@@ -123,6 +123,10 @@
 .font-body {
     font-family: "Poppins", sans-serif;
 }
+
+.project-border {
+    border-left: 8px solid #221c92;
+}
 </style>
 
 <script>
