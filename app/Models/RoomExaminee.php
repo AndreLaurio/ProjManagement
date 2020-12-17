@@ -9,4 +9,5 @@ class RoomExaminee extends Model
 {
     use HasFactory;
     protected $table = 'room_examinees';
+    protected $primaryKey = 'room_id';
 }

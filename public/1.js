@@ -212,6 +212,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -229,9 +231,18 @@ __webpack_require__.r(__webpack_exports__);
         room_title: "",
         room_description: ""
       },
+      update_room: {
+        room_title: "",
+        room_description: ""
+      },
       rooms: [],
       createRoomDialog: false,
-      manageRoomDetails: false
+      manageRoomDetails: false,
+      selected_room: {
+        room_id: "",
+        room_title: "",
+        room_desc: ""
+      }
     };
   },
   mounted: function mounted() {
@@ -266,11 +277,14 @@ __webpack_require__.r(__webpack_exports__);
         console.log("room creation failed");
       });
     },
-    selectSection: function selectSection(item, room_id) {
+    selectSection: function selectSection(item, room_id, room_desc, room_title, room_index) {
       switch (item.title) {
         case "Manage Room Details":
           console.log("Manage Room Details");
           this.manageRoomDetails = true;
+          this.selected_room.room_id = room_id;
+          this.update_room.room_title = room_title;
+          this.update_room.room_description = room_desc;
           break;
 
         case "Manage Room Exams":
@@ -284,8 +298,7 @@ __webpack_require__.r(__webpack_exports__);
           break;
 
         case "Delete Room":
-          console.log("Delete Room");
-          console.log(room_id);
+          this.deleteRoom(room_id, room_index);
           break;
       }
     },
@@ -298,6 +311,26 @@ __webpack_require__.r(__webpack_exports__);
         axios.get("api/rooms/".concat(instructor_id)).then(function (response) {
           _this2.rooms = response.data;
         });
+      });
+    },
+    updateRoom: function updateRoom() {
+      var room_id = this.selected_room.room_id;
+      axios.put("api/update-room/".concat(room_id), {
+        room_title: this.update_room.room_title,
+        room_description: this.update_room.room_description
+      }).then(function (response) {
+        console.log("updated successfuly");
+      })["catch"](function (error) {
+        console.log("update failed");
+      });
+    },
+    deleteRoom: function deleteRoom(room_id, room_index) {
+      var _this3 = this;
+
+      axios["delete"]("api/delete-room/".concat(room_id)).then(function (response) {
+        _this3.rooms.splice(room_index, 1);
+      })["catch"](function (error) {
+        console.log("error not deleted");
       });
     }
   }
@@ -547,7 +580,7 @@ var render = function() {
             1
           ),
           _vm._v(" "),
-          _vm._l(_vm.rooms, function(room) {
+          _vm._l(_vm.rooms, function(room, room_index) {
             return _c(
               "v-card",
               {
@@ -659,7 +692,10 @@ var render = function() {
                                               click: function($event) {
                                                 return _vm.selectSection(
                                                   item,
-                                                  room.room_id
+                                                  room.room_id,
+                                                  room.room_desc,
+                                                  room.room_title,
+                                                  room_index
                                                 )
                                               }
                                             }
@@ -722,7 +758,7 @@ var render = function() {
                           staticClass:
                             "text-center text-uppercase register-title"
                         },
-                        [_vm._v("Create Room")]
+                        [_vm._v("Manage Room")]
                       )
                     ]
                   ),
@@ -748,11 +784,11 @@ var render = function() {
                             id: "create-room-title"
                           },
                           model: {
-                            value: _vm.create_room.room_title,
+                            value: _vm.update_room.room_title,
                             callback: function($$v) {
-                              _vm.$set(_vm.create_room, "room_title", $$v)
+                              _vm.$set(_vm.update_room, "room_title", $$v)
                             },
-                            expression: "create_room.room_title"
+                            expression: "update_room.room_title"
                           }
                         }),
                         _vm._v(" "),
@@ -770,16 +806,13 @@ var render = function() {
                         ),
                         _vm._v(" "),
                         _c("v-textarea", {
-                          attrs: {
-                            outlined: "",
-                            id: "create-room-description"
-                          },
+                          attrs: { outlined: "" },
                           model: {
-                            value: _vm.create_room.room_description,
+                            value: _vm.update_room.room_description,
                             callback: function($$v) {
-                              _vm.$set(_vm.create_room, "room_description", $$v)
+                              _vm.$set(_vm.update_room, "room_description", $$v)
                             },
-                            expression: "create_room.room_description"
+                            expression: "update_room.room_description"
                           }
                         })
                       ],
@@ -797,11 +830,11 @@ var render = function() {
                         {
                           staticClass: "text-uppercase",
                           attrs: { color: "green darken-1", text: "" },
-                          on: { click: _vm.createRoom }
+                          on: { click: _vm.updateRoom }
                         },
                         [
                           _vm._v(
-                            "\n                        Create Room\n                    "
+                            "\n                        Update Room\n                    "
                           )
                         ]
                       ),
@@ -813,7 +846,7 @@ var render = function() {
                           attrs: { color: "red darken-1", text: "" },
                           on: {
                             click: function($event) {
-                              _vm.createRoomDialog = false
+                              _vm.manageRoomDetails = false
                             }
                           }
                         },
