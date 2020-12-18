@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\RoomExam;
+use Illuminate\Support\Facades\DB;
 
 class ExamController extends Controller
 {
@@ -22,5 +23,10 @@ class ExamController extends Controller
             ->get();
 
             return $examiner_exam;
+    }
+
+    public function saveExamDetail(Request $request) {
+
+        
     }
 }
