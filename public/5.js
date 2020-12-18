@@ -163,7 +163,8 @@ __webpack_require__.r(__webpack_exports__);
       }, {
         title: "Delete"
       }],
-      exams: []
+      exams: [],
+      createExamDialog: false
     };
   },
   mounted: function mounted() {
@@ -177,7 +178,7 @@ __webpack_require__.r(__webpack_exports__);
           console.log(room_id);
           break;
 
-        case "Delete RExamoom":
+        case "Delete Examoom":
           console.log("Delete Exam");
           console.log(room_id);
           break;
@@ -189,7 +190,7 @@ __webpack_require__.r(__webpack_exports__);
       axios.get("api/user").then(function (response) {
         _this.user_id = response.data.user_id;
         var instructor_id = _this.user_id;
-        axios.get("api/exams/".concat(instructor_id)).then(function (response) {
+        axios.get("api/examiner/exams/".concat(instructor_id)).then(function (response) {
           _this.exams = response.data;
         });
       });
@@ -305,11 +306,11 @@ var render = function() {
               }
             ]),
             model: {
-              value: _vm.createRoomDialog,
+              value: _vm.createExamDialog,
               callback: function($$v) {
-                _vm.createRoomDialog = $$v
+                _vm.createExamDialog = $$v
               },
-              expression: "createRoomDialog"
+              expression: "createExamDialog"
             }
           }),
           _vm._v(" "),
