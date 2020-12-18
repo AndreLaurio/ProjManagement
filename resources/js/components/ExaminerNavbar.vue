@@ -29,7 +29,7 @@
                     v-model="group"
                     active-class="white--text font-weight-bold"
                 >
-                    <v-list-item link  v-on:click="manageRoom">
+                    <v-list-item link v-on:click="manageRoom">
                         <v-list-item-action class="pl-5">
                             <v-icon color="#FFFFFF"
                                 >mdi-laptop-chromebook</v-icon
@@ -136,10 +136,10 @@ export default {
                 });
         },
         manageRoom() {
-            this.$router.push({ name: 'ManageRoom' })
+            this.$router.push({ name: "ManageRoom" });
         },
         manageExam() {
-            this.$router.push({ name: 'ManageExam' })
+            this.$router.push({ name: "ManageExam" });
         }
     }
 };

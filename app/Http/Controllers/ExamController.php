@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\RoomExam;
+use DB;
 
 class ExamController extends Controller
 {
