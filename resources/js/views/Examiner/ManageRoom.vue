@@ -236,19 +236,19 @@
             >
                 <v-card class="font-body">
                     <v-card-title class="pl-8 pr-8 pt-8 justify-center">
+                        Alert
                     </v-card-title>
-                    <v-card-text> </v-card-text>
+                    <v-card-text>
+                        Are you sure to delete?
+                        {{ this.selected_room.room_id }}
+                        {{ this.selected_room.room_index }}
+                    </v-card-text>
                     <v-card-actions>
                         <v-spacer></v-spacer>
                         <v-btn
                             color="red darken-1"
                             text
-                            @click="
-                                deleteRoom(
-                                    this.selected_room.room_id,
-                                    this.selected_room.room_index
-                                )
-                            "
+                            @click="deleteRoom"
                             class="text-uppercase"
                         >
                             Delete
@@ -364,6 +364,7 @@ export default {
                     console.log(room_id);
                     break;
                 case "Delete Room":
+                    this.deleteRoomConfirmation = true;
                     this.selected_room.room_id = room_id;
                     this.selected_room.room_index = room_index;
                     break;
@@ -393,15 +394,19 @@ export default {
                     console.log("update failed");
                 });
         },
-        deleteRoom(room_id, room_index) {
-            axios
-                .delete(`api/delete-room/${room_id}`)
-                .then(response => {
-                    this.rooms.splice(room_index, 1);
-                })
-                .catch(error => {
-                    console.log("error not deleted");
-                });
+        deleteRoom() {
+            console.log(
+                this.selected_room.room_id,
+                this.selected_room.room_index
+            );
+            // axios
+            //     .delete(`api/delete-room/${room_id}`)
+            //     .then(response => {
+            //         this.rooms.splice(room_index, 1);
+            //     })
+            //     .catch(error => {
+            //         console.log("error not deleted");
+            //     });
         },
         getExams(room_id) {
             axios

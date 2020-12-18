@@ -378,6 +378,7 @@ __webpack_require__.r(__webpack_exports__);
           break;
 
         case "Delete Room":
+          this.deleteRoomConfirmation = true;
           this.selected_room.room_id = room_id;
           this.selected_room.room_index = room_index;
           break;
@@ -405,20 +406,21 @@ __webpack_require__.r(__webpack_exports__);
         console.log("update failed");
       });
     },
-    deleteRoom: function deleteRoom(room_id, room_index) {
-      var _this3 = this;
-
-      axios["delete"]("api/delete-room/".concat(room_id)).then(function (response) {
-        _this3.rooms.splice(room_index, 1);
-      })["catch"](function (error) {
-        console.log("error not deleted");
-      });
+    deleteRoom: function deleteRoom() {
+      console.log(this.selected_room.room_id, this.selected_room.room_index); // axios
+      //     .delete(`api/delete-room/${room_id}`)
+      //     .then(response => {
+      //         this.rooms.splice(room_index, 1);
+      //     })
+      //     .catch(error => {
+      //         console.log("error not deleted");
+      //     });
     },
     getExams: function getExams(room_id) {
-      var _this4 = this;
+      var _this3 = this;
 
       axios.get("api/exams/".concat(room_id)).then(function (response) {
-        _this4.exams = response.data;
+        _this3.exams = response.data;
       })["catch"](function (error) {
         console.log("error");
       });
@@ -1078,11 +1080,21 @@ var render = function() {
                 "v-card",
                 { staticClass: "font-body" },
                 [
-                  _c("v-card-title", {
-                    staticClass: "pl-8 pr-8 pt-8 justify-center"
-                  }),
+                  _c(
+                    "v-card-title",
+                    { staticClass: "pl-8 pr-8 pt-8 justify-center" },
+                    [_vm._v("\n                    Alert\n                ")]
+                  ),
                   _vm._v(" "),
-                  _c("v-card-text"),
+                  _c("v-card-text", [
+                    _vm._v(
+                      "\n                    Are you sure to delete?\n                    " +
+                        _vm._s(this.selected_room.room_id) +
+                        "\n                    " +
+                        _vm._s(this.selected_room.room_index) +
+                        "\n                "
+                    )
+                  ]),
                   _vm._v(" "),
                   _c(
                     "v-card-actions",
@@ -1094,14 +1106,7 @@ var render = function() {
                         {
                           staticClass: "text-uppercase",
                           attrs: { color: "red darken-1", text: "" },
-                          on: {
-                            click: function($event) {
-                              return _vm.deleteRoom(
-                                this.selected_room.room_id,
-                                this.selected_room.room_index
-                              )
-                            }
-                          }
+                          on: { click: _vm.deleteRoom }
                         },
                         [
                           _vm._v(
