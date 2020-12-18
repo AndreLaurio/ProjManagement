@@ -50,6 +50,8 @@ class RoomController extends Controller
         $new_examinee->examinee_id = $request->input('examinee_id');
 
         $new_examinee->save();
+
+        DB::table('rooms')->increment('total_examinees');
     }
 
     public function getExamineeRoom(Request $request, $examinee_id){

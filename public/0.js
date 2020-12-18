@@ -153,6 +153,7 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
+    this.getUserDetail();
     this.getExamineeRoom();
   },
   methods: {
@@ -178,6 +179,13 @@ __webpack_require__.r(__webpack_exports__);
         })["catch"](function (error) {
           console.log("error");
         });
+      });
+    },
+    getUserDetail: function getUserDetail() {
+      var _this2 = this;
+
+      axios.get("api/user").then(function (response) {
+        _this2.user_id = response.data.user_id;
       });
     }
   }

@@ -141,6 +141,7 @@ export default {
         };
     },
     mounted() {
+        this.getUserDetail();
         this.getExamineeRoom();
     },
     methods: {
@@ -171,6 +172,11 @@ export default {
                     .catch(error => {
                         console.log("error");
                     });
+            });
+        },
+        getUserDetail() {
+            axios.get("api/user").then(response => {
+                this.user_id = response.data.user_id;
             });
         }
     }

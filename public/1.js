@@ -214,10 +214,85 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      user_id: "",
+      rooms: [],
+      exams: [],
       items: [{
         title: "Manage Room Details"
       }, {
@@ -235,14 +310,17 @@ __webpack_require__.r(__webpack_exports__);
         room_title: "",
         room_description: ""
       },
-      rooms: [],
-      createRoomDialog: false,
-      manageRoomDetails: false,
       selected_room: {
         room_id: "",
         room_title: "",
-        room_desc: ""
-      }
+        room_desc: "",
+        room_index: ""
+      },
+      user_id: "",
+      createRoomDialog: false,
+      manageRoomDetails: false,
+      manageRoomExams: false,
+      deleteRoomConfirmation: false
     };
   },
   mounted: function mounted() {
@@ -289,7 +367,9 @@ __webpack_require__.r(__webpack_exports__);
 
         case "Manage Room Exams":
           console.log("Manage Room Exams");
-          console.log(room_id);
+          this.manageRoomExams = true;
+          this.selected_room.room_id = room_id;
+          this.getExams(room_id);
           break;
 
         case "Manage Examinees":
@@ -298,7 +378,8 @@ __webpack_require__.r(__webpack_exports__);
           break;
 
         case "Delete Room":
-          this.deleteRoom(room_id, room_index);
+          this.selected_room.room_id = room_id;
+          this.selected_room.room_index = room_index;
           break;
       }
     },
@@ -331,6 +412,15 @@ __webpack_require__.r(__webpack_exports__);
         _this3.rooms.splice(room_index, 1);
       })["catch"](function (error) {
         console.log("error not deleted");
+      });
+    },
+    getExams: function getExams(room_id) {
+      var _this4 = this;
+
+      axios.get("api/exams/".concat(room_id)).then(function (response) {
+        _this4.exams = response.data;
+      })["catch"](function (error) {
+        console.log("error");
       });
     }
   }
@@ -628,11 +718,23 @@ var render = function() {
                                 _vm._v(" "),
                                 _c("br"),
                                 _vm._v(" "),
-                                _c("span", [_vm._v("Total of 10 Examinees")]),
+                                _c("span", [
+                                  _vm._v(
+                                    "Total of\n                                    " +
+                                      _vm._s(room.total_examinees) +
+                                      "\n                                    Examinees"
+                                  )
+                                ]),
                                 _vm._v(" "),
                                 _c("br"),
                                 _vm._v(" "),
-                                _c("span", [_vm._v("Total of 10 Exams")]),
+                                _c("span", [
+                                  _vm._v(
+                                    "Total of\n                                    " +
+                                      _vm._s(room.total_exams) +
+                                      " Exams"
+                                  )
+                                ]),
                                 _vm._v(" "),
                                 _c("br"),
                                 _vm._v(" "),
@@ -847,6 +949,175 @@ var render = function() {
                           on: {
                             click: function($event) {
                               _vm.manageRoomDetails = false
+                            }
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                        Close\n                    "
+                          )
+                        ]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-dialog",
+            {
+              attrs: { persistent: "", "max-width": "550" },
+              model: {
+                value: _vm.manageRoomExams,
+                callback: function($$v) {
+                  _vm.manageRoomExams = $$v
+                },
+                expression: "manageRoomExams"
+              }
+            },
+            [
+              _c(
+                "v-card",
+                { staticClass: "font-body" },
+                [
+                  _c(
+                    "v-card-title",
+                    { staticClass: "pl-8 pr-8 pt-8 justify-center" },
+                    [
+                      _c(
+                        "span",
+                        {
+                          staticClass:
+                            "text-center text-uppercase register-title"
+                        },
+                        [_vm._v("Manage Exams")]
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-card-text",
+                    _vm._l(_vm.exams, function(exam) {
+                      return _c(
+                        "v-card",
+                        { key: exam.id },
+                        [
+                          _c("v-card-title", [
+                            _vm._v(
+                              "\n                            " +
+                                _vm._s(exam.exam_title) +
+                                "\n                        "
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("v-card-text", [
+                            _vm._v(
+                              "\n                            " +
+                                _vm._s(exam.exam_desc) +
+                                "\n                        "
+                            )
+                          ])
+                        ],
+                        1
+                      )
+                    }),
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-card-actions",
+                    [
+                      _c("v-spacer"),
+                      _vm._v(" "),
+                      _c(
+                        "v-btn",
+                        {
+                          staticClass: "text-uppercase",
+                          attrs: { color: "red darken-1", text: "" },
+                          on: {
+                            click: function($event) {
+                              _vm.manageRoomExams = false
+                            }
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                        Close\n                    "
+                          )
+                        ]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-dialog",
+            {
+              attrs: { persistent: "", "max-width": "550" },
+              model: {
+                value: _vm.deleteRoomConfirmation,
+                callback: function($$v) {
+                  _vm.deleteRoomConfirmation = $$v
+                },
+                expression: "deleteRoomConfirmation"
+              }
+            },
+            [
+              _c(
+                "v-card",
+                { staticClass: "font-body" },
+                [
+                  _c("v-card-title", {
+                    staticClass: "pl-8 pr-8 pt-8 justify-center"
+                  }),
+                  _vm._v(" "),
+                  _c("v-card-text"),
+                  _vm._v(" "),
+                  _c(
+                    "v-card-actions",
+                    [
+                      _c("v-spacer"),
+                      _vm._v(" "),
+                      _c(
+                        "v-btn",
+                        {
+                          staticClass: "text-uppercase",
+                          attrs: { color: "red darken-1", text: "" },
+                          on: {
+                            click: function($event) {
+                              return _vm.deleteRoom(
+                                this.selected_room.room_id,
+                                this.selected_room.room_index
+                              )
+                            }
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                        Delete\n                    "
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-btn",
+                        {
+                          staticClass: "text-uppercase",
+                          attrs: { color: "red darken-1", text: "" },
+                          on: {
+                            click: function($event) {
+                              _vm.deleteRoomConfirmation = false
                             }
                           }
                         },
