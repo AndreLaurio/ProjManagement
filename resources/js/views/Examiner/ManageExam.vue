@@ -14,61 +14,51 @@
                         Add New Exam</v-btn
                     >
                 </template>
-                <!-- <v-card class="font-body">
+                <v-card class="font-body">
                     <v-card-title class="pl-8 pr-8 pt-8 justify-center">
                         <span class="text-center text-uppercase register-title"
-                            >Create Room</span
+                            >Create Exam</span
                         >
                     </v-card-title>
                     <v-card-text>
-                        <div class="ml-8 mr-8">
-                            <label
-                                for="create-room-title"
-                                class="text-md-body-1"
-                            >
-                                Room Title</label
-                            >
-                            <v-text-field
-                                outlined
-                                clearable
-                                id="create-room-title"
-                                v-model="create_room.room_title"
-                            ></v-text-field>
-                            <label
-                                for="create-room-description"
-                                class="text-md-body-1"
-                            >
-                                Room Description</label
-                            >
-                            <v-textarea
-                                outlined
-                                id="create-room-description"
-                                v-model="create_room.room_description"
-                            ></v-textarea>
-                        </div>
+                        <v-layout>
+                            <v-flex>
+                                <v-card
+                                    height="400"
+                                    width="256"
+                                    class="mx-auto"
+                                >
+                                    <v-navigation-drawer permanent>
+                                        <v-list-item>
+                                            <v-list-item-content>
+                                                <v-list-item-title
+                                                    class="title"
+                                                >
+                                                    Application
+                                                </v-list-item-title>
+                                                <v-list-item-subtitle>
+                                                    subtext
+                                                </v-list-item-subtitle>
+                                            </v-list-item-content>
+                                        </v-list-item>
+
+                                        <v-divider></v-divider>
+
+                                        <v-list dense nav>
+                                            <v-list-item link> </v-list-item>
+                                        </v-list>
+                                    </v-navigation-drawer>
+                                </v-card>
+                            </v-flex>
+                            <v-flex>
+                                <h1>hello</h1>
+                            </v-flex>
+                        </v-layout>
                     </v-card-text>
-                    <v-card-actions>
-                        <v-spacer></v-spacer>
-                        <v-btn
-                            color="green darken-1"
-                            text
-                            class="text-uppercase"
-                            @click="createRoom"
-                        >
-                            Create Room
-                        </v-btn>
-                        <v-btn
-                            color="red darken-1"
-                            text
-                            @click="createRoomDialog = false"
-                            class="text-uppercase"
-                        >
-                            Close
-                        </v-btn>
-                    </v-card-actions>
-                </v-card> -->
+                    <v-card-actions> </v-card-actions>
+                </v-card>
             </v-dialog>
-            
+
             <v-card
                 flat
                 class="project-border mt-3 font-body"
@@ -88,8 +78,16 @@
                             <v-flex md4>
                                 <div class="text-right pr-10 black--text">
                                     <span><b>Total Items: </b> </span> <br />
-                                    <span><b>Total Points: </b> {{ exam.exam_total_points }} </span> <br />
-                                    <span><b>Passing Percentage: </b> {{ exam.passing_percentage }} </span> <br />
+                                    <span
+                                        ><b>Total Points: </b>
+                                        {{ exam.exam_total_points }}
+                                    </span>
+                                    <br />
+                                    <span
+                                        ><b>Passing Percentage: </b>
+                                        {{ exam.passing_percentage }}
+                                    </span>
+                                    <br />
                                     <v-menu offset-y>
                                         <template
                                             v-slot:activator="{ on, attrs }"
@@ -148,10 +146,7 @@ export default {
     data() {
         return {
             user_id: "",
-            items: [
-                { title: "Edit Exam" },
-                { title: "Delete" }
-            ],
+            items: [{ title: "Edit Exam" }, { title: "Delete" }],
             exams: []
         };
     },

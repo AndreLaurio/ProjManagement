@@ -339,6 +339,7 @@ export default {
                         room_desc: this.create_room.room_description,
                         room_code: result
                     });
+                    this.createRoomDialog = false;
                 })
                 .catch(error => {
                     console.log("room creation failed");
@@ -395,18 +396,17 @@ export default {
                 });
         },
         deleteRoom() {
-            console.log(
-                this.selected_room.room_id,
-                this.selected_room.room_index
-            );
-            // axios
-            //     .delete(`api/delete-room/${room_id}`)
-            //     .then(response => {
-            //         this.rooms.splice(room_index, 1);
-            //     })
-            //     .catch(error => {
-            //         console.log("error not deleted");
-            //     });
+            var room_id = this.selected_room.room_id;
+            var room_index = this.selected_room.room_index;
+            axios
+                .delete(`api/delete-room/${room_id}`)
+                .then(response => {
+                    this.rooms.splice(room_index, 1);
+                    this.deleteRoomConfirmation = false;
+                })
+                .catch(error => {
+                    console.log("error not deleted");
+                });
         },
         getExams(room_id) {
             axios

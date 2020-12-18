@@ -1,7 +1,9 @@
 <template>
     <v-app class="main-page">
         <ExamineeNavbar v-if="this.$route.name === 'ExaminationRoom'" />
-        <ExaminerNavbar v-if="['ManageRoom', 'ManageExam'].includes(this.$route.name)" />
+        <ExaminerNavbar
+            v-if="['ManageRoom', 'ManageExam'].includes(this.$route.name)"
+        />
         <v-main>
             <router-view></router-view>
         </v-main>
