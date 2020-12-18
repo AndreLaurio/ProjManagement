@@ -21,6 +21,19 @@ class RoomController extends Controller
         $room->save();
     }
 
+    public function update(Request $request, $room_id){
+        $update_room = Room::find($room_id);
+        $update_room->room_title = $request->input('room_title');
+        $update_room->room_desc = $request->input('room_description');
+        $update_room->save();
+
+    }
+
+    public function delete(Request $request, $room_id){
+        RoomExaminee::destroy($room_id);
+        Room::destroy($room_id);
+    }
+
     public function get(Request $request, $instructor_id){
         $rooms = Room::where('examiner_id',$instructor_id)->get();
         return response()->json($rooms);
@@ -37,6 +50,8 @@ class RoomController extends Controller
         $new_examinee->examinee_id = $request->input('examinee_id');
 
         $new_examinee->save();
+
+        DB::table('rooms')->increment('total_examinees');
     }
 
     public function getExamineeRoom(Request $request, $examinee_id){

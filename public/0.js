@@ -136,6 +136,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -149,6 +153,7 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
+    this.getUserDetail();
     this.getExamineeRoom();
   },
   methods: {
@@ -179,6 +184,13 @@ __webpack_require__.r(__webpack_exports__);
           console.log("error");
         });
       });
+    },
+    getUserDetail: function getUserDetail() {
+      var _this2 = this;
+
+      axios.get("api/user").then(function (response) {
+        _this2.user_id = response.data.user_id;
+      });
     }
   }
 });
@@ -197,7 +209,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css2?family=Poppins&display=swap);", ""]);
 
 // module
-exports.push([module.i, "\n.font-body[data-v-6dda0700] {\r\n    font-family: \"Poppins\", sans-serif;\n}\r\n", ""]);
+exports.push([module.i, "\n.font-body[data-v-6dda0700] {\r\n    font-family: \"Poppins\", sans-serif;\n}\n.project-border[data-v-6dda0700] {\r\n    border-left: 8px solid #221c92;\n}\r\n", ""]);
 
 // exports
 

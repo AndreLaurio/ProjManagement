@@ -71,7 +71,7 @@
             <v-card
                 flat
                 class="project-border mt-3 font-body"
-                v-for="room in rooms"
+                v-for="(room, room_index) in rooms"
                 :key="room.id"
             >
                 <v-card-text>
@@ -91,8 +91,17 @@
                                     >
                                     <span>{{ room.room_code }}</span>
                                     <br />
-                                    <span>Total of 10 Examinees</span> <br />
-                                    <span>Total of 10 Exams</span> <br />
+                                    <span
+                                        >Total of
+                                        {{ room.total_examinees }}
+                                        Examinees</span
+                                    >
+                                    <br />
+                                    <span
+                                        >Total of
+                                        {{ room.total_exams }} Exams</span
+                                    >
+                                    <br />
                                     <v-menu offset-y>
                                         <template
                                             v-slot:activator="{ on, attrs }"
@@ -114,7 +123,10 @@
                                                 @click="
                                                     selectSection(
                                                         item,
-                                                        room.room_id
+                                                        room.room_id,
+                                                        room.room_desc,
+                                                        room.room_title,
+                                                        room_index
                                                     )
                                                 "
                                             >
@@ -137,7 +149,7 @@
                 <v-card class="font-body">
                     <v-card-title class="pl-8 pr-8 pt-8 justify-center">
                         <span class="text-center text-uppercase register-title"
-                            >Create Room</span
+                            >Manage Room</span
                         >
                     </v-card-title>
                     <v-card-text>
@@ -152,7 +164,7 @@
                                 outlined
                                 clearable
                                 id="create-room-title"
-                                v-model="create_room.room_title"
+                                v-model="update_room.room_title"
                             ></v-text-field>
                             <label
                                 for="create-room-description"
@@ -162,8 +174,7 @@
                             >
                             <v-textarea
                                 outlined
-                                id="create-room-description"
-                                v-model="create_room.room_description"
+                                v-model="update_room.room_description"
                             ></v-textarea>
                         </div>
                     </v-card-text>
@@ -173,14 +184,79 @@
                             color="green darken-1"
                             text
                             class="text-uppercase"
-                            @click="createRoom"
+                            @click="updateRoom"
                         >
-                            Create Room
+                            Update Room
                         </v-btn>
                         <v-btn
                             color="red darken-1"
                             text
-                            @click="createRoomDialog = false"
+                            @click="manageRoomDetails = false"
+                            class="text-uppercase"
+                        >
+                            Close
+                        </v-btn>
+                    </v-card-actions>
+                </v-card>
+            </v-dialog>
+            <v-dialog v-model="manageRoomExams" persistent max-width="550">
+                <v-card class="font-body">
+                    <v-card-title class="pl-8 pr-8 pt-8 justify-center">
+                        <span class="text-center text-uppercase register-title"
+                            >Manage Exams</span
+                        >
+                    </v-card-title>
+                    <v-card-text>
+                        <v-card v-for="exam in exams" :key="exam.id">
+                            <v-card-title>
+                                {{ exam.exam_title }}
+                            </v-card-title>
+                            <v-card-text>
+                                {{ exam.exam_desc }}
+                            </v-card-text>
+                        </v-card>
+                    </v-card-text>
+                    <v-card-actions>
+                        <v-spacer></v-spacer>
+                        <v-btn
+                            color="red darken-1"
+                            text
+                            @click="manageRoomExams = false"
+                            class="text-uppercase"
+                        >
+                            Close
+                        </v-btn>
+                    </v-card-actions>
+                </v-card>
+            </v-dialog>
+            <v-dialog
+                v-model="deleteRoomConfirmation"
+                persistent
+                max-width="550"
+            >
+                <v-card class="font-body">
+                    <v-card-title class="pl-8 pr-8 pt-8 justify-center">
+                    </v-card-title>
+                    <v-card-text> </v-card-text>
+                    <v-card-actions>
+                        <v-spacer></v-spacer>
+                        <v-btn
+                            color="red darken-1"
+                            text
+                            @click="
+                                deleteRoom(
+                                    this.selected_room.room_id,
+                                    this.selected_room.room_index
+                                )
+                            "
+                            class="text-uppercase"
+                        >
+                            Delete
+                        </v-btn>
+                        <v-btn
+                            color="red darken-1"
+                            text
+                            @click="deleteRoomConfirmation = false"
                             class="text-uppercase"
                         >
                             Close
@@ -205,7 +281,8 @@
 export default {
     data() {
         return {
-            user_id: "",
+            rooms: [],
+            exams: [],
             items: [
                 { title: "Manage Room Details" },
                 { title: "Manage Room Exams" },
@@ -216,9 +293,21 @@ export default {
                 room_title: "",
                 room_description: ""
             },
-            rooms: [],
+            update_room: {
+                room_title: "",
+                room_description: ""
+            },
+            selected_room: {
+                room_id: "",
+                room_title: "",
+                room_desc: "",
+                room_index: ""
+            },
+            user_id: "",
             createRoomDialog: false,
-            manageRoomDetails: false
+            manageRoomDetails: false,
+            manageRoomExams: false,
+            deleteRoomConfirmation: false
         };
     },
     mounted() {
@@ -255,23 +344,28 @@ export default {
                     console.log("room creation failed");
                 });
         },
-        selectSection(item, room_id) {
+        selectSection(item, room_id, room_desc, room_title, room_index) {
             switch (item.title) {
                 case "Manage Room Details":
                     console.log("Manage Room Details");
                     this.manageRoomDetails = true;
+                    this.selected_room.room_id = room_id;
+                    this.update_room.room_title = room_title;
+                    this.update_room.room_description = room_desc;
                     break;
                 case "Manage Room Exams":
                     console.log("Manage Room Exams");
-                    console.log(room_id);
+                    this.manageRoomExams = true;
+                    this.selected_room.room_id = room_id;
+                    this.getExams(room_id);
                     break;
                 case "Manage Examinees":
                     console.log("Manage Examinees");
                     console.log(room_id);
                     break;
                 case "Delete Room":
-                    console.log("Delete Room");
-                    console.log(room_id);
+                    this.selected_room.room_id = room_id;
+                    this.selected_room.room_index = room_index;
                     break;
             }
         },
@@ -284,6 +378,40 @@ export default {
                     this.rooms = response.data;
                 });
             });
+        },
+        updateRoom() {
+            var room_id = this.selected_room.room_id;
+            axios
+                .put(`api/update-room/${room_id}`, {
+                    room_title: this.update_room.room_title,
+                    room_description: this.update_room.room_description
+                })
+                .then(response => {
+                    console.log("updated successfuly");
+                })
+                .catch(error => {
+                    console.log("update failed");
+                });
+        },
+        deleteRoom(room_id, room_index) {
+            axios
+                .delete(`api/delete-room/${room_id}`)
+                .then(response => {
+                    this.rooms.splice(room_index, 1);
+                })
+                .catch(error => {
+                    console.log("error not deleted");
+                });
+        },
+        getExams(room_id) {
+            axios
+                .get(`api/exams/${room_id}`)
+                .then(response => {
+                    this.exams = response.data;
+                })
+                .catch(error => {
+                    console.log("error");
+                });
         }
     }
 };
