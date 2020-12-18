@@ -29,7 +29,7 @@
                     v-model="group"
                     active-class="white--text font-weight-bold"
                 >
-                    <v-list-item link>
+                    <v-list-item link  v-on:click="manageRoom">
                         <v-list-item-action class="pl-5">
                             <v-icon color="#FFFFFF"
                                 >mdi-laptop-chromebook</v-icon
@@ -39,7 +39,7 @@
                             Manage Rooms
                         </v-list-item-content>
                     </v-list-item>
-                    <v-list-item link>
+                    <v-list-item link v-on:click="manageExam">
                         <v-list-item-action class="pl-5">
                             <v-icon color="#FFFFFF"
                                 >mdi-newspaper-variant-outline</v-icon
@@ -134,6 +134,12 @@ export default {
                 .catch(err => {
                     console.log("please call an administrator");
                 });
+        },
+        manageRoom() {
+            this.$router.push({ name: 'ManageRoom' })
+        },
+        manageExam() {
+            this.$router.push({ name: 'ManageExam' })
         }
     }
 };

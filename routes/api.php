@@ -27,4 +27,6 @@ Route::get('/rooms/{instructor_id}',[RoomController::class, 'get']);
 Route::post('/join-room',[RoomController::class, 'joinRoom']);
 Route::get('/examinee-rooms/{examinee_id}',[RoomController::class, 'getExamineeRoom']);
 
+// Exams
+Route::get('/exams/{instructor_id}',[ExamController::class, 'get']);
 Route::get('/exams/{room_id}', [RoomController::class, 'getExams']);
