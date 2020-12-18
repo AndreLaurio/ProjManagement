@@ -15,4 +15,12 @@ class ExamController extends Controller
 
             return $room_exam;
     }
+
+    public function getExaminerExam(Request $request, $examiner_id){
+        $examiner_exam = DB::table('exams')
+            ->where('examiner_id', $examiner_id)
+            ->get();
+
+            return $examiner_exam;
+    }
 }

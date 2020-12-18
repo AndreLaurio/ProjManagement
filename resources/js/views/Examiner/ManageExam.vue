@@ -3,7 +3,7 @@
         <h1 class="font-body mb-3">Manage Exam</h1>
         <v-divider class="mr-10"></v-divider>
         <div class="mt-5 mr-10">
-            <v-dialog v-model="createRoomDialog" persistent max-width="550">
+            <v-dialog v-model="createExamDialog" persistent max-width="550">
                 <template v-slot:activator="{ on, attrs }">
                     <v-btn
                         class="primary text-uppercase"
@@ -147,7 +147,8 @@ export default {
         return {
             user_id: "",
             items: [{ title: "Edit Exam" }, { title: "Delete" }],
-            exams: []
+            exams: [],
+            createExamDialog: false
         };
     },
     mounted() {
@@ -160,7 +161,7 @@ export default {
                     console.log("Manage Examinees");
                     console.log(room_id);
                     break;
-                case "Delete RExamoom":
+                case "Delete Examoom":
                     console.log("Delete Exam");
                     console.log(room_id);
                     break;
@@ -171,9 +172,11 @@ export default {
                 this.user_id = response.data.user_id;
 
                 let instructor_id = this.user_id;
-                axios.get(`api/exams/${instructor_id}`).then(response => {
-                    this.exams = response.data;
-                });
+                axios
+                    .get(`api/examiner/exams/${instructor_id}`)
+                    .then(response => {
+                        this.exams = response.data;
+                    });
             });
         }
     }
