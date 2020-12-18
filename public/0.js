@@ -157,7 +157,11 @@ __webpack_require__.r(__webpack_exports__);
         room_code: this.room_code,
         examinee_id: this.user_id
       }).then(function (response) {
+<<<<<<< Updated upstream
         window.location.reload();
+=======
+        location.reload();
+>>>>>>> Stashed changes
       })["catch"](function (error) {
         console.log("errror");
       });

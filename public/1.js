@@ -152,6 +152,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+<<<<<<< Updated upstream
 //
 //
 //
@@ -212,6 +213,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+=======
+>>>>>>> Stashed changes
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -230,8 +233,12 @@ __webpack_require__.r(__webpack_exports__);
         room_description: ""
       },
       rooms: [],
+<<<<<<< Updated upstream
       createRoomDialog: false,
       manageRoomDetails: false
+=======
+      createRoomDialog: false
+>>>>>>> Stashed changes
     };
   },
   mounted: function mounted() {
@@ -266,6 +273,7 @@ __webpack_require__.r(__webpack_exports__);
         console.log("room creation failed");
       });
     },
+<<<<<<< Updated upstream
     selectSection: function selectSection(item, room_id) {
       switch (item.title) {
         case "Manage Room Details":
@@ -286,6 +294,20 @@ __webpack_require__.r(__webpack_exports__);
         case "Delete Room":
           console.log("Delete Room");
           console.log(room_id);
+=======
+    selectSection: function selectSection(item) {
+      switch (item.title) {
+        case "abcd.xyz@example.com":
+          console.log("hello");
+          break;
+
+        case "Profile":
+          console.log("Profile");
+          break;
+
+        case "Logout":
+          console.log("Logout");
+>>>>>>> Stashed changes
           break;
       }
     },
@@ -657,10 +679,14 @@ var render = function() {
                                             key: index,
                                             on: {
                                               click: function($event) {
+<<<<<<< Updated upstream
                                                 return _vm.selectSection(
                                                   item,
                                                   room.room_id
                                                 )
+=======
+                                                return _vm.selectSection(item)
+>>>>>>> Stashed changes
                                               }
                                             }
                                           },
@@ -685,6 +711,7 @@ var render = function() {
                           ])
                         ],
                         1
+<<<<<<< Updated upstream
                       )
                     ],
                     1
@@ -822,16 +849,17 @@ var render = function() {
                             "\n                        Close\n                    "
                           )
                         ]
+=======
+>>>>>>> Stashed changes
                       )
                     ],
                     1
                   )
-                ],
-                1
-              )
-            ],
-            1
-          )
+                ])
+              ],
+              1
+            )
+          })
         ],
         2
       )
