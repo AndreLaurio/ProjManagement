@@ -22,6 +22,12 @@ const routes = [
         meta: { requiresAuth: true }
     },
     {
+        path: "/manage-exam",
+        name: "ManageExam",
+        component: () => import("./views/Examiner/ManageExam"),
+        meta: { requiresAuth: true }
+    },
+    {
         path: "*",
         name: "404",
         component: () => import("./views/404")
