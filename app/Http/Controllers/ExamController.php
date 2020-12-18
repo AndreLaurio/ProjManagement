@@ -24,4 +24,9 @@ class ExamController extends Controller
 
             return $examiner_exam;
     }
+
+    public function saveExamDetail(Request $request) {
+
+        
+    }
 }

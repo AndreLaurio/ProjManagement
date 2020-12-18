@@ -31,3 +31,6 @@ Route::get('/examinee-rooms/{examinee_id}',[RoomController::class, 'getExamineeR
 // Exams
 Route::get('/examiner/exams/{examiner_id}',[ExamController::class, 'getExaminerExam']);
 Route::get('/exams/{room_id}', [RoomController::class, 'getExam']);
+
+// Add New Exam
+Route::post('/exam/details/save', [ExamController::class, 'saveExamDetail']);
