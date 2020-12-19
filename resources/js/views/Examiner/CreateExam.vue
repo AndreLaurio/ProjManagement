@@ -25,6 +25,9 @@
                                         Exam Items
                                     </h3>
                                 </v-list-item-title>
+                                <div class="mini-buttons">
+                                    <v-btn dense>1</v-btn>
+                                </div>
                             </v-list-item-content>
                         </v-list-item>
                         <template v-slot:append>
@@ -41,10 +44,7 @@
                         <h2>Exam Details</h2>
                         <v-layout class="mt-5">
                             <v-flex md2>
-                                <h2 class="grey--text">Exam title :</h2>
-                                <h2 class="grey--text mt-8">
-                                    Exam description :
-                                </h2>
+                                <span class="text-lg-h6">Exam Title :</span>
                             </v-flex>
                             <v-flex md10>
                                 <v-text-field
@@ -54,16 +54,26 @@
                                     dense
                                     class="title-input"
                                 ></v-text-field>
-                                <v-textarea outlined rounded> </v-textarea>
+                            </v-flex>
+                        </v-layout>
+                        <v-layout>
+                            <v-flex md2>
+                                <span class="mt-12 text-lg-h6">
+                                    Exam Description :
+                                </span>
+                            </v-flex>
+                            <v-flex md10>
+                                <v-textarea outlined rounded class="mr-12">
+                                </v-textarea>
                             </v-flex>
                         </v-layout>
                         <v-divider class="mr-7"></v-divider>
                         <h2 class="mt-5">Exam Scoring</h2>
                         <v-layout>
                             <v-flex md3>
-                                <h2 class="grey--text mt-1">
+                                <span class="text-lg-h6 mt-1">
                                     Passing Percentage (%) :
-                                </h2>
+                                </span>
                             </v-flex>
                             <v-flex md9>
                                 <v-text-field
@@ -77,38 +87,60 @@
                         <v-divider class="mr-7"></v-divider>
                         <h2 class="mt-5">Exam Configuraiton</h2>
                         <v-layout>
-                            <v-flex md3 class="mt-2">
-                                <h2 class="grey--text mt-1">
+                            <v-flex md4 class="mt-5">
+                                <span class="text-lg-h6">
                                     Shuffle Question :
-                                </h2>
-                                <h2 class="grey--text mt-1">
-                                    Examinee Reviewing their Answer :
-                                </h2>
-                                <h2 class="grey--text mt-1">
-                                    Monitor Switching Tab :
-                                </h2>
+                                </span>
                             </v-flex>
-                            <v-flex md9>
+                            <v-flex md8 class="mt-1">
                                 <v-checkbox> </v-checkbox>
+                            </v-flex>
+                        </v-layout>
+                        <v-layout>
+                            <v-flex md4 class="mt-5">
+                                <span class="text-lg-h6 mt-1">
+                                    Examinee Reviewing their Answer :
+                                </span>
+                            </v-flex>
+                            <v-flex md8 class="mt-2">
                                 <v-checkbox> </v-checkbox>
+                            </v-flex>
+                        </v-layout>
+                        <v-layout>
+                            <v-flex md4 class="mt-4">
+                                <span class="text-lg-h6">
+                                    Monitor Switching Tab :
+                                </span>
+                            </v-flex>
+                            <v-flex md8 class="mt-1">
                                 <v-checkbox> </v-checkbox>
                             </v-flex>
                         </v-layout>
                     </div>
                     <div v-if="examItemInput">
-                        <v-btn outlined rounded @click="showAddNewSection">
+                        <v-btn
+                            outlined
+                            rounded
+                            color="indigo"
+                            @click="showAddNewSection"
+                        >
                             Add New Section</v-btn
                         >
-                        <v-btn outlined rounded @click="showAddNewQuestion">
+                        <v-btn
+                            outlined
+                            rounded
+                            color="indigo"
+                            class="ml-5"
+                            @click="showAddNewQuestion"
+                        >
                             Add New Question</v-btn
                         >
                         <v-divider class="mr-7 mt-5 mb-3"></v-divider>
                         <div v-if="addNewSection">
-                            <h3>Exam Section</h3>
-                            <v-layout>
-                                <v-flex md2 class="mt-5">
-                                    <h3>Title :</h3>
-                                    <h3>Description :</h3>
+                            <h2>Exam Section</h2>
+                            <v-layout class="mt-5">
+                                <v-flex md2>
+                                    <span class="text-lg-h6">Title :</span>
                                 </v-flex>
                                 <v-flex md10>
                                     <v-text-field
@@ -116,108 +148,156 @@
                                         outlined
                                         rounded
                                         dense
-                                        class="title-input mt-3"
+                                        class="title-input"
                                     ></v-text-field>
-                                    <v-textarea outlined rounded> </v-textarea>
                                 </v-flex>
                             </v-layout>
-                            <v-divider class="mr-7 mt-5 mb-3"></v-divider>
                             <v-layout>
-                                <v-flex>
-                                    <h3>Position</h3>
+                                <v-flex md2>
+                                    <span class="mt-12 text-lg-h6">
+                                        Description :
+                                    </span>
                                 </v-flex>
-                                <v-flex>
+                                <v-flex md10>
+                                    <v-textarea outlined rounded class="mr-12">
+                                    </v-textarea>
+                                </v-flex>
+                            </v-layout>
+                            <v-divider class="mr-7 mt-5 mb-5"></v-divider>
+                            <v-layout>
+                                <v-flex md2>
+                                    <h2>Position</h2>
+                                </v-flex>
+                                <v-flex md10>
                                     <v-select
+                                        dense
+                                        outlined
+                                        rounded
                                         :items="positions"
                                         label="Positions"
+                                        class="position-select"
                                     ></v-select>
                                 </v-flex>
                             </v-layout>
-                            <v-divider class="mr-7 mt-5 mb-3"></v-divider>
-                            <v-btn>Remove Section</v-btn>
+                            <v-divider class="mr-7 mb-3"></v-divider>
+                            <v-btn outlined rounded class="mt-5" color="indigo"
+                                >Remove Section</v-btn
+                            >
                         </div>
                         <div v-if="addNewQuestion">
-                            <h3>Exam Question</h3>
-                            <v-layout>
-                                <v-flex md2 class="mt-5">
-                                    <h3>Question Type :</h3>
-                                    <h3>Question :</h3>
-                                    <h3 v-if="this.selectQuestionType == 1">
-                                        Number of Elements :
-                                    </h3>
+                            <h2>Exam Question</h2>
+                            <v-layout class="mt-5">
+                                <v-flex md2>
+                                    <span class="text-lg-h6"
+                                        >Question Type :</span
+                                    >
                                 </v-flex>
-                                <v-flex>
+                                <v-flex md10>
                                     <v-select
                                         v-model="selectedQuestionType"
+                                        rounded
+                                        dense
+                                        outlined
+                                        class="question-type-select"
                                         item-text="name"
                                         item-value="id"
                                         :items="questionTypes"
                                     ></v-select>
-                                    <v-textarea outlined></v-textarea>
-                                    <v-text-field
-                                        v-if="this.selectQuestionType == 1"
-                                        type="number"
-                                        outlined
-                                        dense
-                                        class="percentage-input"
-                                    ></v-text-field>
                                 </v-flex>
                             </v-layout>
-                            <v-divider class="mr-7 mt-5 mb-3"></v-divider>
-
+                            <v-layout>
+                                <v-flex md2>
+                                    <span class="mt-12 text-lg-h6">
+                                        Question :
+                                    </span>
+                                </v-flex>
+                                <v-flex md10>
+                                    <v-textarea outlined rounded class="mr-12">
+                                    </v-textarea>
+                                </v-flex>
+                            </v-layout>
                             <div v-if="this.selectedQuestionType == 1">
-                                <h1>Enumeration Elements</h1>
-                                <v-btn>Add New Element</v-btn>
-                                <v-card>
+                                <v-layout>
+                                    <v-flex md2>
+                                        <span class="mt-12 text-lg-h6">
+                                            Number of Elements :
+                                        </span>
+                                    </v-flex>
+                                    <v-flex md10>
+                                        <v-text-field
+                                            type="number"
+                                            outlined
+                                            dense
+                                            class="percentage-input"
+                                        ></v-text-field>
+                                    </v-flex>
+                                </v-layout>
+                            </div>
+                            <v-divider class="mr-7 mt-5 mb-3"></v-divider>
+                            <div v-if="this.selectedQuestionType == 1">
+                                <h2>Enumeration Elements</h2>
+                                <v-btn
+                                    dense
+                                    rounded
+                                    outlined
+                                    color="indigo"
+                                    class="mt-5"
+                                    >Add New Element</v-btn
+                                >
+                                <v-card
+                                    class="ml-12 mr-12 mt-5 rounded-xl"
+                                    width="1000"
+                                >
                                     <v-card-text>
-                                        <table>
+                                        <table border="1" class="table-choices">
                                             <tr>
-                                                <th>#</th>
-                                                <th>Label</th>
-                                                <th>Remove</th>
+                                                <th class="ml-5">#</th>
+                                                <th class="ml-5">Label</th>
+                                                <th class="ml-5">Remove</th>
                                             </tr>
                                             <tr>
-                                                <td>A</td>
-                                                <td>
-                                                    <v-card>
-                                                        <v-card-text>
-                                                            <v-textarea
-                                                                outlined
-                                                            >
-                                                            </v-textarea>
-                                                        </v-card-text>
-                                                    </v-card>
+                                                <td class="ml-5">A</td>
+                                                <td class="ml-5">
+                                                    <div class="text-center">
+                                                        <v-textarea
+                                                            class="label-choices"
+                                                            outlined
+                                                        >
+                                                        </v-textarea>
+                                                    </div>
                                                 </td>
-                                                <td>
+                                                <td class="ml-5">
                                                     X
                                                 </td>
                                             </tr>
                                         </table>
                                     </v-card-text>
-                                    <v-layout>
-                                        <v-flex>
-                                            Case Sensitive ?
-                                        </v-flex>
-                                        <v-flex>
-                                            <v-checkbox> </v-checkbox>
-                                        </v-flex>
-                                    </v-layout>
-                                    <v-layout>
-                                        <v-flex>
-                                            Answer must in order?
-                                        </v-flex>
-                                        <v-flex>
-                                            <v-checkbox></v-checkbox>
-                                        </v-flex>
-                                    </v-layout>
                                 </v-card>
-                                <v-divider class="ml-5 mr-5"></v-divider>
-                                <h1>Scoring</h1>
-                                <v-layout>
-                                    <v-flex>
-                                        Points :
+                                <v-layout class="mt-5">
+                                    <v-flex md2 class="mt-5">
+                                        Case Sensitive ?
                                     </v-flex>
-                                    <v-flex>
+                                    <v-flex md10>
+                                        <v-checkbox> </v-checkbox>
+                                    </v-flex>
+                                </v-layout>
+                                <v-layout>
+                                    <v-flex md2 class="mt-5">
+                                        Answer must in order?
+                                    </v-flex>
+                                    <v-flex md10>
+                                        <v-checkbox></v-checkbox>
+                                    </v-flex>
+                                </v-layout>
+                                <v-divider class="mr-7 mb-2"></v-divider>
+                                <h2>Scoring</h2>
+                                <v-layout class="mt-5">
+                                    <v-flex md2>
+                                        <span class="text-lg-h6">
+                                            Points :
+                                        </span>
+                                    </v-flex>
+                                    <v-flex md10>
                                         <v-text-field
                                             type="number"
                                             outlined
@@ -227,10 +307,12 @@
                                     </v-flex>
                                 </v-layout>
                                 <v-layout>
-                                    <v-flex>
-                                        Points per Elements:
+                                    <v-flex md2>
+                                        <span class="text-lg-h6">
+                                            Points per Elements:
+                                        </span>
                                     </v-flex>
-                                    <v-flex>
+                                    <v-flex md10>
                                         <v-text-field
                                             type="number"
                                             outlined
@@ -239,28 +321,40 @@
                                         ></v-text-field>
                                     </v-flex>
                                 </v-layout>
-                                <v-divider></v-divider>
-                                <v-layout>
-                                    <v-flex>
-                                        <h3>Position</h3>
+                                <v-divider class="mb-2"></v-divider>
+                                <v-layout class="mt-5">
+                                    <v-flex md2>
+                                        <h2>Position</h2>
                                     </v-flex>
-                                    <v-flex>
+                                    <v-flex md10>
                                         <v-select
+                                            dense
+                                            outlined
+                                            rounded
                                             :items="positions"
                                             label="Positions"
+                                            class="position-select"
                                         ></v-select>
                                     </v-flex>
                                 </v-layout>
-                                <v-divider></v-divider>
-                                <v-btn>Remove Question</v-btn>
+                                <v-divider class="mr-7 mb-2"></v-divider>
+                                <v-btn
+                                    outlined
+                                    rounded
+                                    class="mt-5 mb-5"
+                                    color="indigo"
+                                    >Remove Question</v-btn
+                                >
                             </div>
                             <div v-if="this.selectedQuestionType == 2">
-                                <h1>Scoring</h1>
-                                <v-layout>
-                                    <v-flex>
-                                        Points :
+                                <h2>Scoring</h2>
+                                <v-layout class="mt-5">
+                                    <v-flex md2>
+                                        <span class="text-lg-h6">
+                                            Points :
+                                        </span>
                                     </v-flex>
-                                    <v-flex>
+                                    <v-flex md10>
                                         <v-text-field
                                             type="number"
                                             outlined
@@ -270,39 +364,57 @@
                                     </v-flex>
                                 </v-layout>
                                 <v-divider></v-divider>
-                                <v-layout>
-                                    <v-flex>
-                                        <h3>Position</h3>
+                                <v-layout class="mt-5">
+                                    <v-flex md2>
+                                        <h2>Position</h2>
                                     </v-flex>
-                                    <v-flex>
+                                    <v-flex md10>
                                         <v-select
+                                            dense
+                                            outlined
+                                            rounded
                                             :items="positions"
                                             label="Positions"
+                                            class="position-select"
                                         ></v-select>
                                     </v-flex>
                                 </v-layout>
                                 <v-divider></v-divider>
-                                <v-btn>Remove Question</v-btn>
+                                <v-btn
+                                    outlined
+                                    rounded
+                                    class="mt-5"
+                                    color="indigo"
+                                    >Remove Question</v-btn
+                                >
                             </div>
                             <div v-if="this.selectedQuestionType == 3">
-                                <h1>Answer</h1>
-                                <v-layout>
-                                    <v-flex>
-                                        <h3>Correct Answer</h3>
+                                <h2>Answer</h2>
+                                <v-layout class="mt-5">
+                                    <v-flex md2>
+                                        <span class="text-lg-h6">
+                                            Correct Answer
+                                        </span>
                                     </v-flex>
-                                    <v-flex>
+                                    <v-flex md10>
                                         <v-select
+                                            rounded
+                                            outlined
+                                            dense
+                                            class="position-select"
                                             label="True or False"
                                         ></v-select>
                                     </v-flex>
                                 </v-layout>
-                                <v-divider></v-divider>
-                                <h1>Scoring</h1>
-                                <v-layout>
-                                    <v-flex>
-                                        <h3>Points</h3>
+                                <v-divider class="mr-7 mb-2"></v-divider>
+                                <h2>Scoring</h2>
+                                <v-layout class="mt-5">
+                                    <v-flex md2>
+                                        <span class="text-lg-h6">
+                                            Points :
+                                        </span>
                                     </v-flex>
-                                    <v-flex>
+                                    <v-flex md10>
                                         <v-text-field
                                             type="number"
                                             outlined
@@ -311,60 +423,95 @@
                                         ></v-text-field>
                                     </v-flex>
                                 </v-layout>
-                                <v-divider></v-divider>
-                                <v-layout>
-                                    <v-flex>
-                                        <h3>Position</h3>
+                                <v-divider class="mr-7 mb-2"></v-divider>
+                                <v-layout class="mt-5">
+                                    <v-flex md2>
+                                        <h2>Position</h2>
                                     </v-flex>
-                                    <v-flex>
+                                    <v-flex md10>
                                         <v-select
+                                            dense
+                                            outlined
+                                            rounded
                                             :items="positions"
                                             label="Positions"
+                                            class="position-select"
                                         ></v-select>
                                     </v-flex>
                                 </v-layout>
                                 <v-divider></v-divider>
-                                <v-btn>Remove Question</v-btn>
+                                <v-btn
+                                    outlined
+                                    rounded
+                                    class="mt-5 mb-5"
+                                    color="indigo"
+                                    >Remove Question</v-btn
+                                >
                             </div>
                             <div v-if="this.selectedQuestionType == 4">
-                                <h1>Choices</h1>
-                                <v-btn>Add New Choice</v-btn>
-                                <v-card>
+                                <h2>Choices</h2>
+                                <v-btn
+                                    dense
+                                    rounded
+                                    outlined
+                                    color="indigo"
+                                    class="mt-5"
+                                    >Add New Choice</v-btn
+                                >
+                                <v-card
+                                    class="ml-12 mr-12 mt-5 rounded-xl"
+                                    width="1000"
+                                >
                                     <v-card-text>
-                                        <table>
+                                        <table border="1" class="table-choices">
                                             <tr>
-                                                <th>#</th>
-                                                <th>Label</th>
-                                                <th>is Correct?</th>
-                                                <th>Remove</th>
+                                                <th class="ml-5">#</th>
+                                                <th class="ml-5">Label</th>
+                                                <th class="ml-5">
+                                                    is Correct?
+                                                </th>
+                                                <th class="ml-5">Remove</th>
                                             </tr>
                                             <tr>
-                                                <td>A</td>
-                                                <td>
-                                                    <v-card>
-                                                        <v-card-text>
-                                                            <v-textarea
-                                                                outlined
-                                                            >
-                                                            </v-textarea>
-                                                        </v-card-text>
-                                                    </v-card>
+                                                <td class="ml-5">A</td>
+                                                <td class="ml-5">
+                                                    <div class="text-center">
+                                                        <v-textarea
+                                                            class="label-choices"
+                                                            outlined
+                                                        >
+                                                        </v-textarea>
+                                                    </div>
                                                 </td>
                                                 <td>
                                                     <v-checkbox></v-checkbox>
                                                 </td>
-                                                <td>
+                                                <td class="ml-5">
                                                     X
                                                 </td>
                                             </tr>
                                         </table>
                                     </v-card-text>
                                 </v-card>
-                                <v-layout>
-                                    <v-flex>
-                                        Suffle Choices
+                                <v-layout class="mt-5">
+                                    <v-flex md2 class="mt-5">
+                                        <span class="text-lg-h6">
+                                            Suffle Choices
+                                        </span>
                                     </v-flex>
-                                    <v-flex>
+                                    <v-flex md10 class="mt-1">
+                                        <v-checkbox></v-checkbox>
+                                    </v-flex>
+                                </v-layout>
+                                <v-divider class="mb-2"></v-divider>
+                                <h2>Scoring</h2>
+                                <v-layout class="mt-5">
+                                    <v-flex md2>
+                                        <span class="text-lg-h6">
+                                            Points :
+                                        </span>
+                                    </v-flex>
+                                    <v-flex md10>
                                         <v-text-field
                                             type="number"
                                             outlined
@@ -373,141 +520,173 @@
                                         ></v-text-field>
                                     </v-flex>
                                 </v-layout>
-                                <v-divider></v-divider>
-                                <h3>Scoring</h3>
-                                <v-layout>
-                                    <v-flex>
-                                        Points
+                                <v-divider class="mr-7 mb-2"></v-divider>
+                                <v-layout class="mt-5">
+                                    <v-flex md2>
+                                        <h2>Position</h2>
                                     </v-flex>
-                                    <v-flex>
-                                        <v-text-field
-                                            type="number"
-                                            outlined
-                                            dense
-                                            class="percentage-input"
-                                        ></v-text-field>
-                                    </v-flex>
-                                </v-layout>
-                                <v-divider></v-divider>
-                                <v-layout>
-                                    <v-flex>
-                                        <h3>Position</h3>
-                                    </v-flex>
-                                    <v-flex>
+                                    <v-flex md10>
                                         <v-select
+                                            dense
+                                            outlined
+                                            rounded
                                             :items="positions"
                                             label="Positions"
+                                            class="position-select"
                                         ></v-select>
                                     </v-flex>
                                 </v-layout>
                                 <v-divider></v-divider>
-                                <v-btn>Remove Question</v-btn>
+                                <v-btn
+                                    outlined
+                                    rounded
+                                    class="mt-5 mb-5"
+                                    color="indigo"
+                                    >Remove Question</v-btn
+                                >
                             </div>
                             <div v-if="this.selectedQuestionType == 5">
-                                <h1>Choices</h1>
-                                <v-btn>Add New Choice</v-btn>
-                                <v-card>
+                                <h2>Choices</h2>
+                                <v-btn
+                                    dense
+                                    rounded
+                                    outlined
+                                    color="indigo"
+                                    class="mt-5"
+                                    >Add New Choice</v-btn
+                                >
+                                <v-card
+                                    class="ml-12 mr-12 mt-5 rounded-xl"
+                                    width="1000"
+                                >
                                     <v-card-text>
-                                        <table>
+                                        <table border="1" class="table-choices">
                                             <tr>
-                                                <th>#</th>
-                                                <th>Label</th>
-                                                <th>is Correct?</th>
-                                                <th>Remove</th>
+                                                <th class="ml-5">#</th>
+                                                <th class="ml-5">Label</th>
+                                                <th class="ml-5">
+                                                    is Correct?
+                                                </th>
+                                                <th class="ml-5">Remove</th>
                                             </tr>
                                             <tr>
-                                                <td>A</td>
-                                                <td>
-                                                    <v-card>
-                                                        <v-card-text>
-                                                            <v-textarea
-                                                                outlined
-                                                            >
-                                                            </v-textarea>
-                                                        </v-card-text>
-                                                    </v-card>
+                                                <td class="ml-5">A</td>
+                                                <td class="ml-5">
+                                                    <div class="text-center">
+                                                        <v-textarea
+                                                            class="label-choices"
+                                                            outlined
+                                                        >
+                                                        </v-textarea>
+                                                    </div>
                                                 </td>
                                                 <td>
                                                     <v-checkbox></v-checkbox>
                                                 </td>
-                                                <td>
+                                                <td class="ml-5">
                                                     X
                                                 </td>
                                             </tr>
                                         </table>
                                     </v-card-text>
                                 </v-card>
-                                <v-layout>
-                                    <v-flex>
-                                        Suffle Choices
+                                <v-layout class="mt-5">
+                                    <v-flex md2 class="mt-5">
+                                        <span class="text-lg-h6">
+                                            Suffle Choices
+                                        </span>
                                     </v-flex>
-                                    <v-flex>
-                                        <v-text-field
-                                            type="number"
-                                            outlined
-                                            dense
-                                            class="percentage-input"
-                                        ></v-text-field>
+                                    <v-flex md10 class="mt-1">
+                                        <v-checkbox></v-checkbox>
                                     </v-flex>
                                 </v-layout>
-                                <v-layout>
-                                    <v-flex>
-                                        Examinee must select:
+                                <v-layout class="mt-5">
+                                    <v-flex md2>
+                                        <span class="text-lg-h6">
+                                            Examinee must select:
+                                        </span>
                                     </v-flex>
-                                    <v-flex>
-                                        <v-select></v-select>
-                                    </v-flex>
-                                    <v-flex>
-                                        <v-text-field
-                                            type="number"
-                                            outlined
-                                            dense
-                                            class="percentage-input"
-                                        ></v-text-field>
-                                    </v-flex>
-                                </v-layout>
-                                <v-divider></v-divider>
-                                <h3>Scoring</h3>
-                                <v-layout>
-                                    <v-flex>
-                                        Points
-                                    </v-flex>
-                                    <v-flex>
-                                        <v-text-field
-                                            type="number"
-                                            outlined
-                                            dense
-                                            class="percentage-input"
-                                        ></v-text-field>
-                                    </v-flex>
-                                </v-layout>
-                                <v-layout>
-                                    <v-flex>
-                                        Points Per Choice ?
-                                    </v-flex>
-                                    <v-flex>
-                                        <v-text-field
-                                            type="number"
-                                            outlined
-                                            dense
-                                            class="percentage-input"
-                                        ></v-text-field>
-                                    </v-flex>
-                                </v-layout>
-                                <v-divider></v-divider>
-                                <v-layout>
-                                    <v-flex>
-                                        <h3>Position</h3>
-                                    </v-flex>
-                                    <v-flex>
+                                    <v-flex md9>
                                         <v-select
+                                            dense
+                                            outlined
+                                            rounded
                                             :items="positions"
                                             label="Positions"
+                                            class="position-select"
+                                        ></v-select>
+                                        <!-- <v-text-field
+                                            type="number"
+                                            outlined
+                                            dense
+                                            class="percentage-input"
+                                        ></v-text-field> -->
+                                    </v-flex>
+                                    <!-- <v-flex md1> -->
+                                    <!-- <v-text-field
+                                            type="number"
+                                            outlined
+                                            dense
+                                            class="percentage-input"
+                                        ></v-text-field>
+                                    </v-flex> -->
+                                </v-layout>
+                                <v-divider class="mb-2"></v-divider>
+                                <h2>Scoring</h2>
+                                <v-layout class="mt-5">
+                                    <v-flex md2>
+                                        <span class="text-lg-h6">
+                                            Points :
+                                        </span>
+                                    </v-flex>
+                                    <v-flex md10>
+                                        <v-text-field
+                                            type="number"
+                                            outlined
+                                            dense
+                                            class="percentage-input"
+                                        ></v-text-field>
+                                    </v-flex>
+                                </v-layout>
+                                <v-layout>
+                                    <v-flex md2>
+                                        <span class="text-lg-h6">
+                                            Points per Choices:
+                                        </span>
+                                    </v-flex>
+                                    <v-flex md10>
+                                        <v-text-field
+                                            type="number"
+                                            outlined
+                                            dense
+                                            class="percentage-input"
+                                        ></v-text-field>
+                                    </v-flex>
+                                </v-layout>
+                                <v-divider class="mr-7 mb-2"></v-divider>
+                                <v-layout class="mt-5">
+                                    <v-flex md2>
+                                        <h2>Position</h2>
+                                    </v-flex>
+                                    <v-flex md10>
+                                        <v-select
+                                            dense
+                                            outlined
+                                            rounded
+                                            :items="positions"
+                                            label="Positions"
+                                            class="position-select"
                                         ></v-select>
                                     </v-flex>
                                 </v-layout>
                                 <v-divider></v-divider>
-                                <v-btn>Remove Question</v-btn>
+                                <v-btn
+                                    outlined
+                                    rounded
+                                    class="mt-5 mb-5"
+                                    color="indigo"
+                                    >Remove Question</v-btn
+                                >
                             </div>
                             <div></div>
                             <div></div>
@@ -531,6 +710,33 @@
 }
 .percentage-input {
     width: 80px;
+}
+
+.position-select {
+    width: 300px;
+}
+
+.question-type-select {
+    width: 400px;
+}
+
+.table-choices {
+    width: 80%;
+}
+.table-choices td {
+    text-align: center;
+}
+.table-choices th {
+    text-align: center;
+    vertical-align: middle;
+}
+.label-choices {
+    width: 300px;
+}
+
+.mini-buttons v-btn {
+    width: 30px;
+    min-width: 30px;
 }
 </style>
 

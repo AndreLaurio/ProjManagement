@@ -545,6 +545,212 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -609,7 +815,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css2?family=Poppins&display=swap);", ""]);
 
 // module
-exports.push([module.i, "\n.font-body[data-v-54cd012a] {\r\n    font-family: \"Poppins\", sans-serif;\n}\n.title-input[data-v-54cd012a] {\r\n    width: 500px;\n}\n.percentage-input[data-v-54cd012a] {\r\n    width: 80px;\n}\r\n", ""]);
+exports.push([module.i, "\n.font-body[data-v-54cd012a] {\r\n    font-family: \"Poppins\", sans-serif;\n}\n.title-input[data-v-54cd012a] {\r\n    width: 500px;\n}\n.percentage-input[data-v-54cd012a] {\r\n    width: 80px;\n}\n.position-select[data-v-54cd012a] {\r\n    width: 300px;\n}\n.question-type-select[data-v-54cd012a] {\r\n    width: 400px;\n}\n.table-choices[data-v-54cd012a] {\r\n    width: 80%;\n}\n.table-choices td[data-v-54cd012a] {\r\n    text-align: center;\n}\n.table-choices th[data-v-54cd012a] {\r\n    text-align: center;\r\n    vertical-align: middle;\n}\n.label-choices[data-v-54cd012a] {\r\n    width: 300px;\n}\n.mini-buttons v-btn[data-v-54cd012a] {\r\n    width: 30px;\r\n    min-width: 30px;\n}\r\n", ""]);
 
 // exports
 
@@ -752,6 +958,17 @@ var render = function() {
                                   )
                                 ],
                                 1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "mini-buttons" },
+                                [
+                                  _c("v-btn", { attrs: { dense: "" } }, [
+                                    _vm._v("1")
+                                  ])
+                                ],
+                                1
                               )
                             ],
                             1
@@ -778,14 +995,8 @@ var render = function() {
                           { staticClass: "mt-5" },
                           [
                             _c("v-flex", { attrs: { md2: "" } }, [
-                              _c("h2", { staticClass: "grey--text" }, [
-                                _vm._v("Exam title :")
-                              ]),
-                              _vm._v(" "),
-                              _c("h2", { staticClass: "grey--text mt-8" }, [
-                                _vm._v(
-                                  "\n                                Exam description :\n                            "
-                                )
+                              _c("span", { staticClass: "text-lg-h6" }, [
+                                _vm._v("Exam Title :")
                               ])
                             ]),
                             _vm._v(" "),
@@ -801,9 +1012,31 @@ var render = function() {
                                     rounded: "",
                                     dense: ""
                                   }
-                                }),
-                                _vm._v(" "),
+                                })
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "v-layout",
+                          [
+                            _c("v-flex", { attrs: { md2: "" } }, [
+                              _c("span", { staticClass: "mt-12 text-lg-h6" }, [
+                                _vm._v(
+                                  "\n                                Exam Description :\n                            "
+                                )
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "v-flex",
+                              { attrs: { md10: "" } },
+                              [
                                 _c("v-textarea", {
+                                  staticClass: "mr-12",
                                   attrs: { outlined: "", rounded: "" }
                                 })
                               ],
@@ -823,7 +1056,7 @@ var render = function() {
                           "v-layout",
                           [
                             _c("v-flex", { attrs: { md3: "" } }, [
-                              _c("h2", { staticClass: "grey--text mt-1" }, [
+                              _c("span", { staticClass: "text-lg-h6 mt-1" }, [
                                 _vm._v(
                                   "\n                                Passing Percentage (%) :\n                            "
                                 )
@@ -860,21 +1093,59 @@ var render = function() {
                           [
                             _c(
                               "v-flex",
-                              { staticClass: "mt-2", attrs: { md3: "" } },
+                              { staticClass: "mt-5", attrs: { md4: "" } },
                               [
-                                _c("h2", { staticClass: "grey--text mt-1" }, [
+                                _c("span", { staticClass: "text-lg-h6" }, [
                                   _vm._v(
                                     "\n                                Shuffle Question :\n                            "
                                   )
-                                ]),
-                                _vm._v(" "),
-                                _c("h2", { staticClass: "grey--text mt-1" }, [
+                                ])
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "v-flex",
+                              { staticClass: "mt-1", attrs: { md8: "" } },
+                              [_c("v-checkbox")],
+                              1
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "v-layout",
+                          [
+                            _c(
+                              "v-flex",
+                              { staticClass: "mt-5", attrs: { md4: "" } },
+                              [
+                                _c("span", { staticClass: "text-lg-h6 mt-1" }, [
                                   _vm._v(
                                     "\n                                Examinee Reviewing their Answer :\n                            "
                                   )
-                                ]),
-                                _vm._v(" "),
-                                _c("h2", { staticClass: "grey--text mt-1" }, [
+                                ])
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "v-flex",
+                              { staticClass: "mt-2", attrs: { md8: "" } },
+                              [_c("v-checkbox")],
+                              1
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "v-layout",
+                          [
+                            _c(
+                              "v-flex",
+                              { staticClass: "mt-4", attrs: { md4: "" } },
+                              [
+                                _c("span", { staticClass: "text-lg-h6" }, [
                                   _vm._v(
                                     "\n                                Monitor Switching Tab :\n                            "
                                   )
@@ -884,14 +1155,8 @@ var render = function() {
                             _vm._v(" "),
                             _c(
                               "v-flex",
-                              { attrs: { md9: "" } },
-                              [
-                                _c("v-checkbox"),
-                                _vm._v(" "),
-                                _c("v-checkbox"),
-                                _vm._v(" "),
-                                _c("v-checkbox")
-                              ],
+                              { staticClass: "mt-1", attrs: { md8: "" } },
+                              [_c("v-checkbox")],
                               1
                             )
                           ],
@@ -909,7 +1174,11 @@ var render = function() {
                         _c(
                           "v-btn",
                           {
-                            attrs: { outlined: "", rounded: "" },
+                            attrs: {
+                              outlined: "",
+                              rounded: "",
+                              color: "indigo"
+                            },
                             on: { click: _vm.showAddNewSection }
                           },
                           [_vm._v("\n                        Add New Section")]
@@ -918,7 +1187,12 @@ var render = function() {
                         _c(
                           "v-btn",
                           {
-                            attrs: { outlined: "", rounded: "" },
+                            staticClass: "ml-5",
+                            attrs: {
+                              outlined: "",
+                              rounded: "",
+                              color: "indigo"
+                            },
                             on: { click: _vm.showAddNewQuestion }
                           },
                           [_vm._v("\n                        Add New Question")]
@@ -930,39 +1204,61 @@ var render = function() {
                           ? _c(
                               "div",
                               [
-                                _c("h3", [_vm._v("Exam Section")]),
+                                _c("h2", [_vm._v("Exam Section")]),
                                 _vm._v(" "),
                                 _c(
                                   "v-layout",
+                                  { staticClass: "mt-5" },
                                   [
-                                    _c(
-                                      "v-flex",
-                                      {
-                                        staticClass: "mt-5",
-                                        attrs: { md2: "" }
-                                      },
-                                      [
-                                        _c("h3", [_vm._v("Title :")]),
-                                        _vm._v(" "),
-                                        _c("h3", [_vm._v("Description :")])
-                                      ]
-                                    ),
+                                    _c("v-flex", { attrs: { md2: "" } }, [
+                                      _c(
+                                        "span",
+                                        { staticClass: "text-lg-h6" },
+                                        [_vm._v("Title :")]
+                                      )
+                                    ]),
                                     _vm._v(" "),
                                     _c(
                                       "v-flex",
                                       { attrs: { md10: "" } },
                                       [
                                         _c("v-text-field", {
-                                          staticClass: "title-input mt-3",
+                                          staticClass: "title-input",
                                           attrs: {
                                             clearable: "",
                                             outlined: "",
                                             rounded: "",
                                             dense: ""
                                           }
-                                        }),
-                                        _vm._v(" "),
+                                        })
+                                      ],
+                                      1
+                                    )
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "v-layout",
+                                  [
+                                    _c("v-flex", { attrs: { md2: "" } }, [
+                                      _c(
+                                        "span",
+                                        { staticClass: "mt-12 text-lg-h6" },
+                                        [
+                                          _vm._v(
+                                            "\n                                    Description :\n                                "
+                                          )
+                                        ]
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _c(
+                                      "v-flex",
+                                      { attrs: { md10: "" } },
+                                      [
                                         _c("v-textarea", {
+                                          staticClass: "mr-12",
                                           attrs: { outlined: "", rounded: "" }
                                         })
                                       ],
@@ -973,21 +1269,26 @@ var render = function() {
                                 ),
                                 _vm._v(" "),
                                 _c("v-divider", {
-                                  staticClass: "mr-7 mt-5 mb-3"
+                                  staticClass: "mr-7 mt-5 mb-5"
                                 }),
                                 _vm._v(" "),
                                 _c(
                                   "v-layout",
                                   [
-                                    _c("v-flex", [
-                                      _c("h3", [_vm._v("Position")])
+                                    _c("v-flex", { attrs: { md2: "" } }, [
+                                      _c("h2", [_vm._v("Position")])
                                     ]),
                                     _vm._v(" "),
                                     _c(
                                       "v-flex",
+                                      { attrs: { md10: "" } },
                                       [
                                         _c("v-select", {
+                                          staticClass: "position-select",
                                           attrs: {
+                                            dense: "",
+                                            outlined: "",
+                                            rounded: "",
                                             items: _vm.positions,
                                             label: "Positions"
                                           }
@@ -999,11 +1300,20 @@ var render = function() {
                                   1
                                 ),
                                 _vm._v(" "),
-                                _c("v-divider", {
-                                  staticClass: "mr-7 mt-5 mb-3"
-                                }),
+                                _c("v-divider", { staticClass: "mr-7 mb-3" }),
                                 _vm._v(" "),
-                                _c("v-btn", [_vm._v("Remove Section")])
+                                _c(
+                                  "v-btn",
+                                  {
+                                    staticClass: "mt-5",
+                                    attrs: {
+                                      outlined: "",
+                                      rounded: "",
+                                      color: "indigo"
+                                    }
+                                  },
+                                  [_vm._v("Remove Section")]
+                                )
                               ],
                               1
                             )
@@ -1013,37 +1323,30 @@ var render = function() {
                           ? _c(
                               "div",
                               [
-                                _c("h3", [_vm._v("Exam Question")]),
+                                _c("h2", [_vm._v("Exam Question")]),
                                 _vm._v(" "),
                                 _c(
                                   "v-layout",
+                                  { staticClass: "mt-5" },
                                   [
-                                    _c(
-                                      "v-flex",
-                                      {
-                                        staticClass: "mt-5",
-                                        attrs: { md2: "" }
-                                      },
-                                      [
-                                        _c("h3", [_vm._v("Question Type :")]),
-                                        _vm._v(" "),
-                                        _c("h3", [_vm._v("Question :")]),
-                                        _vm._v(" "),
-                                        this.selectQuestionType == 1
-                                          ? _c("h3", [
-                                              _vm._v(
-                                                "\n                                    Number of Elements :\n                                "
-                                              )
-                                            ])
-                                          : _vm._e()
-                                      ]
-                                    ),
+                                    _c("v-flex", { attrs: { md2: "" } }, [
+                                      _c(
+                                        "span",
+                                        { staticClass: "text-lg-h6" },
+                                        [_vm._v("Question Type :")]
+                                      )
+                                    ]),
                                     _vm._v(" "),
                                     _c(
                                       "v-flex",
+                                      { attrs: { md10: "" } },
                                       [
                                         _c("v-select", {
+                                          staticClass: "question-type-select",
                                           attrs: {
+                                            rounded: "",
+                                            dense: "",
+                                            outlined: "",
                                             "item-text": "name",
                                             "item-value": "id",
                                             items: _vm.questionTypes
@@ -1055,28 +1358,93 @@ var render = function() {
                                             },
                                             expression: "selectedQuestionType"
                                           }
-                                        }),
-                                        _vm._v(" "),
-                                        _c("v-textarea", {
-                                          attrs: { outlined: "" }
-                                        }),
-                                        _vm._v(" "),
-                                        this.selectQuestionType == 1
-                                          ? _c("v-text-field", {
-                                              staticClass: "percentage-input",
-                                              attrs: {
-                                                type: "number",
-                                                outlined: "",
-                                                dense: ""
-                                              }
-                                            })
-                                          : _vm._e()
+                                        })
                                       ],
                                       1
                                     )
                                   ],
                                   1
                                 ),
+                                _vm._v(" "),
+                                _c(
+                                  "v-layout",
+                                  [
+                                    _c("v-flex", { attrs: { md2: "" } }, [
+                                      _c(
+                                        "span",
+                                        { staticClass: "mt-12 text-lg-h6" },
+                                        [
+                                          _vm._v(
+                                            "\n                                    Question :\n                                "
+                                          )
+                                        ]
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _c(
+                                      "v-flex",
+                                      { attrs: { md10: "" } },
+                                      [
+                                        _c("v-textarea", {
+                                          staticClass: "mr-12",
+                                          attrs: { outlined: "", rounded: "" }
+                                        })
+                                      ],
+                                      1
+                                    )
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                this.selectedQuestionType == 1
+                                  ? _c(
+                                      "div",
+                                      [
+                                        _c(
+                                          "v-layout",
+                                          [
+                                            _c(
+                                              "v-flex",
+                                              { attrs: { md2: "" } },
+                                              [
+                                                _c(
+                                                  "span",
+                                                  {
+                                                    staticClass:
+                                                      "mt-12 text-lg-h6"
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      "\n                                        Number of Elements :\n                                    "
+                                                    )
+                                                  ]
+                                                )
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "v-flex",
+                                              { attrs: { md10: "" } },
+                                              [
+                                                _c("v-text-field", {
+                                                  staticClass:
+                                                    "percentage-input",
+                                                  attrs: {
+                                                    type: "number",
+                                                    outlined: "",
+                                                    dense: ""
+                                                  }
+                                                })
+                                              ],
+                                              1
+                                            )
+                                          ],
+                                          1
+                                        )
+                                      ],
+                                      1
+                                    )
+                                  : _vm._e(),
                                 _vm._v(" "),
                                 _c("v-divider", {
                                   staticClass: "mr-7 mt-5 mb-3"
@@ -1086,95 +1454,239 @@ var render = function() {
                                   ? _c(
                                       "div",
                                       [
-                                        _c("h1", [
+                                        _c("h2", [
                                           _vm._v("Enumeration Elements")
                                         ]),
                                         _vm._v(" "),
-                                        _c("v-btn", [
-                                          _vm._v("Add New Element")
-                                        ]),
+                                        _c(
+                                          "v-btn",
+                                          {
+                                            staticClass: "mt-5",
+                                            attrs: {
+                                              dense: "",
+                                              rounded: "",
+                                              outlined: "",
+                                              color: "indigo"
+                                            }
+                                          },
+                                          [_vm._v("Add New Element")]
+                                        ),
                                         _vm._v(" "),
                                         _c(
                                           "v-card",
+                                          {
+                                            staticClass:
+                                              "ml-12 mr-12 mt-5 rounded-xl",
+                                            attrs: { width: "1000" }
+                                          },
                                           [
                                             _c("v-card-text", [
-                                              _c("table", [
-                                                _c("tr", [
-                                                  _c("th", [_vm._v("#")]),
+                                              _c(
+                                                "table",
+                                                {
+                                                  staticClass: "table-choices",
+                                                  attrs: { border: "1" }
+                                                },
+                                                [
+                                                  _c("tr", [
+                                                    _c(
+                                                      "th",
+                                                      { staticClass: "ml-5" },
+                                                      [_vm._v("#")]
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "th",
+                                                      { staticClass: "ml-5" },
+                                                      [_vm._v("Label")]
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "th",
+                                                      { staticClass: "ml-5" },
+                                                      [_vm._v("Remove")]
+                                                    )
+                                                  ]),
                                                   _vm._v(" "),
-                                                  _c("th", [_vm._v("Label")]),
-                                                  _vm._v(" "),
-                                                  _c("th", [_vm._v("Remove")])
-                                                ]),
-                                                _vm._v(" "),
-                                                _c("tr", [
-                                                  _c("td", [_vm._v("A")]),
-                                                  _vm._v(" "),
-                                                  _c(
-                                                    "td",
-                                                    [
-                                                      _c(
-                                                        "v-card",
-                                                        [
-                                                          _c(
-                                                            "v-card-text",
-                                                            [
-                                                              _c("v-textarea", {
-                                                                attrs: {
-                                                                  outlined: ""
-                                                                }
-                                                              })
-                                                            ],
-                                                            1
-                                                          )
-                                                        ],
-                                                        1
-                                                      )
-                                                    ],
-                                                    1
-                                                  ),
-                                                  _vm._v(" "),
-                                                  _c("td", [
-                                                    _vm._v(
-                                                      "\n                                                X\n                                            "
+                                                  _c("tr", [
+                                                    _c(
+                                                      "td",
+                                                      { staticClass: "ml-5" },
+                                                      [_vm._v("A")]
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "td",
+                                                      { staticClass: "ml-5" },
+                                                      [
+                                                        _c(
+                                                          "div",
+                                                          {
+                                                            staticClass:
+                                                              "text-center"
+                                                          },
+                                                          [
+                                                            _c("v-textarea", {
+                                                              staticClass:
+                                                                "label-choices",
+                                                              attrs: {
+                                                                outlined: ""
+                                                              }
+                                                            })
+                                                          ],
+                                                          1
+                                                        )
+                                                      ]
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "td",
+                                                      { staticClass: "ml-5" },
+                                                      [
+                                                        _vm._v(
+                                                          "\n                                                X\n                                            "
+                                                        )
+                                                      ]
                                                     )
                                                   ])
-                                                ])
-                                              ])
-                                            ]),
-                                            _vm._v(" "),
+                                                ]
+                                              )
+                                            ])
+                                          ],
+                                          1
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "v-layout",
+                                          { staticClass: "mt-5" },
+                                          [
                                             _c(
-                                              "v-layout",
+                                              "v-flex",
+                                              {
+                                                staticClass: "mt-5",
+                                                attrs: { md2: "" }
+                                              },
                                               [
-                                                _c("v-flex", [
-                                                  _vm._v(
-                                                    "\n                                        Case Sensitive ?\n                                    "
-                                                  )
-                                                ]),
-                                                _vm._v(" "),
-                                                _c(
-                                                  "v-flex",
-                                                  [_c("v-checkbox")],
-                                                  1
+                                                _vm._v(
+                                                  "\n                                    Case Sensitive ?\n                                "
                                                 )
-                                              ],
-                                              1
+                                              ]
                                             ),
                                             _vm._v(" "),
                                             _c(
-                                              "v-layout",
+                                              "v-flex",
+                                              { attrs: { md10: "" } },
+                                              [_c("v-checkbox")],
+                                              1
+                                            )
+                                          ],
+                                          1
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "v-layout",
+                                          [
+                                            _c(
+                                              "v-flex",
+                                              {
+                                                staticClass: "mt-5",
+                                                attrs: { md2: "" }
+                                              },
                                               [
-                                                _c("v-flex", [
-                                                  _vm._v(
-                                                    "\n                                        Answer must in order?\n                                    "
-                                                  )
-                                                ]),
-                                                _vm._v(" "),
-                                                _c(
-                                                  "v-flex",
-                                                  [_c("v-checkbox")],
-                                                  1
+                                                _vm._v(
+                                                  "\n                                    Answer must in order?\n                                "
                                                 )
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "v-flex",
+                                              { attrs: { md10: "" } },
+                                              [_c("v-checkbox")],
+                                              1
+                                            )
+                                          ],
+                                          1
+                                        ),
+                                        _vm._v(" "),
+                                        _c("v-divider", {
+                                          staticClass: "mr-7 mb-2"
+                                        }),
+                                        _vm._v(" "),
+                                        _c("h2", [_vm._v("Scoring")]),
+                                        _vm._v(" "),
+                                        _c(
+                                          "v-layout",
+                                          { staticClass: "mt-5" },
+                                          [
+                                            _c(
+                                              "v-flex",
+                                              { attrs: { md2: "" } },
+                                              [
+                                                _c(
+                                                  "span",
+                                                  { staticClass: "text-lg-h6" },
+                                                  [
+                                                    _vm._v(
+                                                      "\n                                        Points :\n                                    "
+                                                    )
+                                                  ]
+                                                )
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "v-flex",
+                                              { attrs: { md10: "" } },
+                                              [
+                                                _c("v-text-field", {
+                                                  staticClass:
+                                                    "percentage-input",
+                                                  attrs: {
+                                                    type: "number",
+                                                    outlined: "",
+                                                    dense: ""
+                                                  }
+                                                })
+                                              ],
+                                              1
+                                            )
+                                          ],
+                                          1
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "v-layout",
+                                          [
+                                            _c(
+                                              "v-flex",
+                                              { attrs: { md2: "" } },
+                                              [
+                                                _c(
+                                                  "span",
+                                                  { staticClass: "text-lg-h6" },
+                                                  [
+                                                    _vm._v(
+                                                      "\n                                        Points per Elements:\n                                    "
+                                                    )
+                                                  ]
+                                                )
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "v-flex",
+                                              { attrs: { md10: "" } },
+                                              [
+                                                _c("v-text-field", {
+                                                  staticClass:
+                                                    "percentage-input",
+                                                  attrs: {
+                                                    type: "number",
+                                                    outlined: "",
+                                                    dense: ""
+                                                  }
+                                                })
                                               ],
                                               1
                                             )
@@ -1183,81 +1695,30 @@ var render = function() {
                                         ),
                                         _vm._v(" "),
                                         _c("v-divider", {
-                                          staticClass: "ml-5 mr-5"
+                                          staticClass: "mb-2"
                                         }),
                                         _vm._v(" "),
-                                        _c("h1", [_vm._v("Scoring")]),
-                                        _vm._v(" "),
                                         _c(
                                           "v-layout",
+                                          { staticClass: "mt-5" },
                                           [
-                                            _c("v-flex", [
-                                              _vm._v(
-                                                "\n                                    Points :\n                                "
-                                              )
-                                            ]),
+                                            _c(
+                                              "v-flex",
+                                              { attrs: { md2: "" } },
+                                              [_c("h2", [_vm._v("Position")])]
+                                            ),
                                             _vm._v(" "),
                                             _c(
                                               "v-flex",
-                                              [
-                                                _c("v-text-field", {
-                                                  staticClass:
-                                                    "percentage-input",
-                                                  attrs: {
-                                                    type: "number",
-                                                    outlined: "",
-                                                    dense: ""
-                                                  }
-                                                })
-                                              ],
-                                              1
-                                            )
-                                          ],
-                                          1
-                                        ),
-                                        _vm._v(" "),
-                                        _c(
-                                          "v-layout",
-                                          [
-                                            _c("v-flex", [
-                                              _vm._v(
-                                                "\n                                    Points per Elements:\n                                "
-                                              )
-                                            ]),
-                                            _vm._v(" "),
-                                            _c(
-                                              "v-flex",
-                                              [
-                                                _c("v-text-field", {
-                                                  staticClass:
-                                                    "percentage-input",
-                                                  attrs: {
-                                                    type: "number",
-                                                    outlined: "",
-                                                    dense: ""
-                                                  }
-                                                })
-                                              ],
-                                              1
-                                            )
-                                          ],
-                                          1
-                                        ),
-                                        _vm._v(" "),
-                                        _c("v-divider"),
-                                        _vm._v(" "),
-                                        _c(
-                                          "v-layout",
-                                          [
-                                            _c("v-flex", [
-                                              _c("h3", [_vm._v("Position")])
-                                            ]),
-                                            _vm._v(" "),
-                                            _c(
-                                              "v-flex",
+                                              { attrs: { md10: "" } },
                                               [
                                                 _c("v-select", {
+                                                  staticClass:
+                                                    "position-select",
                                                   attrs: {
+                                                    dense: "",
+                                                    outlined: "",
+                                                    rounded: "",
                                                     items: _vm.positions,
                                                     label: "Positions"
                                                   }
@@ -1269,9 +1730,22 @@ var render = function() {
                                           1
                                         ),
                                         _vm._v(" "),
-                                        _c("v-divider"),
+                                        _c("v-divider", {
+                                          staticClass: "mr-7 mb-2"
+                                        }),
                                         _vm._v(" "),
-                                        _c("v-btn", [_vm._v("Remove Question")])
+                                        _c(
+                                          "v-btn",
+                                          {
+                                            staticClass: "mt-5 mb-5",
+                                            attrs: {
+                                              outlined: "",
+                                              rounded: "",
+                                              color: "indigo"
+                                            }
+                                          },
+                                          [_vm._v("Remove Question")]
+                                        )
                                       ],
                                       1
                                     )
@@ -1281,19 +1755,31 @@ var render = function() {
                                   ? _c(
                                       "div",
                                       [
-                                        _c("h1", [_vm._v("Scoring")]),
+                                        _c("h2", [_vm._v("Scoring")]),
                                         _vm._v(" "),
                                         _c(
                                           "v-layout",
+                                          { staticClass: "mt-5" },
                                           [
-                                            _c("v-flex", [
-                                              _vm._v(
-                                                "\n                                    Points :\n                                "
-                                              )
-                                            ]),
+                                            _c(
+                                              "v-flex",
+                                              { attrs: { md2: "" } },
+                                              [
+                                                _c(
+                                                  "span",
+                                                  { staticClass: "text-lg-h6" },
+                                                  [
+                                                    _vm._v(
+                                                      "\n                                        Points :\n                                    "
+                                                    )
+                                                  ]
+                                                )
+                                              ]
+                                            ),
                                             _vm._v(" "),
                                             _c(
                                               "v-flex",
+                                              { attrs: { md10: "" } },
                                               [
                                                 _c("v-text-field", {
                                                   staticClass:
@@ -1315,16 +1801,25 @@ var render = function() {
                                         _vm._v(" "),
                                         _c(
                                           "v-layout",
+                                          { staticClass: "mt-5" },
                                           [
-                                            _c("v-flex", [
-                                              _c("h3", [_vm._v("Position")])
-                                            ]),
+                                            _c(
+                                              "v-flex",
+                                              { attrs: { md2: "" } },
+                                              [_c("h2", [_vm._v("Position")])]
+                                            ),
                                             _vm._v(" "),
                                             _c(
                                               "v-flex",
+                                              { attrs: { md10: "" } },
                                               [
                                                 _c("v-select", {
+                                                  staticClass:
+                                                    "position-select",
                                                   attrs: {
+                                                    dense: "",
+                                                    outlined: "",
+                                                    rounded: "",
                                                     items: _vm.positions,
                                                     label: "Positions"
                                                   }
@@ -1338,7 +1833,18 @@ var render = function() {
                                         _vm._v(" "),
                                         _c("v-divider"),
                                         _vm._v(" "),
-                                        _c("v-btn", [_vm._v("Remove Question")])
+                                        _c(
+                                          "v-btn",
+                                          {
+                                            staticClass: "mt-5",
+                                            attrs: {
+                                              outlined: "",
+                                              rounded: "",
+                                              color: "indigo"
+                                            }
+                                          },
+                                          [_vm._v("Remove Question")]
+                                        )
                                       ],
                                       1
                                     )
@@ -1348,22 +1854,39 @@ var render = function() {
                                   ? _c(
                                       "div",
                                       [
-                                        _c("h1", [_vm._v("Answer")]),
+                                        _c("h2", [_vm._v("Answer")]),
                                         _vm._v(" "),
                                         _c(
                                           "v-layout",
+                                          { staticClass: "mt-5" },
                                           [
-                                            _c("v-flex", [
-                                              _c("h3", [
-                                                _vm._v("Correct Answer")
-                                              ])
-                                            ]),
+                                            _c(
+                                              "v-flex",
+                                              { attrs: { md2: "" } },
+                                              [
+                                                _c(
+                                                  "span",
+                                                  { staticClass: "text-lg-h6" },
+                                                  [
+                                                    _vm._v(
+                                                      "\n                                        Correct Answer\n                                    "
+                                                    )
+                                                  ]
+                                                )
+                                              ]
+                                            ),
                                             _vm._v(" "),
                                             _c(
                                               "v-flex",
+                                              { attrs: { md10: "" } },
                                               [
                                                 _c("v-select", {
+                                                  staticClass:
+                                                    "position-select",
                                                   attrs: {
+                                                    rounded: "",
+                                                    outlined: "",
+                                                    dense: "",
                                                     label: "True or False"
                                                   }
                                                 })
@@ -1374,19 +1897,35 @@ var render = function() {
                                           1
                                         ),
                                         _vm._v(" "),
-                                        _c("v-divider"),
+                                        _c("v-divider", {
+                                          staticClass: "mr-7 mb-2"
+                                        }),
                                         _vm._v(" "),
-                                        _c("h1", [_vm._v("Scoring")]),
+                                        _c("h2", [_vm._v("Scoring")]),
                                         _vm._v(" "),
                                         _c(
                                           "v-layout",
+                                          { staticClass: "mt-5" },
                                           [
-                                            _c("v-flex", [
-                                              _c("h3", [_vm._v("Points")])
-                                            ]),
+                                            _c(
+                                              "v-flex",
+                                              { attrs: { md2: "" } },
+                                              [
+                                                _c(
+                                                  "span",
+                                                  { staticClass: "text-lg-h6" },
+                                                  [
+                                                    _vm._v(
+                                                      "\n                                        Points :\n                                    "
+                                                    )
+                                                  ]
+                                                )
+                                              ]
+                                            ),
                                             _vm._v(" "),
                                             _c(
                                               "v-flex",
+                                              { attrs: { md10: "" } },
                                               [
                                                 _c("v-text-field", {
                                                   staticClass:
@@ -1404,20 +1943,31 @@ var render = function() {
                                           1
                                         ),
                                         _vm._v(" "),
-                                        _c("v-divider"),
+                                        _c("v-divider", {
+                                          staticClass: "mr-7 mb-2"
+                                        }),
                                         _vm._v(" "),
                                         _c(
                                           "v-layout",
+                                          { staticClass: "mt-5" },
                                           [
-                                            _c("v-flex", [
-                                              _c("h3", [_vm._v("Position")])
-                                            ]),
+                                            _c(
+                                              "v-flex",
+                                              { attrs: { md2: "" } },
+                                              [_c("h2", [_vm._v("Position")])]
+                                            ),
                                             _vm._v(" "),
                                             _c(
                                               "v-flex",
+                                              { attrs: { md10: "" } },
                                               [
                                                 _c("v-select", {
+                                                  staticClass:
+                                                    "position-select",
                                                   attrs: {
+                                                    dense: "",
+                                                    outlined: "",
+                                                    rounded: "",
                                                     items: _vm.positions,
                                                     label: "Positions"
                                                   }
@@ -1431,7 +1981,18 @@ var render = function() {
                                         _vm._v(" "),
                                         _c("v-divider"),
                                         _vm._v(" "),
-                                        _c("v-btn", [_vm._v("Remove Question")])
+                                        _c(
+                                          "v-btn",
+                                          {
+                                            staticClass: "mt-5 mb-5",
+                                            attrs: {
+                                              outlined: "",
+                                              rounded: "",
+                                              color: "indigo"
+                                            }
+                                          },
+                                          [_vm._v("Remove Question")]
+                                        )
                                       ],
                                       1
                                     )
@@ -1441,67 +2002,117 @@ var render = function() {
                                   ? _c(
                                       "div",
                                       [
-                                        _c("h1", [_vm._v("Choices")]),
+                                        _c("h2", [_vm._v("Choices")]),
                                         _vm._v(" "),
-                                        _c("v-btn", [_vm._v("Add New Choice")]),
+                                        _c(
+                                          "v-btn",
+                                          {
+                                            staticClass: "mt-5",
+                                            attrs: {
+                                              dense: "",
+                                              rounded: "",
+                                              outlined: "",
+                                              color: "indigo"
+                                            }
+                                          },
+                                          [_vm._v("Add New Choice")]
+                                        ),
                                         _vm._v(" "),
                                         _c(
                                           "v-card",
+                                          {
+                                            staticClass:
+                                              "ml-12 mr-12 mt-5 rounded-xl",
+                                            attrs: { width: "1000" }
+                                          },
                                           [
                                             _c("v-card-text", [
-                                              _c("table", [
-                                                _c("tr", [
-                                                  _c("th", [_vm._v("#")]),
-                                                  _vm._v(" "),
-                                                  _c("th", [_vm._v("Label")]),
-                                                  _vm._v(" "),
-                                                  _c("th", [
-                                                    _vm._v("is Correct?")
+                                              _c(
+                                                "table",
+                                                {
+                                                  staticClass: "table-choices",
+                                                  attrs: { border: "1" }
+                                                },
+                                                [
+                                                  _c("tr", [
+                                                    _c(
+                                                      "th",
+                                                      { staticClass: "ml-5" },
+                                                      [_vm._v("#")]
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "th",
+                                                      { staticClass: "ml-5" },
+                                                      [_vm._v("Label")]
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "th",
+                                                      { staticClass: "ml-5" },
+                                                      [
+                                                        _vm._v(
+                                                          "\n                                                is Correct?\n                                            "
+                                                        )
+                                                      ]
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "th",
+                                                      { staticClass: "ml-5" },
+                                                      [_vm._v("Remove")]
+                                                    )
                                                   ]),
                                                   _vm._v(" "),
-                                                  _c("th", [_vm._v("Remove")])
-                                                ]),
-                                                _vm._v(" "),
-                                                _c("tr", [
-                                                  _c("td", [_vm._v("A")]),
-                                                  _vm._v(" "),
-                                                  _c(
-                                                    "td",
-                                                    [
-                                                      _c(
-                                                        "v-card",
-                                                        [
-                                                          _c(
-                                                            "v-card-text",
-                                                            [
-                                                              _c("v-textarea", {
-                                                                attrs: {
-                                                                  outlined: ""
-                                                                }
-                                                              })
-                                                            ],
-                                                            1
-                                                          )
-                                                        ],
-                                                        1
-                                                      )
-                                                    ],
-                                                    1
-                                                  ),
-                                                  _vm._v(" "),
-                                                  _c(
-                                                    "td",
-                                                    [_c("v-checkbox")],
-                                                    1
-                                                  ),
-                                                  _vm._v(" "),
-                                                  _c("td", [
-                                                    _vm._v(
-                                                      "\n                                                X\n                                            "
+                                                  _c("tr", [
+                                                    _c(
+                                                      "td",
+                                                      { staticClass: "ml-5" },
+                                                      [_vm._v("A")]
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "td",
+                                                      { staticClass: "ml-5" },
+                                                      [
+                                                        _c(
+                                                          "div",
+                                                          {
+                                                            staticClass:
+                                                              "text-center"
+                                                          },
+                                                          [
+                                                            _c("v-textarea", {
+                                                              staticClass:
+                                                                "label-choices",
+                                                              attrs: {
+                                                                outlined: ""
+                                                              }
+                                                            })
+                                                          ],
+                                                          1
+                                                        )
+                                                      ]
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "td",
+                                                      [_c("v-checkbox")],
+                                                      1
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "td",
+                                                      { staticClass: "ml-5" },
+                                                      [
+                                                        _vm._v(
+                                                          "\n                                                X\n                                            "
+                                                        )
+                                                      ]
                                                     )
                                                   ])
-                                                ])
-                                              ])
+                                                ]
+                                              )
                                             ])
                                           ],
                                           1
@@ -1509,15 +2120,69 @@ var render = function() {
                                         _vm._v(" "),
                                         _c(
                                           "v-layout",
+                                          { staticClass: "mt-5" },
                                           [
-                                            _c("v-flex", [
-                                              _vm._v(
-                                                "\n                                    Suffle Choices\n                                "
-                                              )
-                                            ]),
+                                            _c(
+                                              "v-flex",
+                                              {
+                                                staticClass: "mt-5",
+                                                attrs: { md2: "" }
+                                              },
+                                              [
+                                                _c(
+                                                  "span",
+                                                  { staticClass: "text-lg-h6" },
+                                                  [
+                                                    _vm._v(
+                                                      "\n                                        Suffle Choices\n                                    "
+                                                    )
+                                                  ]
+                                                )
+                                              ]
+                                            ),
                                             _vm._v(" "),
                                             _c(
                                               "v-flex",
+                                              {
+                                                staticClass: "mt-1",
+                                                attrs: { md10: "" }
+                                              },
+                                              [_c("v-checkbox")],
+                                              1
+                                            )
+                                          ],
+                                          1
+                                        ),
+                                        _vm._v(" "),
+                                        _c("v-divider", {
+                                          staticClass: "mb-2"
+                                        }),
+                                        _vm._v(" "),
+                                        _c("h2", [_vm._v("Scoring")]),
+                                        _vm._v(" "),
+                                        _c(
+                                          "v-layout",
+                                          { staticClass: "mt-5" },
+                                          [
+                                            _c(
+                                              "v-flex",
+                                              { attrs: { md2: "" } },
+                                              [
+                                                _c(
+                                                  "span",
+                                                  { staticClass: "text-lg-h6" },
+                                                  [
+                                                    _vm._v(
+                                                      "\n                                        Points :\n                                    "
+                                                    )
+                                                  ]
+                                                )
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "v-flex",
+                                              { attrs: { md10: "" } },
                                               [
                                                 _c("v-text-field", {
                                                   staticClass:
@@ -1535,52 +2200,31 @@ var render = function() {
                                           1
                                         ),
                                         _vm._v(" "),
-                                        _c("v-divider"),
-                                        _vm._v(" "),
-                                        _c("h3", [_vm._v("Scoring")]),
-                                        _vm._v(" "),
-                                        _c(
-                                          "v-layout",
-                                          [
-                                            _c("v-flex", [
-                                              _vm._v(
-                                                "\n                                    Points\n                                "
-                                              )
-                                            ]),
-                                            _vm._v(" "),
-                                            _c(
-                                              "v-flex",
-                                              [
-                                                _c("v-text-field", {
-                                                  staticClass:
-                                                    "percentage-input",
-                                                  attrs: {
-                                                    type: "number",
-                                                    outlined: "",
-                                                    dense: ""
-                                                  }
-                                                })
-                                              ],
-                                              1
-                                            )
-                                          ],
-                                          1
-                                        ),
-                                        _vm._v(" "),
-                                        _c("v-divider"),
+                                        _c("v-divider", {
+                                          staticClass: "mr-7 mb-2"
+                                        }),
                                         _vm._v(" "),
                                         _c(
                                           "v-layout",
+                                          { staticClass: "mt-5" },
                                           [
-                                            _c("v-flex", [
-                                              _c("h3", [_vm._v("Position")])
-                                            ]),
+                                            _c(
+                                              "v-flex",
+                                              { attrs: { md2: "" } },
+                                              [_c("h2", [_vm._v("Position")])]
+                                            ),
                                             _vm._v(" "),
                                             _c(
                                               "v-flex",
+                                              { attrs: { md10: "" } },
                                               [
                                                 _c("v-select", {
+                                                  staticClass:
+                                                    "position-select",
                                                   attrs: {
+                                                    dense: "",
+                                                    outlined: "",
+                                                    rounded: "",
                                                     items: _vm.positions,
                                                     label: "Positions"
                                                   }
@@ -1594,7 +2238,18 @@ var render = function() {
                                         _vm._v(" "),
                                         _c("v-divider"),
                                         _vm._v(" "),
-                                        _c("v-btn", [_vm._v("Remove Question")])
+                                        _c(
+                                          "v-btn",
+                                          {
+                                            staticClass: "mt-5 mb-5",
+                                            attrs: {
+                                              outlined: "",
+                                              rounded: "",
+                                              color: "indigo"
+                                            }
+                                          },
+                                          [_vm._v("Remove Question")]
+                                        )
                                       ],
                                       1
                                     )
@@ -1604,67 +2259,117 @@ var render = function() {
                                   ? _c(
                                       "div",
                                       [
-                                        _c("h1", [_vm._v("Choices")]),
+                                        _c("h2", [_vm._v("Choices")]),
                                         _vm._v(" "),
-                                        _c("v-btn", [_vm._v("Add New Choice")]),
+                                        _c(
+                                          "v-btn",
+                                          {
+                                            staticClass: "mt-5",
+                                            attrs: {
+                                              dense: "",
+                                              rounded: "",
+                                              outlined: "",
+                                              color: "indigo"
+                                            }
+                                          },
+                                          [_vm._v("Add New Choice")]
+                                        ),
                                         _vm._v(" "),
                                         _c(
                                           "v-card",
+                                          {
+                                            staticClass:
+                                              "ml-12 mr-12 mt-5 rounded-xl",
+                                            attrs: { width: "1000" }
+                                          },
                                           [
                                             _c("v-card-text", [
-                                              _c("table", [
-                                                _c("tr", [
-                                                  _c("th", [_vm._v("#")]),
-                                                  _vm._v(" "),
-                                                  _c("th", [_vm._v("Label")]),
-                                                  _vm._v(" "),
-                                                  _c("th", [
-                                                    _vm._v("is Correct?")
+                                              _c(
+                                                "table",
+                                                {
+                                                  staticClass: "table-choices",
+                                                  attrs: { border: "1" }
+                                                },
+                                                [
+                                                  _c("tr", [
+                                                    _c(
+                                                      "th",
+                                                      { staticClass: "ml-5" },
+                                                      [_vm._v("#")]
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "th",
+                                                      { staticClass: "ml-5" },
+                                                      [_vm._v("Label")]
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "th",
+                                                      { staticClass: "ml-5" },
+                                                      [
+                                                        _vm._v(
+                                                          "\n                                                is Correct?\n                                            "
+                                                        )
+                                                      ]
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "th",
+                                                      { staticClass: "ml-5" },
+                                                      [_vm._v("Remove")]
+                                                    )
                                                   ]),
                                                   _vm._v(" "),
-                                                  _c("th", [_vm._v("Remove")])
-                                                ]),
-                                                _vm._v(" "),
-                                                _c("tr", [
-                                                  _c("td", [_vm._v("A")]),
-                                                  _vm._v(" "),
-                                                  _c(
-                                                    "td",
-                                                    [
-                                                      _c(
-                                                        "v-card",
-                                                        [
-                                                          _c(
-                                                            "v-card-text",
-                                                            [
-                                                              _c("v-textarea", {
-                                                                attrs: {
-                                                                  outlined: ""
-                                                                }
-                                                              })
-                                                            ],
-                                                            1
-                                                          )
-                                                        ],
-                                                        1
-                                                      )
-                                                    ],
-                                                    1
-                                                  ),
-                                                  _vm._v(" "),
-                                                  _c(
-                                                    "td",
-                                                    [_c("v-checkbox")],
-                                                    1
-                                                  ),
-                                                  _vm._v(" "),
-                                                  _c("td", [
-                                                    _vm._v(
-                                                      "\n                                                X\n                                            "
+                                                  _c("tr", [
+                                                    _c(
+                                                      "td",
+                                                      { staticClass: "ml-5" },
+                                                      [_vm._v("A")]
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "td",
+                                                      { staticClass: "ml-5" },
+                                                      [
+                                                        _c(
+                                                          "div",
+                                                          {
+                                                            staticClass:
+                                                              "text-center"
+                                                          },
+                                                          [
+                                                            _c("v-textarea", {
+                                                              staticClass:
+                                                                "label-choices",
+                                                              attrs: {
+                                                                outlined: ""
+                                                              }
+                                                            })
+                                                          ],
+                                                          1
+                                                        )
+                                                      ]
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "td",
+                                                      [_c("v-checkbox")],
+                                                      1
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "td",
+                                                      { staticClass: "ml-5" },
+                                                      [
+                                                        _vm._v(
+                                                          "\n                                                X\n                                            "
+                                                        )
+                                                      ]
                                                     )
                                                   ])
-                                                ])
-                                              ])
+                                                ]
+                                              )
                                             ])
                                           ],
                                           1
@@ -1672,26 +2377,34 @@ var render = function() {
                                         _vm._v(" "),
                                         _c(
                                           "v-layout",
+                                          { staticClass: "mt-5" },
                                           [
-                                            _c("v-flex", [
-                                              _vm._v(
-                                                "\n                                    Suffle Choices\n                                "
-                                              )
-                                            ]),
+                                            _c(
+                                              "v-flex",
+                                              {
+                                                staticClass: "mt-5",
+                                                attrs: { md2: "" }
+                                              },
+                                              [
+                                                _c(
+                                                  "span",
+                                                  { staticClass: "text-lg-h6" },
+                                                  [
+                                                    _vm._v(
+                                                      "\n                                        Suffle Choices\n                                    "
+                                                    )
+                                                  ]
+                                                )
+                                              ]
+                                            ),
                                             _vm._v(" "),
                                             _c(
                                               "v-flex",
-                                              [
-                                                _c("v-text-field", {
-                                                  staticClass:
-                                                    "percentage-input",
-                                                  attrs: {
-                                                    type: "number",
-                                                    outlined: "",
-                                                    dense: ""
-                                                  }
-                                                })
-                                              ],
+                                              {
+                                                staticClass: "mt-1",
+                                                attrs: { md10: "" }
+                                              },
+                                              [_c("v-checkbox")],
                                               1
                                             )
                                           ],
@@ -1700,108 +2413,156 @@ var render = function() {
                                         _vm._v(" "),
                                         _c(
                                           "v-layout",
+                                          { staticClass: "mt-5" },
                                           [
-                                            _c("v-flex", [
-                                              _vm._v(
-                                                "\n                                    Examinee must select:\n                                "
-                                              )
-                                            ]),
-                                            _vm._v(" "),
-                                            _c("v-flex", [_c("v-select")], 1),
-                                            _vm._v(" "),
                                             _c(
                                               "v-flex",
+                                              { attrs: { md2: "" } },
                                               [
-                                                _c("v-text-field", {
-                                                  staticClass:
-                                                    "percentage-input",
-                                                  attrs: {
-                                                    type: "number",
-                                                    outlined: "",
-                                                    dense: ""
-                                                  }
-                                                })
-                                              ],
-                                              1
-                                            )
-                                          ],
-                                          1
-                                        ),
-                                        _vm._v(" "),
-                                        _c("v-divider"),
-                                        _vm._v(" "),
-                                        _c("h3", [_vm._v("Scoring")]),
-                                        _vm._v(" "),
-                                        _c(
-                                          "v-layout",
-                                          [
-                                            _c("v-flex", [
-                                              _vm._v(
-                                                "\n                                    Points\n                                "
-                                              )
-                                            ]),
+                                                _c(
+                                                  "span",
+                                                  { staticClass: "text-lg-h6" },
+                                                  [
+                                                    _vm._v(
+                                                      "\n                                        Examinee must select:\n                                    "
+                                                    )
+                                                  ]
+                                                )
+                                              ]
+                                            ),
                                             _vm._v(" "),
                                             _c(
                                               "v-flex",
-                                              [
-                                                _c("v-text-field", {
-                                                  staticClass:
-                                                    "percentage-input",
-                                                  attrs: {
-                                                    type: "number",
-                                                    outlined: "",
-                                                    dense: ""
-                                                  }
-                                                })
-                                              ],
-                                              1
-                                            )
-                                          ],
-                                          1
-                                        ),
-                                        _vm._v(" "),
-                                        _c(
-                                          "v-layout",
-                                          [
-                                            _c("v-flex", [
-                                              _vm._v(
-                                                "\n                                    Points Per Choice ?\n                                "
-                                              )
-                                            ]),
-                                            _vm._v(" "),
-                                            _c(
-                                              "v-flex",
-                                              [
-                                                _c("v-text-field", {
-                                                  staticClass:
-                                                    "percentage-input",
-                                                  attrs: {
-                                                    type: "number",
-                                                    outlined: "",
-                                                    dense: ""
-                                                  }
-                                                })
-                                              ],
-                                              1
-                                            )
-                                          ],
-                                          1
-                                        ),
-                                        _vm._v(" "),
-                                        _c("v-divider"),
-                                        _vm._v(" "),
-                                        _c(
-                                          "v-layout",
-                                          [
-                                            _c("v-flex", [
-                                              _c("h3", [_vm._v("Position")])
-                                            ]),
-                                            _vm._v(" "),
-                                            _c(
-                                              "v-flex",
+                                              { attrs: { md9: "" } },
                                               [
                                                 _c("v-select", {
+                                                  staticClass:
+                                                    "position-select",
                                                   attrs: {
+                                                    dense: "",
+                                                    outlined: "",
+                                                    rounded: "",
+                                                    items: _vm.positions,
+                                                    label: "Positions"
+                                                  }
+                                                })
+                                              ],
+                                              1
+                                            )
+                                          ],
+                                          1
+                                        ),
+                                        _vm._v(" "),
+                                        _c("v-divider", {
+                                          staticClass: "mb-2"
+                                        }),
+                                        _vm._v(" "),
+                                        _c("h2", [_vm._v("Scoring")]),
+                                        _vm._v(" "),
+                                        _c(
+                                          "v-layout",
+                                          { staticClass: "mt-5" },
+                                          [
+                                            _c(
+                                              "v-flex",
+                                              { attrs: { md2: "" } },
+                                              [
+                                                _c(
+                                                  "span",
+                                                  { staticClass: "text-lg-h6" },
+                                                  [
+                                                    _vm._v(
+                                                      "\n                                        Points :\n                                    "
+                                                    )
+                                                  ]
+                                                )
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "v-flex",
+                                              { attrs: { md10: "" } },
+                                              [
+                                                _c("v-text-field", {
+                                                  staticClass:
+                                                    "percentage-input",
+                                                  attrs: {
+                                                    type: "number",
+                                                    outlined: "",
+                                                    dense: ""
+                                                  }
+                                                })
+                                              ],
+                                              1
+                                            )
+                                          ],
+                                          1
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "v-layout",
+                                          [
+                                            _c(
+                                              "v-flex",
+                                              { attrs: { md2: "" } },
+                                              [
+                                                _c(
+                                                  "span",
+                                                  { staticClass: "text-lg-h6" },
+                                                  [
+                                                    _vm._v(
+                                                      "\n                                        Points per Choices:\n                                    "
+                                                    )
+                                                  ]
+                                                )
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "v-flex",
+                                              { attrs: { md10: "" } },
+                                              [
+                                                _c("v-text-field", {
+                                                  staticClass:
+                                                    "percentage-input",
+                                                  attrs: {
+                                                    type: "number",
+                                                    outlined: "",
+                                                    dense: ""
+                                                  }
+                                                })
+                                              ],
+                                              1
+                                            )
+                                          ],
+                                          1
+                                        ),
+                                        _vm._v(" "),
+                                        _c("v-divider", {
+                                          staticClass: "mr-7 mb-2"
+                                        }),
+                                        _vm._v(" "),
+                                        _c(
+                                          "v-layout",
+                                          { staticClass: "mt-5" },
+                                          [
+                                            _c(
+                                              "v-flex",
+                                              { attrs: { md2: "" } },
+                                              [_c("h2", [_vm._v("Position")])]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "v-flex",
+                                              { attrs: { md10: "" } },
+                                              [
+                                                _c("v-select", {
+                                                  staticClass:
+                                                    "position-select",
+                                                  attrs: {
+                                                    dense: "",
+                                                    outlined: "",
+                                                    rounded: "",
                                                     items: _vm.positions,
                                                     label: "Positions"
                                                   }
@@ -1815,7 +2576,18 @@ var render = function() {
                                         _vm._v(" "),
                                         _c("v-divider"),
                                         _vm._v(" "),
-                                        _c("v-btn", [_vm._v("Remove Question")])
+                                        _c(
+                                          "v-btn",
+                                          {
+                                            staticClass: "mt-5 mb-5",
+                                            attrs: {
+                                              outlined: "",
+                                              rounded: "",
+                                              color: "indigo"
+                                            }
+                                          },
+                                          [_vm._v("Remove Question")]
+                                        )
                                       ],
                                       1
                                     )
