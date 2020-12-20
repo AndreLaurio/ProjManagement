@@ -893,6 +893,7 @@ export default {
             
             this.showAddNewSection();
             console.log(this.exam);
+            console.log("dfdfdfdfdf");
         },
         // On change trigger function for updating exam section
         updateExamSection() {

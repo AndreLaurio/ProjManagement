@@ -900,6 +900,7 @@ __webpack_require__.r(__webpack_exports__);
       this.exam.exam_sections[new_section_no] = this.exam_section;
       this.showAddNewSection();
       console.log(this.exam);
+      console.log("dfdfdfdfdf");
     },
     // On change trigger function for updating exam section
     updateExamSection: function updateExamSection() {}
