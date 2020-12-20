@@ -33,4 +33,13 @@ Route::get('/examiner/exams/{examiner_id}',[ExamController::class, 'getExaminerE
 Route::get('/exams/{room_id}', [RoomController::class, 'getExam']);
 
 // Add New Exam
-Route::post('/exam/details/save', [ExamController::class, 'saveExamDetail']);
+Route::post('/exam/save', [ExamController::class, 'saveExam']);
+Route::post('/exam/details/add', [ExamController::class, 'addExamDetail']);
+Route::post('/exam/details/update', [ExamController::class, 'updateExamDetail']);
+Route::post('/exam/section/add', [ExamController::class, 'addExamSection']);
+Route::post('/exam/section/update', [ExamController::class, 'updateExamSection']);
+Route::post('/exam/section/delete', [ExamController::class, 'deleteExamSection']);
+Route::post('/exam/section/delete/only', [ExamController::class, 'deleteExamSectionOnly']);
+
+Route::post('/exam/question/add', [ExamController::class, 'addExamQuestion']);
+Route::post('/exam/question/delete', [ExamController::class, 'deleteExamQuestion']);

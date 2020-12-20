@@ -33,7 +33,7 @@
                         <template v-slot:append>
                             <div class="pa-2 text-center mb-5">
                                 <v-btn class="pl-12 pr-12" depressed rounded
-                                    >save</v-btn
+                                     @click="saveExam">save</v-btn
                                 >
                             </div>
                         </template>
@@ -48,6 +48,7 @@
                             </v-flex>
                             <v-flex md10>
                                 <v-text-field
+                                    v-model="exam.exam_title"
                                     clearable
                                     outlined
                                     rounded
@@ -63,7 +64,7 @@
                                 </span>
                             </v-flex>
                             <v-flex md10>
-                                <v-textarea outlined rounded class="mr-12">
+                                <v-textarea v-model="exam.exam_desc" outlined rounded class="mr-12">
                                 </v-textarea>
                             </v-flex>
                         </v-layout>
@@ -77,6 +78,7 @@
                             </v-flex>
                             <v-flex md9>
                                 <v-text-field
+                                    v-model="exam.exam_scoring"
                                     type="number"
                                     outlined
                                     dense
@@ -93,7 +95,7 @@
                                 </span>
                             </v-flex>
                             <v-flex md8 class="mt-1">
-                                <v-checkbox> </v-checkbox>
+                                <v-checkbox v-model="exam.shuffle_questions"> </v-checkbox>
                             </v-flex>
                         </v-layout>
                         <v-layout>
@@ -103,7 +105,7 @@
                                 </span>
                             </v-flex>
                             <v-flex md8 class="mt-2">
-                                <v-checkbox> </v-checkbox>
+                                <v-checkbox v-model="exam.is_examinee_review_enabled"> </v-checkbox>
                             </v-flex>
                         </v-layout>
                         <v-layout>
@@ -113,7 +115,7 @@
                                 </span>
                             </v-flex>
                             <v-flex md8 class="mt-1">
-                                <v-checkbox> </v-checkbox>
+                                <v-checkbox v-model="exam.is_monitoring_switching_tab_enabled"> </v-checkbox>
                             </v-flex>
                         </v-layout>
                     </div>
@@ -122,7 +124,7 @@
                             outlined
                             rounded
                             color="indigo"
-                            @click="showAddNewSection"
+                            @click="addNewExamSection"
                         >
                             Add New Section</v-btn
                         >
@@ -144,6 +146,8 @@
                                 </v-flex>
                                 <v-flex md10>
                                     <v-text-field
+                                        v-model="exam_section.section_title"
+                                        @change="updateExamSection"
                                         clearable
                                         outlined
                                         rounded
@@ -159,7 +163,10 @@
                                     </span>
                                 </v-flex>
                                 <v-flex md10>
-                                    <v-textarea outlined rounded class="mr-12">
+                                    <v-textarea 
+                                        v-model="exam_section.section_desc" 
+                                        @change="updateExamSection"
+                                        outlined rounded class="mr-12">
                                     </v-textarea>
                                 </v-flex>
                             </v-layout>
@@ -170,6 +177,8 @@
                                 </v-flex>
                                 <v-flex md10>
                                     <v-select
+                                        v-model="exam_section.position"
+                                        @change="updateExamSection"
                                         dense
                                         outlined
                                         rounded
@@ -746,7 +755,7 @@ export default {
         return {
             examDetailInput: true,
             examItemInput: false,
-            addNewSection: true,
+            addNewSection: false,
             addNewQuestion: false,
             selectedQuestionType: 1,
             positions: [
@@ -761,8 +770,34 @@ export default {
                 { id: 3, name: "True or False" },
                 { id: 4, name: "Single-select Multiple Choice" },
                 { id: 5, name: "Multi-select Multiple Choice" }
-            ]
+            ],
+            exam: {
+                exam_id: 0,
+                examiner_id: 0,
+                exam_title: '',
+                exam_desc: 'optional',
+                exam_code: '',
+                passing_percentage: 0,
+                shuffle_questions: false,
+                is_examinee_review_enabled: true,
+                is_monitoring_switching_tab_enabled: false,
+                created_by: 0,
+                exam_sections: [],
+                exam_questions: []
+            },
+            exam_section: {
+                old_section_no: 0,
+                section_no: 0,
+                section_title: '',
+                section_desc: '',
+                total_points: 0,
+                shuffle_questions: false,
+                position: 0
+            }
         };
+    },
+    mounted() {
+        this.getUserDetail();
     },
     methods: {
         showExamDetailInput() {
@@ -783,7 +818,88 @@ export default {
         },
         getQuestionType() {
             console.log(this.questionTypes.value);
+        },
+        getUserDetail() {
+            axios.get("api/user").then(response => {
+                this.exam.examiner_id = response.data.user_id;
+                this.exam.created_by = response.data.user_id;
+            });
+        },
+        
+        // generateExamCode() {
+        //     //random code generator
+        //     var result = "";
+        //     var length = 6;
+        //     var characters =
+        //         "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        //     var charactersLength = characters.length;
+        //     for (var i = 0; i < length; i++) {
+        //         result += characters.charAt(
+        //             Math.floor(Math.random() * charactersLength)
+        //         );
+        //     }
+        //     console.log('gen');
+        //     console.log(result);
+        //     return result;
+        // },
+        saveExam() {
+
+            if (this.exam.exam_code == '') {
+                
+                //random code generator
+                var result = "";
+                var length = 6;
+                var characters =
+                    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+                var charactersLength = characters.length;
+                for (var i = 0; i < length; i++) {
+                    result += characters.charAt(
+                        Math.floor(Math.random() * charactersLength)
+                    );
+                }
+
+                this.exam.exam_code = result;
+            }
+
+            axios
+                .post("api/exam/save", this.exam)
+                .then(response => {
+                    console.log('exam success');
+                    if (this.exam.exam_id === 0) {
+                        this.exam.exam_id = response.data.exam_id;
+                    }
+                })
+                .catch(error => {
+                    console.log("exam failed");
+                });
+        },
+        // Add New Section
+        addNewExamSection() {
+
+            // determine the last section no
+            var new_section_no = this.exam.exam_sections.length + 1;
+
+            // set exam section to default
+            this.exam_section.old_section_no = new_section_no;
+            this.exam_section.section_no = new_section_no;
+            this.exam_section.section_title = '';
+            this.exam_section.section_desc = '';
+            this.exam_section.total_points = 0;
+            this.exam_section.shuffle_questions = false;
+            this.exam_section.position = new_section_no;
+
+            // instantiating attributes of new exam section
+            this.exam.exam_sections[new_section_no] = this.exam_section;
+            
+            this.showAddNewSection();
+            console.log(this.exam);
+        },
+        // On change trigger function for updating exam section
+        updateExamSection() {
+
+
         }
+
     }
 };
 </script>

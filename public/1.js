@@ -751,12 +751,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       examDetailInput: true,
       examItemInput: false,
-      addNewSection: true,
+      addNewSection: false,
       addNewQuestion: false,
       selectedQuestionType: 1,
       positions: ["At the beginning of section 1", "After Section 1", "Fizz", "Buzz"],
@@ -775,8 +784,34 @@ __webpack_require__.r(__webpack_exports__);
       }, {
         id: 5,
         name: "Multi-select Multiple Choice"
-      }]
+      }],
+      exam: {
+        exam_id: 0,
+        examiner_id: 0,
+        exam_title: '',
+        exam_desc: 'optional',
+        exam_code: '',
+        passing_percentage: 0,
+        shuffle_questions: false,
+        is_examinee_review_enabled: true,
+        is_monitoring_switching_tab_enabled: false,
+        created_by: 0,
+        exam_sections: [],
+        exam_questions: []
+      },
+      exam_section: {
+        old_section_no: 0,
+        section_no: 0,
+        section_title: '',
+        section_desc: '',
+        total_points: 0,
+        shuffle_questions: false,
+        position: 0
+      }
     };
+  },
+  mounted: function mounted() {
+    this.getUserDetail();
   },
   methods: {
     showExamDetailInput: function showExamDetailInput() {
@@ -797,7 +832,77 @@ __webpack_require__.r(__webpack_exports__);
     },
     getQuestionType: function getQuestionType() {
       console.log(this.questionTypes.value);
-    }
+    },
+    getUserDetail: function getUserDetail() {
+      var _this = this;
+
+      axios.get("api/user").then(function (response) {
+        _this.exam.examiner_id = response.data.user_id;
+        _this.exam.created_by = response.data.user_id;
+      });
+    },
+    // generateExamCode() {
+    //     //random code generator
+    //     var result = "";
+    //     var length = 6;
+    //     var characters =
+    //         "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    //     var charactersLength = characters.length;
+    //     for (var i = 0; i < length; i++) {
+    //         result += characters.charAt(
+    //             Math.floor(Math.random() * charactersLength)
+    //         );
+    //     }
+    //     console.log('gen');
+    //     console.log(result);
+    //     return result;
+    // },
+    saveExam: function saveExam() {
+      var _this2 = this;
+
+      if (this.exam.exam_code == '') {
+        //random code generator
+        var result = "";
+        var length = 6;
+        var characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        var charactersLength = characters.length;
+
+        for (var i = 0; i < length; i++) {
+          result += characters.charAt(Math.floor(Math.random() * charactersLength));
+        }
+
+        this.exam.exam_code = result;
+      }
+
+      axios.post("api/exam/save", this.exam).then(function (response) {
+        console.log('exam success');
+
+        if (_this2.exam.exam_id === 0) {
+          _this2.exam.exam_id = response.data.exam_id;
+        }
+      })["catch"](function (error) {
+        console.log("exam failed");
+      });
+    },
+    // Add New Section
+    addNewExamSection: function addNewExamSection() {
+      // determine the last section no
+      var new_section_no = this.exam.exam_sections.length + 1; // set exam section to default
+
+      this.exam_section.old_section_no = new_section_no;
+      this.exam_section.section_no = new_section_no;
+      this.exam_section.section_title = '';
+      this.exam_section.section_desc = '';
+      this.exam_section.total_points = 0;
+      this.exam_section.shuffle_questions = false;
+      this.exam_section.position = new_section_no; // instantiating attributes of new exam section
+
+      this.exam.exam_sections[new_section_no] = this.exam_section;
+      this.showAddNewSection();
+      console.log(this.exam);
+    },
+    // On change trigger function for updating exam section
+    updateExamSection: function updateExamSection() {}
   }
 });
 
@@ -903,7 +1008,8 @@ var render = function() {
                                     "v-btn",
                                     {
                                       staticClass: "pl-12 pr-12",
-                                      attrs: { depressed: "", rounded: "" }
+                                      attrs: { depressed: "", rounded: "" },
+                                      on: { click: _vm.saveExam }
                                     },
                                     [_vm._v("save")]
                                   )
@@ -1011,6 +1117,13 @@ var render = function() {
                                     outlined: "",
                                     rounded: "",
                                     dense: ""
+                                  },
+                                  model: {
+                                    value: _vm.exam.exam_title,
+                                    callback: function($$v) {
+                                      _vm.$set(_vm.exam, "exam_title", $$v)
+                                    },
+                                    expression: "exam.exam_title"
                                   }
                                 })
                               ],
@@ -1037,7 +1150,14 @@ var render = function() {
                               [
                                 _c("v-textarea", {
                                   staticClass: "mr-12",
-                                  attrs: { outlined: "", rounded: "" }
+                                  attrs: { outlined: "", rounded: "" },
+                                  model: {
+                                    value: _vm.exam.exam_desc,
+                                    callback: function($$v) {
+                                      _vm.$set(_vm.exam, "exam_desc", $$v)
+                                    },
+                                    expression: "exam.exam_desc"
+                                  }
                                 })
                               ],
                               1
@@ -1073,6 +1193,13 @@ var render = function() {
                                     type: "number",
                                     outlined: "",
                                     dense: ""
+                                  },
+                                  model: {
+                                    value: _vm.exam.exam_scoring,
+                                    callback: function($$v) {
+                                      _vm.$set(_vm.exam, "exam_scoring", $$v)
+                                    },
+                                    expression: "exam.exam_scoring"
                                   }
                                 })
                               ],
@@ -1106,7 +1233,21 @@ var render = function() {
                             _c(
                               "v-flex",
                               { staticClass: "mt-1", attrs: { md8: "" } },
-                              [_c("v-checkbox")],
+                              [
+                                _c("v-checkbox", {
+                                  model: {
+                                    value: _vm.exam.shuffle_questions,
+                                    callback: function($$v) {
+                                      _vm.$set(
+                                        _vm.exam,
+                                        "shuffle_questions",
+                                        $$v
+                                      )
+                                    },
+                                    expression: "exam.shuffle_questions"
+                                  }
+                                })
+                              ],
                               1
                             )
                           ],
@@ -1131,7 +1272,22 @@ var render = function() {
                             _c(
                               "v-flex",
                               { staticClass: "mt-2", attrs: { md8: "" } },
-                              [_c("v-checkbox")],
+                              [
+                                _c("v-checkbox", {
+                                  model: {
+                                    value: _vm.exam.is_examinee_review_enabled,
+                                    callback: function($$v) {
+                                      _vm.$set(
+                                        _vm.exam,
+                                        "is_examinee_review_enabled",
+                                        $$v
+                                      )
+                                    },
+                                    expression:
+                                      "exam.is_examinee_review_enabled"
+                                  }
+                                })
+                              ],
                               1
                             )
                           ],
@@ -1156,7 +1312,24 @@ var render = function() {
                             _c(
                               "v-flex",
                               { staticClass: "mt-1", attrs: { md8: "" } },
-                              [_c("v-checkbox")],
+                              [
+                                _c("v-checkbox", {
+                                  model: {
+                                    value:
+                                      _vm.exam
+                                        .is_monitoring_switching_tab_enabled,
+                                    callback: function($$v) {
+                                      _vm.$set(
+                                        _vm.exam,
+                                        "is_monitoring_switching_tab_enabled",
+                                        $$v
+                                      )
+                                    },
+                                    expression:
+                                      "exam.is_monitoring_switching_tab_enabled"
+                                  }
+                                })
+                              ],
                               1
                             )
                           ],
@@ -1179,7 +1352,7 @@ var render = function() {
                               rounded: "",
                               color: "indigo"
                             },
-                            on: { click: _vm.showAddNewSection }
+                            on: { click: _vm.addNewExamSection }
                           },
                           [_vm._v("\n                        Add New Section")]
                         ),
@@ -1229,6 +1402,20 @@ var render = function() {
                                             outlined: "",
                                             rounded: "",
                                             dense: ""
+                                          },
+                                          on: { change: _vm.updateExamSection },
+                                          model: {
+                                            value:
+                                              _vm.exam_section.section_title,
+                                            callback: function($$v) {
+                                              _vm.$set(
+                                                _vm.exam_section,
+                                                "section_title",
+                                                $$v
+                                              )
+                                            },
+                                            expression:
+                                              "exam_section.section_title"
                                           }
                                         })
                                       ],
@@ -1259,7 +1446,21 @@ var render = function() {
                                       [
                                         _c("v-textarea", {
                                           staticClass: "mr-12",
-                                          attrs: { outlined: "", rounded: "" }
+                                          attrs: { outlined: "", rounded: "" },
+                                          on: { change: _vm.updateExamSection },
+                                          model: {
+                                            value:
+                                              _vm.exam_section.section_desc,
+                                            callback: function($$v) {
+                                              _vm.$set(
+                                                _vm.exam_section,
+                                                "section_desc",
+                                                $$v
+                                              )
+                                            },
+                                            expression:
+                                              "exam_section.section_desc"
+                                          }
                                         })
                                       ],
                                       1
@@ -1291,6 +1492,18 @@ var render = function() {
                                             rounded: "",
                                             items: _vm.positions,
                                             label: "Positions"
+                                          },
+                                          on: { change: _vm.updateExamSection },
+                                          model: {
+                                            value: _vm.exam_section.position,
+                                            callback: function($$v) {
+                                              _vm.$set(
+                                                _vm.exam_section,
+                                                "position",
+                                                $$v
+                                              )
+                                            },
+                                            expression: "exam_section.position"
                                           }
                                         })
                                       ],
