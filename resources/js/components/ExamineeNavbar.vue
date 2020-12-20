@@ -27,7 +27,7 @@
                     v-model="group"
                     active-class="white--text font-weight-bold"
                 >
-                    <v-list-item link>
+                    <v-list-item link v-on:click="rooms">
                         <v-list-item-action class="pl-5">
                             <v-icon color="#FFFFFF"
                                 >mdi-laptop-chromebook</v-icon
@@ -113,6 +113,9 @@ export default {
                 .catch(err => {
                     console.log("please call an administrator");
                 });
+        },
+        rooms() {
+            this.$router.push({ name: "ExaminationRoom" });
         }
     }
 };

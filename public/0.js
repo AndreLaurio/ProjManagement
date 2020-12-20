@@ -114,32 +114,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -186,6 +160,14 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get("api/user").then(function (response) {
         _this2.user_id = response.data.user_id;
+      });
+    },
+    showRoomExam: function showRoomExam(room_id) {
+      this.$router.push({
+        name: "RoomExam",
+        params: {
+          id: room_id
+        }
       });
     }
   }
@@ -420,7 +402,7 @@ var render = function() {
                 _c("v-card-text", [
                   _c(
                     "div",
-                    { staticClass: "pl-5 pb-5" },
+                    { staticClass: "pl-5" },
                     [
                       _c(
                         "v-layout",
@@ -442,100 +424,30 @@ var render = function() {
                           _c("v-flex", { attrs: { md4: "" } }, [
                             _c(
                               "div",
-                              { staticClass: "text-right pr-10 black--text" },
+                              { staticClass: "text-right" },
                               [
-                                _c(
-                                  "span",
-                                  {
-                                    staticClass: "black--text font-weight-bold"
-                                  },
-                                  [_vm._v("Room Code :")]
-                                ),
-                                _vm._v(" "),
-                                _c("span", [_vm._v(_vm._s(room.room_code))]),
-                                _vm._v(" "),
-                                _c("br"),
-                                _vm._v(" "),
-                                _c("span", [_vm._v("Total of 10 Examinees")]),
-                                _vm._v(" "),
-                                _c("br"),
-                                _vm._v(" "),
-                                _c("span", [_vm._v("Total of 10 Exams")]),
+                                _c("span", [
+                                  _vm._v("There is 1 unanswered exam")
+                                ]),
                                 _vm._v(" "),
                                 _c("br"),
                                 _vm._v(" "),
                                 _c(
-                                  "v-menu",
+                                  "v-btn",
                                   {
-                                    attrs: { "offset-y": "" },
-                                    scopedSlots: _vm._u(
-                                      [
-                                        {
-                                          key: "activator",
-                                          fn: function(ref) {
-                                            var on = ref.on
-                                            var attrs = ref.attrs
-                                            return [
-                                              _c(
-                                                "v-icon",
-                                                _vm._g(
-                                                  _vm._b(
-                                                    {
-                                                      staticClass: "mr-2",
-                                                      attrs: {
-                                                        color: "black",
-                                                        size: "30"
-                                                      }
-                                                    },
-                                                    "v-icon",
-                                                    attrs,
-                                                    false
-                                                  ),
-                                                  on
-                                                ),
-                                                [
-                                                  _vm._v(
-                                                    "\n                                            mdi-settings-helper\n                                        "
-                                                  )
-                                                ]
-                                              )
-                                            ]
-                                          }
-                                        }
-                                      ],
-                                      null,
-                                      true
-                                    )
+                                    staticClass: "pl-12 pr-12 mt-8 rounded-lg",
+                                    attrs: { outlined: "", color: "indigo" },
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.showRoomExam(room.room_id)
+                                      }
+                                    }
                                   },
                                   [
-                                    _vm._v(" "),
-                                    _c(
-                                      "v-list",
-                                      _vm._l(_vm.items, function(item, index) {
-                                        return _c(
-                                          "v-list-item",
-                                          {
-                                            key: index,
-                                            on: {
-                                              click: function($event) {
-                                                return _vm.selectSection(item)
-                                              }
-                                            }
-                                          },
-                                          [
-                                            _c(
-                                              "v-list-item-title",
-                                              { staticClass: "font-body" },
-                                              [_vm._v(_vm._s(item.title))]
-                                            )
-                                          ],
-                                          1
-                                        )
-                                      }),
-                                      1
+                                    _vm._v(
+                                      "\n                                    Enter\n                                "
                                     )
-                                  ],
-                                  1
+                                  ]
                                 )
                               ],
                               1
@@ -586,10 +498,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuetify_lib_components_VDialog__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vuetify/lib/components/VDialog */ "./node_modules/vuetify/lib/components/VDialog/index.js");
 /* harmony import */ var vuetify_lib_components_VDivider__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vuetify/lib/components/VDivider */ "./node_modules/vuetify/lib/components/VDivider/index.js");
 /* harmony import */ var vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vuetify/lib/components/VGrid */ "./node_modules/vuetify/lib/components/VGrid/index.js");
-/* harmony import */ var vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! vuetify/lib/components/VIcon */ "./node_modules/vuetify/lib/components/VIcon/index.js");
-/* harmony import */ var vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! vuetify/lib/components/VList */ "./node_modules/vuetify/lib/components/VList/index.js");
-/* harmony import */ var vuetify_lib_components_VMenu__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! vuetify/lib/components/VMenu */ "./node_modules/vuetify/lib/components/VMenu/index.js");
-/* harmony import */ var vuetify_lib_components_VTextField__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! vuetify/lib/components/VTextField */ "./node_modules/vuetify/lib/components/VTextField/index.js");
+/* harmony import */ var vuetify_lib_components_VTextField__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! vuetify/lib/components/VTextField */ "./node_modules/vuetify/lib/components/VTextField/index.js");
 
 
 
@@ -622,12 +531,7 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 
 
-
-
-
-
-
-_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_4___default()(component, {VBtn: vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_5__["VBtn"],VCard: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__["VCard"],VCardActions: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__["VCardActions"],VCardText: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__["VCardText"],VCardTitle: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__["VCardTitle"],VDialog: vuetify_lib_components_VDialog__WEBPACK_IMPORTED_MODULE_7__["VDialog"],VDivider: vuetify_lib_components_VDivider__WEBPACK_IMPORTED_MODULE_8__["VDivider"],VFlex: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_9__["VFlex"],VIcon: vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_10__["VIcon"],VLayout: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_9__["VLayout"],VList: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_11__["VList"],VListItem: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_11__["VListItem"],VListItemTitle: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_11__["VListItemTitle"],VMenu: vuetify_lib_components_VMenu__WEBPACK_IMPORTED_MODULE_12__["VMenu"],VSpacer: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_9__["VSpacer"],VTextField: vuetify_lib_components_VTextField__WEBPACK_IMPORTED_MODULE_13__["VTextField"]})
+_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_4___default()(component, {VBtn: vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_5__["VBtn"],VCard: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__["VCard"],VCardActions: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__["VCardActions"],VCardText: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__["VCardText"],VCardTitle: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__["VCardTitle"],VDialog: vuetify_lib_components_VDialog__WEBPACK_IMPORTED_MODULE_7__["VDialog"],VDivider: vuetify_lib_components_VDivider__WEBPACK_IMPORTED_MODULE_8__["VDivider"],VFlex: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_9__["VFlex"],VLayout: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_9__["VLayout"],VSpacer: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_9__["VSpacer"],VTextField: vuetify_lib_components_VTextField__WEBPACK_IMPORTED_MODULE_10__["VTextField"]})
 
 
 /* hot reload */

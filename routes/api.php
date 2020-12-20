@@ -34,3 +34,6 @@ Route::get('/exams/{room_id}', [RoomController::class, 'getExam']);
 
 // Add New Exam
 Route::post('/exam/details/save', [ExamController::class, 'saveExamDetail']);
+
+//Get room details
+Route::get('/room-details/{room_id}', [RoomController::class, 'getRoomDetail']);

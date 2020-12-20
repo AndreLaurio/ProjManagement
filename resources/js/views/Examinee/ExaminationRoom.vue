@@ -61,7 +61,7 @@
                 :key="room.id"
             >
                 <v-card-text>
-                    <div class="pl-5 pb-5">
+                    <div class="pl-5">
                         <v-layout>
                             <v-flex md8>
                                 <h2 class="black--text">
@@ -71,43 +71,17 @@
                                 <span>{{ room.room_desc }}</span>
                             </v-flex>
                             <v-flex md4>
-                                <div class="text-right pr-10 black--text">
-                                    <span class="black--text font-weight-bold"
-                                        >Room Code :</span
-                                    >
-                                    <span>{{ room.room_code }}</span>
+                                <div class="text-right">
+                                    <span>There is 1 unanswered exam</span>
                                     <br />
-                                    <span>Total of 10 Examinees</span> <br />
-                                    <span>Total of 10 Exams</span> <br />
-                                    <v-menu offset-y>
-                                        <template
-                                            v-slot:activator="{ on, attrs }"
-                                        >
-                                            <v-icon
-                                                color="black"
-                                                size="30"
-                                                class="mr-2"
-                                                v-on="on"
-                                                v-bind="attrs"
-                                            >
-                                                mdi-settings-helper
-                                            </v-icon>
-                                        </template>
-                                        <v-list>
-                                            <v-list-item
-                                                v-for="(item, index) in items"
-                                                :key="index"
-                                                @click="selectSection(item)"
-                                            >
-                                                <v-list-item-title
-                                                    class="font-body"
-                                                    >{{
-                                                        item.title
-                                                    }}</v-list-item-title
-                                                >
-                                            </v-list-item>
-                                        </v-list>
-                                    </v-menu>
+                                    <v-btn
+                                        outlined
+                                        color="indigo"
+                                        class="pl-12 pr-12 mt-8 rounded-lg"
+                                        @click="showRoomExam(room.room_id)"
+                                    >
+                                        Enter
+                                    </v-btn>
                                 </div>
                             </v-flex>
                         </v-layout>
@@ -177,6 +151,14 @@ export default {
         getUserDetail() {
             axios.get("api/user").then(response => {
                 this.user_id = response.data.user_id;
+            });
+        },
+        showRoomExam(room_id) {
+            this.$router.push({
+                name: "RoomExam",
+                params: {
+                    id: room_id
+                }
             });
         }
     }

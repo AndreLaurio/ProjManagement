@@ -73,4 +73,10 @@ class RoomController extends Controller
         //  Log::info(json_encode($rooms));
         //  return $rooms;
     }
+
+    public function getRoomDetail(Request $request, $room_id){
+        $room_details = Room::where('room_id',$room_id)->get();
+
+        return $room_details;
+    }
 }

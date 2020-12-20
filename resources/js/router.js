@@ -16,6 +16,12 @@ const routes = [
         meta: { requiresAuth: true }
     },
     {
+        path: "/room-exam/:id",
+        name: "RoomExam",
+        component: () => import("./views/Examinee/RoomExam"),
+        meta: { requiresAuth: true }
+    },
+    {
         path: "/manage-room",
         name: "ManageRoom",
         component: () => import("./views/Examiner/ManageRoom"),
