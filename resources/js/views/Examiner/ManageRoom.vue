@@ -14,7 +14,7 @@
                         Create Room</v-btn
                     >
                 </template>
-                <v-card class="font-body">
+                <v-card class="font-body rounded-lg">
                     <v-card-title class="pl-8 pr-8 pt-8 justify-center">
                         <span class="text-center text-uppercase register-title"
                             >Create Room</span
@@ -49,22 +49,24 @@
                     </v-card-text>
                     <v-card-actions>
                         <v-spacer></v-spacer>
-                        <v-btn
-                            color="green darken-1"
-                            text
-                            class="text-uppercase"
-                            @click="createRoom"
-                        >
-                            Create Room
-                        </v-btn>
-                        <v-btn
-                            color="red darken-1"
-                            text
-                            @click="createRoomDialog = false"
-                            class="text-uppercase"
-                        >
-                            Close
-                        </v-btn>
+                        <div class="mb-2">
+                            <v-btn
+                                outlined
+                                dark
+                                class="primary text-uppercase rounded-lg"
+                                @click="createRoom"
+                            >
+                                Create Room
+                            </v-btn>
+                            <v-btn
+                                outlined
+                                color="indigo"
+                                @click="createRoomDialog = false"
+                                class="text-uppercase rounded-lg"
+                            >
+                                Close
+                            </v-btn>
+                        </div>
                     </v-card-actions>
                 </v-card>
             </v-dialog>
@@ -146,7 +148,7 @@
                 </v-card-text>
             </v-card>
             <v-dialog v-model="manageRoomDetails" persistent max-width="550">
-                <v-card class="font-body">
+                <v-card class="font-body rounded-lg">
                     <v-card-title class="pl-8 pr-8 pt-8 justify-center">
                         <span class="text-center text-uppercase register-title"
                             >Manage Room</span
@@ -180,52 +182,224 @@
                     </v-card-text>
                     <v-card-actions>
                         <v-spacer></v-spacer>
-                        <v-btn
-                            color="green darken-1"
-                            text
-                            class="text-uppercase"
-                            @click="updateRoom"
-                        >
-                            Update Room
-                        </v-btn>
-                        <v-btn
-                            color="red darken-1"
-                            text
-                            @click="manageRoomDetails = false"
-                            class="text-uppercase"
-                        >
-                            Close
-                        </v-btn>
+                        <div class="mb-2">
+                            <v-btn
+                                dark
+                                outlined
+                                class="primary text-uppercase"
+                                @click="updateRoom"
+                            >
+                                Update Room
+                            </v-btn>
+                            <v-btn
+                                color="indigo"
+                                outlined
+                                @click="manageRoomDetails = false"
+                                class="text-uppercase"
+                            >
+                                Close
+                            </v-btn>
+                        </div>
                     </v-card-actions>
                 </v-card>
             </v-dialog>
-            <v-dialog v-model="manageRoomExams" persistent max-width="550">
-                <v-card class="font-body">
+            <v-dialog v-model="manageRoomExams" persistent max-width="600">
+                <v-card class="font-body rounded-lg">
                     <v-card-title class="pl-8 pr-8 pt-8 justify-center">
                         <span class="text-center text-uppercase register-title"
-                            >Manage Exams</span
+                            >Add Existing Exam</span
                         >
                     </v-card-title>
                     <v-card-text>
-                        <v-card v-for="exam in exams" :key="exam.id">
-                            <v-card-title>
-                                {{ exam.exam_title }}
-                            </v-card-title>
-                            <v-card-text>
-                                {{ exam.exam_desc }}
-                            </v-card-text>
-                        </v-card>
+                        <label for="select-exam" class="text-lg-h6 black--text"
+                            >Choose an exam</label
+                        >
+                        <v-select
+                            dense
+                            outlined
+                            rounded
+                            :items="exams"
+                            id="select-exam"
+                            class="exam-select"
+                        ></v-select>
+                        <v-divider class="mb-5"></v-divider>
+                        <span class="text-lg-h6 black--text"
+                            >Configure Exam Settings</span
+                        >
+                        <div class="mt-5">
+                            <v-layout>
+                                <v-flex class="mt-3">
+                                    <span class="text-lg-h6">Open at:</span>
+                                </v-flex>
+                                <v-flex>
+                                    <v-menu
+                                        v-model="menu2"
+                                        :close-on-content-click="false"
+                                        :nudge-right="40"
+                                        transition="scale-transition"
+                                        offset-y
+                                        min-width="290px"
+                                    >
+                                        <template
+                                            v-slot:activator="{ on, attrs }"
+                                        >
+                                            <v-text-field
+                                                v-model="date"
+                                                label="Select Date"
+                                                prepend-icon="mdi-calendar"
+                                                readonly
+                                                v-bind="attrs"
+                                                v-on="on"
+                                            ></v-text-field>
+                                        </template>
+                                        <v-date-picker
+                                            v-model="date"
+                                            @input="menu2 = false"
+                                        ></v-date-picker>
+                                    </v-menu>
+                                </v-flex>
+                                <v-flex>
+                                    <v-menu
+                                        ref="menu"
+                                        v-model="menu2"
+                                        :close-on-content-click="false"
+                                        :nudge-right="40"
+                                        :return-value.sync="time"
+                                        transition="scale-transition"
+                                        offset-y
+                                        max-width="290px"
+                                        min-width="290px"
+                                    >
+                                        <template
+                                            v-slot:activator="{ on, attrs }"
+                                        >
+                                            <v-text-field
+                                                v-model="time"
+                                                label="Select Time"
+                                                prepend-icon="mdi-clock-time-four-outline"
+                                                readonly
+                                                v-bind="attrs"
+                                                v-on="on"
+                                            ></v-text-field>
+                                        </template>
+                                        <v-time-picker
+                                            v-if="menu2"
+                                            v-model="time"
+                                            full-width
+                                            @click:minute="
+                                                $refs.menu.save(time)
+                                            "
+                                        ></v-time-picker>
+                                    </v-menu>
+                                </v-flex>
+                            </v-layout>
+                        </div>
+                        <div class="mt-5">
+                            <v-layout>
+                                <v-flex class="mt-3">
+                                    <span class="text-lg-h6">Close at:</span>
+                                </v-flex>
+                                <v-flex>
+                                    <v-menu
+                                        v-model="menu2"
+                                        :close-on-content-click="false"
+                                        :nudge-right="40"
+                                        transition="scale-transition"
+                                        offset-y
+                                        min-width="290px"
+                                    >
+                                        <template
+                                            v-slot:activator="{ on, attrs }"
+                                        >
+                                            <v-text-field
+                                                v-model="date"
+                                                label="Select Date"
+                                                prepend-icon="mdi-calendar"
+                                                readonly
+                                                v-bind="attrs"
+                                                v-on="on"
+                                            ></v-text-field>
+                                        </template>
+                                        <v-date-picker
+                                            v-model="date"
+                                            @input="menu2 = false"
+                                        ></v-date-picker>
+                                    </v-menu>
+                                </v-flex>
+                                <v-flex>
+                                    <v-menu
+                                        ref="menu"
+                                        v-model="menu2"
+                                        :close-on-content-click="false"
+                                        :nudge-right="40"
+                                        :return-value.sync="time"
+                                        transition="scale-transition"
+                                        offset-y
+                                        max-width="290px"
+                                        min-width="290px"
+                                    >
+                                        <template
+                                            v-slot:activator="{ on, attrs }"
+                                        >
+                                            <v-text-field
+                                                v-model="time"
+                                                label="Select Time"
+                                                prepend-icon="mdi-clock-time-four-outline"
+                                                readonly
+                                                v-bind="attrs"
+                                                v-on="on"
+                                            ></v-text-field>
+                                        </template>
+                                        <v-time-picker
+                                            v-if="menu2"
+                                            v-model="time"
+                                            full-width
+                                            @click:minute="
+                                                $refs.menu.save(time)
+                                            "
+                                        ></v-time-picker>
+                                    </v-menu>
+                                </v-flex>
+                            </v-layout>
+                        </div>
+                        <div>
+                            <v-layout>
+                                <v-flex md5>
+                                    <span class="text-lg-h6"
+                                        >Time limit (in minutes)</span
+                                    >
+                                </v-flex>
+                                <v-flex md7>
+                                    <v-text-field
+                                        type="number"
+                                        outlined
+                                        dense
+                                        class="limit-input"
+                                    ></v-text-field>
+                                </v-flex>
+                            </v-layout>
+                        </div>
                     </v-card-text>
                     <v-card-actions>
                         <v-spacer></v-spacer>
-                        <v-btn
-                            color="red darken-1"
-                            text
-                            @click="manageRoomExams = false"
-                            class="text-uppercase"
-                        >
-                            Close
-                        </v-btn>
+                        <div class="mb-2">
+                            <v-btn
+                                outlined
+                                dark
+                                @click="manageRoomExams = false"
+                                class="primary text-uppercase rounded-lg"
+                            >
+                                Add
+                            </v-btn>
+                            <v-btn
+                                outlined
+                                color="indigo"
+                                @click="manageRoomExams = false"
+                                class="text-uppercase rounded-lg"
+                            >
+                                Close
+                            </v-btn>
+                        </div>
                     </v-card-actions>
                 </v-card>
             </v-dialog>
@@ -234,33 +408,30 @@
                 persistent
                 max-width="550"
             >
-                <v-card class="font-body">
+                <v-card class="font-body rounded-lg">
                     <v-card-title class="pl-8 pr-8 pt-8 justify-center">
-                        Alert
-                    </v-card-title>
-                    <v-card-text>
                         Are you sure to delete?
-                        {{ this.selected_room.room_id }}
-                        {{ this.selected_room.room_index }}
-                    </v-card-text>
+                    </v-card-title>
                     <v-card-actions>
                         <v-spacer></v-spacer>
-                        <v-btn
-                            color="red darken-1"
-                            text
-                            @click="deleteRoom"
-                            class="text-uppercase"
-                        >
-                            Delete
-                        </v-btn>
-                        <v-btn
-                            color="red darken-1"
-                            text
-                            @click="deleteRoomConfirmation = false"
-                            class="text-uppercase"
-                        >
-                            Close
-                        </v-btn>
+                        <div class="mb-2">
+                            <v-btn
+                                outlined
+                                dark
+                                @click="deleteRoom"
+                                class="primary text-uppercase rounded-lg"
+                            >
+                                Delete
+                            </v-btn>
+                            <v-btn
+                                color="indigo"
+                                outlined
+                                @click="deleteRoomConfirmation = false"
+                                class="text-uppercase rounded-lg"
+                            >
+                                Close
+                            </v-btn>
+                        </div>
                     </v-card-actions>
                 </v-card>
             </v-dialog>
@@ -276,6 +447,14 @@
 .project-border {
     border-left: 8px solid #221c92;
 }
+
+.exam-select {
+    width: 500px;
+}
+
+.limit-input {
+    width: 80px;
+}
 </style>
 <script>
 export default {
@@ -283,6 +462,8 @@ export default {
         return {
             rooms: [],
             exams: [],
+            menu2: false,
+            date: new Date().toISOString().substr(0, 10),
             items: [
                 { title: "Manage Room Details" },
                 { title: "Manage Room Exams" },
@@ -361,8 +542,12 @@ export default {
                     this.getExams(room_id);
                     break;
                 case "Manage Examinees":
-                    console.log("Manage Examinees");
-                    console.log(room_id);
+                    this.$router.push({
+                        name: "ManageExaminees",
+                        params: {
+                            id: room_id
+                        }
+                    });
                     break;
                 case "Delete Room":
                     this.deleteRoomConfirmation = true;

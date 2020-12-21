@@ -63,7 +63,8 @@
                 <v-card-text>
                     <div class="pl-5">
                         <v-layout>
-                            <v-flex md8>
+                            <v-flex md8
+                                >w
                                 <h2 class="black--text">
                                     {{ room.room_title }}
                                 </h2>

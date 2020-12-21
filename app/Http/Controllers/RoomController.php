@@ -75,7 +75,11 @@ class RoomController extends Controller
     }
 
     public function getRoomDetail(Request $request, $room_id){
-        $room_details = Room::where('room_id',$room_id)->get();
+        // $room_details = Room::where('room_id',$room_id)->get();
+        $room_details = DB::table('rooms as r')
+                        ->join('users as u', 'u.user_id','r.examiner_id')
+                        ->where('r.room_id', $room_id)
+                        ->get();
 
         return $room_details;
     }

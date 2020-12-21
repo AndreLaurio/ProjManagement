@@ -5,9 +5,12 @@
         />
         <ExaminerNavbar
             v-if="
-                ['ManageRoom', 'ManageExam', 'CreateExam'].includes(
-                    this.$route.name
-                )
+                [
+                    'ManageRoom',
+                    'ManageExam',
+                    'CreateExam',
+                    'ManageExaminees'
+                ].includes(this.$route.name)
             "
         />
         <v-main>

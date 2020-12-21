@@ -114,6 +114,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -408,6 +409,7 @@ var render = function() {
                         "v-layout",
                         [
                           _c("v-flex", { attrs: { md8: "" } }, [
+                            _vm._v("w\n                            "),
                             _c("h2", { staticClass: "black--text" }, [
                               _vm._v(
                                 "\n                                " +

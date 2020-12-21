@@ -114,18 +114,18 @@
                         <v-card-actions>
                             <v-spacer></v-spacer>
                             <v-btn
-                                color="green darken-1"
-                                text
+                                dark
+                                outlined
                                 @click="register"
-                                class="text-uppercase"
+                                class="primary text-uppercase rounded-lg"
                             >
                                 Register
                             </v-btn>
                             <v-btn
-                                color="red darken-1"
-                                text
+                                color="indigo"
+                                outlined
                                 @click="registerDialog = false"
-                                class="text-uppercase"
+                                class="text-uppercase rounded-lg"
                             >
                                 Close
                             </v-btn>
@@ -184,7 +184,7 @@
                                         class="pl-8 pr-8 pt-8 justify-center"
                                     >
                                         <span
-                                            class="text-center text-uppercase register-title"
+                                            class="text-center text-uppercase text-lg-h6 indigo--text"
                                             >Reset Password</span
                                         >
                                     </v-card-title>
@@ -208,18 +208,17 @@
                                     <v-card-actions>
                                         <v-spacer></v-spacer>
                                         <v-btn
-                                            color="green darken-1"
-                                            text
+                                            dark
                                             @click="forgotPassword"
-                                            class="text-uppercase"
+                                            class="primary text-uppercase rounded-lg"
                                         >
-                                            Send Reset PW
+                                            Send Email
                                         </v-btn>
                                         <v-btn
-                                            color="red darken-1"
-                                            text
+                                            outlined
+                                            color="indigo"
                                             @click="forgotPwDialog = false"
-                                            class="text-uppercase"
+                                            class="text-uppercase rounded-lg"
                                         >
                                             Close
                                         </v-btn>

@@ -1,7 +1,9 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+import DatetimePicker from "vuetify-datetime-picker";
 
 Vue.use(VueRouter);
+Vue.use(DatetimePicker);
 
 const routes = [
     {
@@ -13,6 +15,12 @@ const routes = [
         path: "/examination-room",
         name: "ExaminationRoom",
         component: () => import("./views/Examinee/ExaminationRoom"),
+        meta: { requiresAuth: true }
+    },
+    {
+        path: "/take-exam",
+        name: "TakeExam",
+        component: () => import("./views/Examinee/TakeExam"),
         meta: { requiresAuth: true }
     },
     {
@@ -31,6 +39,12 @@ const routes = [
         path: "/manage-exam",
         name: "ManageExam",
         component: () => import("./views/Examiner/ManageExam"),
+        meta: { requiresAuth: true }
+    },
+    {
+        path: "/manage-examinees/:id",
+        name: "ManageExaminees",
+        component: () => import("./views/Examiner/RoomExaminees"),
         meta: { requiresAuth: true }
     },
     {
