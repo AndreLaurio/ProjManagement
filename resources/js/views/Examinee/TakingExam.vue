@@ -76,6 +76,18 @@
                                 </v-layout>
                             </div>
                         </v-card-text>
+                        <v-card-actions>
+                            <v-btn outlined color="indigo" class="rounded-lg">
+                                Previous</v-btn
+                            >
+                            <v-spacer></v-spacer>
+                            <v-btn
+                                outlined
+                                color="indigo"
+                                class="rounded-lg pl-5 pr-5"
+                                >Next</v-btn
+                            >
+                        </v-card-actions>
                     </v-card>
                 </v-flex>
                 <v-flex>
