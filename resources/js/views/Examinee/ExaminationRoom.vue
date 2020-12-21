@@ -35,22 +35,24 @@
                     </v-card-text>
                     <v-card-actions>
                         <v-spacer></v-spacer>
-                        <v-btn
-                            color="green darken-1"
-                            text
-                            class="text-uppercase"
-                            @click="joinRoom"
-                        >
-                            Join Room
-                        </v-btn>
-                        <v-btn
-                            color="red darken-1"
-                            text
-                            @click="joinDialog = false"
-                            class="text-uppercase"
-                        >
-                            Close
-                        </v-btn>
+                        <div class="mb-2">
+                            <v-btn
+                                dark
+                                outlined
+                                class="text-uppercase primary"
+                                @click="joinRoom"
+                            >
+                                Join Room
+                            </v-btn>
+                            <v-btn
+                                outlined
+                                color="indigo"
+                                @click="joinDialog = false"
+                                class="text-uppercase"
+                            >
+                                Close
+                            </v-btn>
+                        </div>
                     </v-card-actions>
                 </v-card>
             </v-dialog>
@@ -63,8 +65,7 @@
                 <v-card-text>
                     <div class="pl-5">
                         <v-layout>
-                            <v-flex md8
-                                >w
+                            <v-flex md8>
                                 <h2 class="black--text">
                                     {{ room.room_title }}
                                 </h2>

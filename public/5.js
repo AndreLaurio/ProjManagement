@@ -328,6 +328,39 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //vanila js
 //start of vue
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -347,8 +380,12 @@ __webpack_require__.r(__webpack_exports__);
       forgotPw_data: {
         email: ""
       },
+      snackbar: false,
+      timeout: 2000,
       loginLoading: false,
       showPassword: false,
+      showPasswordRegister: false,
+      showPasswordRegisterConfirm: false,
       registerDialog: false,
       forgotPwDialog: false,
       validationError: [],
@@ -569,7 +606,7 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "v-card",
-                    { staticClass: "register-card font-body" },
+                    { staticClass: "register-card font-body rounded-lg" },
                     [
                       _c(
                         "v-card-title",
@@ -579,7 +616,7 @@ var render = function() {
                             "span",
                             {
                               staticClass:
-                                "text-center text-uppercase register-title"
+                                "text-center text-uppercase rounded-lg indigo--text"
                             },
                             [_vm._v("Register Form")]
                           )
@@ -714,102 +751,109 @@ var render = function() {
                           1
                         ),
                         _vm._v(" "),
-                        _c(
-                          "div",
-                          { staticClass: "ml-8 mr-8" },
-                          [
-                            _c(
-                              "v-row",
-                              [
-                                _c(
-                                  "v-col",
-                                  [
-                                    _c(
-                                      "label",
-                                      {
-                                        staticClass:
-                                          "text-md-body-1 register-input",
-                                        attrs: { for: "register-password" }
-                                      },
-                                      [
-                                        _vm._v(
-                                          "\n                                        Password"
-                                        )
-                                      ]
-                                    ),
-                                    _vm._v(" "),
-                                    _c("v-text-field", {
-                                      attrs: {
-                                        outlined: "",
-                                        clearable: "",
-                                        "prepend-inner-icon": "mdi-key-variant",
-                                        id: "register-password"
-                                      },
-                                      model: {
-                                        value: _vm.register_data.password,
-                                        callback: function($$v) {
-                                          _vm.$set(
-                                            _vm.register_data,
-                                            "password",
-                                            $$v
-                                          )
-                                        },
-                                        expression: "register_data.password"
-                                      }
-                                    })
-                                  ],
-                                  1
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "v-col",
-                                  [
-                                    _c(
-                                      "label",
-                                      {
-                                        staticClass:
-                                          "text-md-body-1 register-input",
-                                        attrs: {
-                                          for: "register-confirm-password"
-                                        }
-                                      },
-                                      [
-                                        _vm._v(
-                                          "\n                                        Confirm Password"
-                                        )
-                                      ]
-                                    ),
-                                    _vm._v(" "),
-                                    _c("v-text-field", {
-                                      attrs: {
-                                        outlined: "",
-                                        clearable: "",
-                                        "prepend-inner-icon": "mdi-key-variant",
-                                        id: "register-confirm-password"
-                                      },
-                                      model: {
-                                        value:
-                                          _vm.register_data.confirm_password,
-                                        callback: function($$v) {
-                                          _vm.$set(
-                                            _vm.register_data,
-                                            "confirm_password",
-                                            $$v
-                                          )
-                                        },
-                                        expression:
-                                          "\n                                            register_data.confirm_password\n                                        "
-                                      }
-                                    })
-                                  ],
-                                  1
-                                )
-                              ],
-                              1
-                            )
-                          ],
-                          1
-                        )
+                        _c("div", { staticClass: "ml-8 mr-8" }, [
+                          _c(
+                            "div",
+                            [
+                              _c(
+                                "label",
+                                {
+                                  staticClass: "text-md-body-1",
+                                  attrs: { for: "register-password" }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                                    Password"
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c("v-text-field", {
+                                staticClass: "input-group--focused",
+                                attrs: {
+                                  outlined: "",
+                                  id: "register-password",
+                                  "append-icon": _vm.showPasswordRegister
+                                    ? "mdi-eye"
+                                    : "mdi-eye-off",
+                                  rules: [_vm.rules.required, _vm.rules.min],
+                                  type: _vm.showPasswordRegister
+                                    ? "text"
+                                    : "password",
+                                  name: "input-10-2",
+                                  hint: "At least 8 characters",
+                                  "prepend-inner-icon": "mdi-key-variant"
+                                },
+                                on: {
+                                  "click:append": function($event) {
+                                    _vm.showPasswordRegister = !_vm.showPasswordRegister
+                                  }
+                                },
+                                model: {
+                                  value: _vm.register_data.password,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.register_data, "password", $$v)
+                                  },
+                                  expression: "register_data.password"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            [
+                              _c(
+                                "label",
+                                {
+                                  staticClass: "text-md-body-1",
+                                  attrs: { for: "register-confirm-password" }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                                    Confirm Password"
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c("v-text-field", {
+                                staticClass: "input-group--focused",
+                                attrs: {
+                                  outlined: "",
+                                  id: "register-confirm-password",
+                                  "append-icon": _vm.showPasswordRegisterConfirm
+                                    ? "mdi-eye"
+                                    : "mdi-eye-off",
+                                  rules: [_vm.rules.required, _vm.rules.min],
+                                  type: _vm.showPasswordRegisterConfirm
+                                    ? "text"
+                                    : "password",
+                                  name: "input-10-2",
+                                  hint: "At least 8 characters",
+                                  "prepend-inner-icon": "mdi-key-variant"
+                                },
+                                on: {
+                                  "click:append": function($event) {
+                                    _vm.showPasswordRegisterConfirm = !_vm.showPasswordRegisterConfirm
+                                  }
+                                },
+                                model: {
+                                  value: _vm.register_data.confirm_password,
+                                  callback: function($$v) {
+                                    _vm.$set(
+                                      _vm.register_data,
+                                      "confirm_password",
+                                      $$v
+                                    )
+                                  },
+                                  expression: "register_data.confirm_password"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ])
                       ]),
                       _vm._v(" "),
                       _c(
@@ -818,35 +862,43 @@ var render = function() {
                           _c("v-spacer"),
                           _vm._v(" "),
                           _c(
-                            "v-btn",
-                            {
-                              staticClass: "primary text-uppercase rounded-lg",
-                              attrs: { dark: "", outlined: "" },
-                              on: { click: _vm.register }
-                            },
+                            "div",
+                            { staticClass: "mb-2" },
                             [
-                              _vm._v(
-                                "\n                            Register\n                        "
+                              _c(
+                                "v-btn",
+                                {
+                                  staticClass:
+                                    "primary text-uppercase rounded-lg",
+                                  attrs: { dark: "", outlined: "" },
+                                  on: { click: _vm.register }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                                Register\n                            "
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-btn",
+                                {
+                                  staticClass: "text-uppercase rounded-lg",
+                                  attrs: { color: "indigo", outlined: "" },
+                                  on: {
+                                    click: function($event) {
+                                      _vm.registerDialog = false
+                                    }
+                                  }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                                Close\n                            "
+                                  )
+                                ]
                               )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-btn",
-                            {
-                              staticClass: "text-uppercase rounded-lg",
-                              attrs: { color: "indigo", outlined: "" },
-                              on: {
-                                click: function($event) {
-                                  _vm.registerDialog = false
-                                }
-                              }
-                            },
-                            [
-                              _vm._v(
-                                "\n                            Close\n                        "
-                              )
-                            ]
+                            ],
+                            1
                           )
                         ],
                         1
@@ -1048,40 +1100,47 @@ var render = function() {
                                       _c("v-spacer"),
                                       _vm._v(" "),
                                       _c(
-                                        "v-btn",
-                                        {
-                                          staticClass:
-                                            "primary text-uppercase rounded-lg",
-                                          attrs: { dark: "" },
-                                          on: { click: _vm.forgotPassword }
-                                        },
+                                        "div",
+                                        { staticClass: "mb-2" },
                                         [
-                                          _vm._v(
-                                            "\n                                        Send Email\n                                    "
+                                          _c(
+                                            "v-btn",
+                                            {
+                                              staticClass:
+                                                "primary text-uppercase rounded-lg",
+                                              attrs: { outlined: "", dark: "" },
+                                              on: { click: _vm.forgotPassword }
+                                            },
+                                            [
+                                              _vm._v(
+                                                "\n                                            Send Email\n                                        "
+                                              )
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "v-btn",
+                                            {
+                                              staticClass:
+                                                "text-uppercase rounded-lg",
+                                              attrs: {
+                                                outlined: "",
+                                                color: "indigo"
+                                              },
+                                              on: {
+                                                click: function($event) {
+                                                  _vm.forgotPwDialog = false
+                                                }
+                                              }
+                                            },
+                                            [
+                                              _vm._v(
+                                                "\n                                            Close\n                                        "
+                                              )
+                                            ]
                                           )
-                                        ]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "v-btn",
-                                        {
-                                          staticClass:
-                                            "text-uppercase rounded-lg",
-                                          attrs: {
-                                            outlined: "",
-                                            color: "indigo"
-                                          },
-                                          on: {
-                                            click: function($event) {
-                                              _vm.forgotPwDialog = false
-                                            }
-                                          }
-                                        },
-                                        [
-                                          _vm._v(
-                                            "\n                                        Close\n                                    "
-                                          )
-                                        ]
+                                        ],
+                                        1
                                       )
                                     ],
                                     1
@@ -1164,21 +1223,42 @@ var render = function() {
                     [
                       _c(
                         "v-btn",
-                        { staticClass: "ml-3 pr-10 pl-10" },
+                        {
+                          staticClass: "ml-3 pr-10 pl-10",
+                          on: {
+                            click: function($event) {
+                              _vm.snackbar = true
+                            }
+                          }
+                        },
                         [_c("v-icon", [_vm._v("mdi-facebook")])],
                         1
                       ),
                       _vm._v(" "),
                       _c(
                         "v-btn",
-                        { staticClass: "ml-3 mr-3 pr-10 pl-10" },
+                        {
+                          staticClass: "ml-3 mr-3 pr-10 pl-10",
+                          on: {
+                            click: function($event) {
+                              _vm.snackbar = true
+                            }
+                          }
+                        },
                         [_c("v-icon", [_vm._v("mdi-twitter")])],
                         1
                       ),
                       _vm._v(" "),
                       _c(
                         "v-btn",
-                        { staticClass: "pr-10 pl-10" },
+                        {
+                          staticClass: "pr-10 pl-10",
+                          on: {
+                            click: function($event) {
+                              _vm.snackbar = true
+                            }
+                          }
+                        },
                         [_c("v-icon", [_vm._v("mdi-github")])],
                         1
                       )
@@ -1190,6 +1270,25 @@ var render = function() {
               )
             ],
             1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-snackbar",
+            {
+              attrs: { timeout: _vm.timeout },
+              model: {
+                value: _vm.snackbar,
+                callback: function($$v) {
+                  _vm.snackbar = $$v
+                },
+                expression: "snackbar"
+              }
+            },
+            [
+              _c("div", { staticClass: "text-center" }, [
+                _c("span", [_vm._v("Under Maintenance")])
+              ])
+            ]
           )
         ],
         1
@@ -1226,7 +1325,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuetify_lib_components_VDialog__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vuetify/lib/components/VDialog */ "./node_modules/vuetify/lib/components/VDialog/index.js");
 /* harmony import */ var vuetify_lib_components_VDivider__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vuetify/lib/components/VDivider */ "./node_modules/vuetify/lib/components/VDivider/index.js");
 /* harmony import */ var vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! vuetify/lib/components/VIcon */ "./node_modules/vuetify/lib/components/VIcon/index.js");
-/* harmony import */ var vuetify_lib_components_VTextField__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! vuetify/lib/components/VTextField */ "./node_modules/vuetify/lib/components/VTextField/index.js");
+/* harmony import */ var vuetify_lib_components_VSnackbar__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! vuetify/lib/components/VSnackbar */ "./node_modules/vuetify/lib/components/VSnackbar/index.js");
+/* harmony import */ var vuetify_lib_components_VTextField__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! vuetify/lib/components/VTextField */ "./node_modules/vuetify/lib/components/VTextField/index.js");
 
 
 
@@ -1261,7 +1361,8 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 
 
-_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_4___default()(component, {VBtn: vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_5__["VBtn"],VCard: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__["VCard"],VCardActions: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__["VCardActions"],VCardText: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__["VCardText"],VCardTitle: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__["VCardTitle"],VCol: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__["VCol"],VContainer: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__["VContainer"],VDialog: vuetify_lib_components_VDialog__WEBPACK_IMPORTED_MODULE_8__["VDialog"],VDivider: vuetify_lib_components_VDivider__WEBPACK_IMPORTED_MODULE_9__["VDivider"],VIcon: vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_10__["VIcon"],VRow: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__["VRow"],VSpacer: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__["VSpacer"],VTextField: vuetify_lib_components_VTextField__WEBPACK_IMPORTED_MODULE_11__["VTextField"]})
+
+_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_4___default()(component, {VBtn: vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_5__["VBtn"],VCard: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__["VCard"],VCardActions: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__["VCardActions"],VCardText: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__["VCardText"],VCardTitle: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__["VCardTitle"],VCol: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__["VCol"],VContainer: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__["VContainer"],VDialog: vuetify_lib_components_VDialog__WEBPACK_IMPORTED_MODULE_8__["VDialog"],VDivider: vuetify_lib_components_VDivider__WEBPACK_IMPORTED_MODULE_9__["VDivider"],VIcon: vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_10__["VIcon"],VRow: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__["VRow"],VSnackbar: vuetify_lib_components_VSnackbar__WEBPACK_IMPORTED_MODULE_11__["VSnackbar"],VSpacer: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__["VSpacer"],VTextField: vuetify_lib_components_VTextField__WEBPACK_IMPORTED_MODULE_12__["VTextField"]})
 
 
 /* hot reload */

@@ -115,6 +115,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -351,35 +352,42 @@ var render = function() {
                       _c("v-spacer"),
                       _vm._v(" "),
                       _c(
-                        "v-btn",
-                        {
-                          staticClass: "text-uppercase",
-                          attrs: { color: "green darken-1", text: "" },
-                          on: { click: _vm.joinRoom }
-                        },
+                        "div",
+                        { staticClass: "mb-2" },
                         [
-                          _vm._v(
-                            "\n                        Join Room\n                    "
+                          _c(
+                            "v-btn",
+                            {
+                              staticClass: "text-uppercase primary",
+                              attrs: { dark: "", outlined: "" },
+                              on: { click: _vm.joinRoom }
+                            },
+                            [
+                              _vm._v(
+                                "\n                            Join Room\n                        "
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-btn",
+                            {
+                              staticClass: "text-uppercase",
+                              attrs: { outlined: "", color: "indigo" },
+                              on: {
+                                click: function($event) {
+                                  _vm.joinDialog = false
+                                }
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n                            Close\n                        "
+                              )
+                            ]
                           )
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-btn",
-                        {
-                          staticClass: "text-uppercase",
-                          attrs: { color: "red darken-1", text: "" },
-                          on: {
-                            click: function($event) {
-                              _vm.joinDialog = false
-                            }
-                          }
-                        },
-                        [
-                          _vm._v(
-                            "\n                        Close\n                    "
-                          )
-                        ]
+                        ],
+                        1
                       )
                     ],
                     1
@@ -409,7 +417,6 @@ var render = function() {
                         "v-layout",
                         [
                           _c("v-flex", { attrs: { md8: "" } }, [
-                            _vm._v("w\n                            "),
                             _c("h2", { staticClass: "black--text" }, [
                               _vm._v(
                                 "\n                                " +

@@ -11,10 +11,10 @@
                             >create your own account</span
                         >
                     </template>
-                    <v-card class="register-card font-body">
+                    <v-card class="register-card font-body rounded-lg">
                         <v-card-title class="pl-8 pr-8 pt-8 justify-center">
                             <span
-                                class="text-center text-uppercase register-title"
+                                class="text-center text-uppercase rounded-lg indigo--text"
                                 >Register Form</span
                             >
                         </v-card-title>
@@ -51,10 +51,6 @@
                                     </v-col>
                                 </v-row>
                             </div>
-                            <!-- <div class="ml-8 mr-8">
-                                <label for="last-name" class="text-md-body-1"> Last Name</label>
-                                <v-text-field solo clearable id="last-name"></v-text-field>
-                            </div> -->
                             <div class="ml-8 mr-8">
                                 <label
                                     for="register-email"
@@ -71,64 +67,90 @@
                                 ></v-text-field>
                             </div>
                             <div class="ml-8 mr-8">
-                                <!-- <label for="register-password" class="text-md-body-1 register-input"> Password</label>
-                                <v-text-field solo clearable prepend-inner-icon="mdi-key-variant" id="register-password"></v-text-field>
-                                <label for="register-confirm-password" class="text-md-body-1 register-input"> Confirm Password</label>
-                                <v-text-field solo clearable prepend-inner-icon="mdi-key-variant" id="register-confirm-password"></v-text-field> -->
-                                <v-row>
-                                    <v-col>
-                                        <label
-                                            for="register-password"
-                                            class="text-md-body-1 register-input"
-                                        >
-                                            Password</label
-                                        >
-                                        <v-text-field
-                                            outlined
-                                            clearable
-                                            prepend-inner-icon="mdi-key-variant"
-                                            id="register-password"
-                                            v-model="register_data.password"
-                                        ></v-text-field>
-                                    </v-col>
-                                    <v-col>
-                                        <label
-                                            for="register-confirm-password"
-                                            class="text-md-body-1 register-input"
-                                        >
-                                            Confirm Password</label
-                                        >
-                                        <v-text-field
-                                            outlined
-                                            clearable
-                                            prepend-inner-icon="mdi-key-variant"
-                                            id="register-confirm-password"
-                                            v-model="
-                                                register_data.confirm_password
-                                            "
-                                        ></v-text-field>
-                                    </v-col>
-                                </v-row>
+                                <div>
+                                    <label
+                                        for="register-password"
+                                        class="text-md-body-1"
+                                    >
+                                        Password</label
+                                    >
+                                    <v-text-field
+                                        outlined
+                                        id="register-password"
+                                        :append-icon="
+                                            showPasswordRegister
+                                                ? 'mdi-eye'
+                                                : 'mdi-eye-off'
+                                        "
+                                        :rules="[rules.required, rules.min]"
+                                        :type="
+                                            showPasswordRegister
+                                                ? 'text'
+                                                : 'password'
+                                        "
+                                        name="input-10-2"
+                                        hint="At least 8 characters"
+                                        class="input-group--focused"
+                                        @click:append="
+                                            showPasswordRegister = !showPasswordRegister
+                                        "
+                                        prepend-inner-icon="mdi-key-variant"
+                                        v-model="register_data.password"
+                                    ></v-text-field>
+                                </div>
+                                <div>
+                                    <label
+                                        for="register-confirm-password"
+                                        class="text-md-body-1"
+                                    >
+                                        Confirm Password</label
+                                    >
+                                    <v-text-field
+                                        outlined
+                                        id="register-confirm-password"
+                                        :append-icon="
+                                            showPasswordRegisterConfirm
+                                                ? 'mdi-eye'
+                                                : 'mdi-eye-off'
+                                        "
+                                        :rules="[rules.required, rules.min]"
+                                        :type="
+                                            showPasswordRegisterConfirm
+                                                ? 'text'
+                                                : 'password'
+                                        "
+                                        name="input-10-2"
+                                        hint="At least 8 characters"
+                                        class="input-group--focused"
+                                        @click:append="
+                                            showPasswordRegisterConfirm = !showPasswordRegisterConfirm
+                                        "
+                                        prepend-inner-icon="mdi-key-variant"
+                                        v-model="register_data.confirm_password"
+                                    ></v-text-field>
+                                </div>
                             </div>
                         </v-card-text>
                         <v-card-actions>
                             <v-spacer></v-spacer>
-                            <v-btn
-                                dark
-                                outlined
-                                @click="register"
-                                class="primary text-uppercase rounded-lg"
-                            >
-                                Register
-                            </v-btn>
-                            <v-btn
-                                color="indigo"
-                                outlined
-                                @click="registerDialog = false"
-                                class="text-uppercase rounded-lg"
-                            >
-                                Close
-                            </v-btn>
+                            <div class="mb-2">
+                                <v-btn
+                                    dark
+                                    outlined
+                                    @click="register"
+                                    class="primary text-uppercase rounded-lg"
+                                >
+                                    Register
+                                </v-btn>
+                                <v-btn
+                                    color="indigo"
+                                    outlined
+                                    @click="registerDialog = false"
+                                    class="text-uppercase rounded-lg"
+                                >
+                                    Close
+                                </v-btn>
+                            </div>
                         </v-card-actions>
                     </v-card>
                 </v-dialog>
@@ -207,21 +229,24 @@
                                     </v-card-text>
                                     <v-card-actions>
                                         <v-spacer></v-spacer>
-                                        <v-btn
-                                            dark
-                                            @click="forgotPassword"
-                                            class="primary text-uppercase rounded-lg"
-                                        >
-                                            Send Email
-                                        </v-btn>
-                                        <v-btn
-                                            outlined
-                                            color="indigo"
-                                            @click="forgotPwDialog = false"
-                                            class="text-uppercase rounded-lg"
-                                        >
-                                            Close
-                                        </v-btn>
+                                        <div class="mb-2">
+                                            <v-btn
+                                                outlined
+                                                dark
+                                                @click="forgotPassword"
+                                                class="primary text-uppercase rounded-lg"
+                                            >
+                                                Send Email
+                                            </v-btn>
+                                            <v-btn
+                                                outlined
+                                                color="indigo"
+                                                @click="forgotPwDialog = false"
+                                                class="text-uppercase rounded-lg"
+                                            >
+                                                Close
+                                            </v-btn>
+                                        </div>
                                     </v-card-actions>
                                 </v-card>
                             </v-dialog>
@@ -256,18 +281,26 @@
                         <v-divider></v-divider>
                     </v-row>
                     <div class="mt-5 pr-12 pl-12 mb-4">
-                        <v-btn class="ml-3 pr-10 pl-10"
+                        <v-btn class="ml-3 pr-10 pl-10" @click="snackbar = true"
                             ><v-icon>mdi-facebook</v-icon></v-btn
                         >
-                        <v-btn class="ml-3 mr-3 pr-10 pl-10"
+                        <v-btn
+                            class="ml-3 mr-3 pr-10 pl-10"
+                            @click="snackbar = true"
                             ><v-icon>mdi-twitter</v-icon></v-btn
                         >
-                        <v-btn class="pr-10 pl-10"
+                        <v-btn class="pr-10 pl-10" @click="snackbar = true"
                             ><v-icon>mdi-github</v-icon></v-btn
                         >
                     </div>
                 </v-card-text>
             </v-card>
+            <!-- snackbar -->
+            <v-snackbar v-model="snackbar" :timeout="timeout">
+                <div class="text-center">
+                    <span>Under Maintenance</span>
+                </div>
+            </v-snackbar>
         </v-container>
     </div>
 </template>
@@ -338,8 +371,12 @@ export default {
             forgotPw_data: {
                 email: ""
             },
+            snackbar: false,
+            timeout: 2000,
             loginLoading: false,
             showPassword: false,
+            showPasswordRegister: false,
+            showPasswordRegisterConfirm: false,
             registerDialog: false,
             forgotPwDialog: false,
             validationError: [],
