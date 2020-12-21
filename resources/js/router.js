@@ -18,9 +18,15 @@ const routes = [
         meta: { requiresAuth: true }
     },
     {
-        path: "/take-exam",
+        path: "/take-exam/:id",
         name: "TakeExam",
         component: () => import("./views/Examinee/TakeExam"),
+        meta: { requiresAuth: true }
+    },
+    {
+        path: "/taking-exam/:id",
+        name: "TakingExam",
+        component: () => import("./views/Examinee/TakingExam"),
         meta: { requiresAuth: true }
     },
     {

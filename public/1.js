@@ -62,6 +62,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -208,11 +218,17 @@ var render = function() {
                       "v-layout",
                       [
                         _c("v-flex", { attrs: { md8: "" } }, [
-                          _c("h2", { staticClass: "black--text" }),
+                          _c("h2", { staticClass: "black--text" }, [
+                            _vm._v("Midterm Exam")
+                          ]),
                           _vm._v(" "),
                           _c("br"),
                           _vm._v(" "),
-                          _c("span")
+                          _c("span", [
+                            _vm._v(
+                              "Lorem ipsum dolor sit amet, consectetur\n                                adipiscing elit, sed do eiusmod tempor\n                                incididunt ut labore et dolore magna aliqua.\n                                Ut enim ad minim veniam, quis nostrud\n                                exercitation ullamco laboris nisi ut aliquip\n                                ex ea commodo consequat. Duis aute irure\n                                dolor in reprehenderit in voluptate velit\n                                esse cillum dolore eu fugiat nulla\n                                pariatur."
+                            )
+                          ])
                         ]),
                         _vm._v(" "),
                         _c("v-flex", { attrs: { md4: "" } }, [
@@ -229,7 +245,7 @@ var render = function() {
                               _c(
                                 "v-btn",
                                 {
-                                  staticClass: "pl-12 pr-12 mt-8 rounded-lg",
+                                  staticClass: "pl-12 pr-12 mt-12 rounded-lg",
                                   attrs: { outlined: "", color: "indigo" },
                                   on: { click: _vm.takeExamination }
                                 },

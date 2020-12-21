@@ -15,9 +15,19 @@
                     <div class="pl-5">
                         <v-layout>
                             <v-flex md8>
-                                <h2 class="black--text"></h2>
+                                <h2 class="black--text">Midterm Exam</h2>
                                 <br />
-                                <span></span>
+                                <span
+                                    >Lorem ipsum dolor sit amet, consectetur
+                                    adipiscing elit, sed do eiusmod tempor
+                                    incididunt ut labore et dolore magna aliqua.
+                                    Ut enim ad minim veniam, quis nostrud
+                                    exercitation ullamco laboris nisi ut aliquip
+                                    ex ea commodo consequat. Duis aute irure
+                                    dolor in reprehenderit in voluptate velit
+                                    esse cillum dolore eu fugiat nulla
+                                    pariatur.</span
+                                >
                             </v-flex>
                             <v-flex md4>
                                 <div class="text-right">
@@ -26,7 +36,7 @@
                                     <v-btn
                                         outlined
                                         color="indigo"
-                                        class="pl-12 pr-12 mt-8 rounded-lg"
+                                        class="pl-12 pr-12 mt-12 rounded-lg"
                                         @click="takeExamination"
                                     >
                                         Take
